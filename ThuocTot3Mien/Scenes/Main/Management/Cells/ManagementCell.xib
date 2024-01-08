@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ManagementCell" id="gTV-IL-0wX" customClass="ManagementCell" customModule="ThuocTot3Mien" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="452" height="90"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaK-Mj-8ZF">
+                        <rect key="frame" x="0.0" y="0.0" width="452" height="90"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lVu-5w-ahe">
+                                <rect key="frame" x="16" y="28.666666666666657" width="36" height="33.333333333333329"/>
+                                <color key="tintColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lVu-5w-ahe" secondAttribute="height" id="g7U-bx-Z5g"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4as-zy-qhX">
+                                <rect key="frame" x="68" y="35.333333333333336" width="368" height="19.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4as-zy-qhX" firstAttribute="leading" secondItem="lVu-5w-ahe" secondAttribute="trailing" constant="16" id="BSu-cA-O0a"/>
+                            <constraint firstItem="4as-zy-qhX" firstAttribute="centerY" secondItem="RaK-Mj-8ZF" secondAttribute="centerY" id="EMW-EK-MQ0"/>
+                            <constraint firstItem="lVu-5w-ahe" firstAttribute="centerY" secondItem="RaK-Mj-8ZF" secondAttribute="centerY" id="N7Q-17-fcb"/>
+                            <constraint firstAttribute="trailing" secondItem="4as-zy-qhX" secondAttribute="trailing" constant="16" id="dni-UG-qlN"/>
+                            <constraint firstItem="4as-zy-qhX" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RaK-Mj-8ZF" secondAttribute="top" constant="4" id="nVK-va-M3p"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4as-zy-qhX" secondAttribute="bottom" constant="4" id="qAG-0l-ScV"/>
+                            <constraint firstItem="lVu-5w-ahe" firstAttribute="leading" secondItem="RaK-Mj-8ZF" secondAttribute="leading" constant="16" id="rzk-2G-vfx"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="RaK-Mj-8ZF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KbG-Ye-M18"/>
+                <constraint firstItem="RaK-Mj-8ZF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="MFY-SZ-C3C"/>
+                <constraint firstItem="lVu-5w-ahe" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.4" id="QqS-2b-RBH"/>
+                <constraint firstAttribute="trailing" secondItem="RaK-Mj-8ZF" secondAttribute="trailing" id="SET-23-aGW"/>
+                <constraint firstAttribute="bottom" secondItem="RaK-Mj-8ZF" secondAttribute="bottom" id="XkW-Xf-FI9"/>
+            </constraints>
+            <size key="customSize" width="452" height="90"/>
+            <connections>
+                <outlet property="image" destination="lVu-5w-ahe" id="8SW-8h-nS5"/>
+                <outlet property="title" destination="4as-zy-qhX" id="CqH-8j-W1z"/>
+            </connections>
+            <point key="canvasLocation" x="219.84732824427479" y="1.4084507042253522"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="person" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

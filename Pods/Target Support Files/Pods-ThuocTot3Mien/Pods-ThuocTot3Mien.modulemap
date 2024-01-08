@@ -1,0 +1,6 @@
+framework module Pods_ThuocTot3Mien {
+  umbrella header "Pods-ThuocTot3Mien-umbrella.h"
+
+  export *
+  module * { export * }
+}

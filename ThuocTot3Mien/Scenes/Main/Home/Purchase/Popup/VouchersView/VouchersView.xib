@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VouchersView" customModule="ThuocTot3Mien" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="4T5-l4-3aZ" id="PgU-d7-M7O"/>
+                <outlet property="collectionView" destination="Bkw-Sd-bFC" id="kEk-QL-Ekq"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="ZAF-3h-oPM"/>
+                <outlet property="heightConstraint" destination="QqI-7N-QDg" id="mTB-sw-hKJ"/>
+                <outlet property="title" destination="igD-aq-4Jn" id="0R8-K6-poC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="618" height="505"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh sách Voucher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igD-aq-4Jn">
+                    <rect key="frame" x="230.66666666666663" y="16" width="157" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Bkw-Sd-bFC">
+                    <rect key="frame" x="0.0" y="53" width="618" height="386"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="386" id="QqI-7N-QDg"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1YT-tP-37e">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="F1i-8H-SgT"/>
+                        <outlet property="delegate" destination="-1" id="UKP-5S-xdf"/>
+                    </connections>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4T5-l4-3aZ">
+                    <rect key="frame" x="546" y="455" width="56" height="34"/>
+                    <color key="tintColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Huỷ">
+                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="dismiss" destination="-1" eventType="touchUpInside" id="iHV-aO-S7E"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Bkw-Sd-bFC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="523-IU-5zG"/>
+                <constraint firstItem="igD-aq-4Jn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="79Y-Qh-4mJ"/>
+                <constraint firstItem="Bkw-Sd-bFC" firstAttribute="top" secondItem="igD-aq-4Jn" secondAttribute="bottom" constant="16" id="FwL-bF-8Yb"/>
+                <constraint firstItem="igD-aq-4Jn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="LS4-5Q-u6s"/>
+                <constraint firstItem="Bkw-Sd-bFC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QRa-68-X9I"/>
+                <constraint firstAttribute="bottom" secondItem="4T5-l4-3aZ" secondAttribute="bottom" constant="16" id="ZZL-9n-VUo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4T5-l4-3aZ" secondAttribute="trailing" constant="16" id="eVX-bf-yO4"/>
+                <constraint firstItem="4T5-l4-3aZ" firstAttribute="top" secondItem="Bkw-Sd-bFC" secondAttribute="bottom" constant="16" id="kBK-bc-CUD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="207.63358778625954" y="-133.45070422535213"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

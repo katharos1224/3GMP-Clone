@@ -5,20 +5,20 @@
 //  Created by Katharos on 08/01/2024.
 //
 
-import UIKit
 import SDWebImage
+import UIKit
 
 class ContactCell: UICollectionViewCell {
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    
+    @IBOutlet var icon: UIImageView!
+    @IBOutlet var name: UILabel!
+
     static let identifier: String = "ContactCell"
-    
+
     var cellTapOnClick: (() -> Void)?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
@@ -28,7 +28,7 @@ class ContactCell: UICollectionViewCell {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
@@ -38,10 +38,9 @@ class ContactCell: UICollectionViewCell {
     @objc private func cellTapped() {
         cellTapOnClick?()
     }
-    
+
     func configure(item: ContactMethod) {
         icon.sd_setImage(with: URL(string: item.icon), placeholderImage: UIImage(systemName: "photo"))
         name.text = item.name
     }
-
 }

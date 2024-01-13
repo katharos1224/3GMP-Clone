@@ -27,7 +27,7 @@ class ProductCVCell: UICollectionViewCell {
 
     var addToCartOnClick: (() -> Void)?
     var cellTapOnClick: (() -> Void)?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -61,7 +61,7 @@ class ProductCVCell: UICollectionViewCell {
         discountView.layer.cornerRadius = discountView.frame.size.height / 2
         addCartButton.layer.cornerRadius = addCartButton.frame.size.height / 2
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         tagStack.removeAllArrangedSubviews()
@@ -122,10 +122,10 @@ class ProductCVCell: UICollectionViewCell {
         addCartButton.backgroundColor = memberStatus == 2 && productData.soLuong != 0 ? .systemGreen : .lightGray
         addCartButton.isUserInteractionEnabled = memberStatus == 2 && productData.soLuong != 0 ? true : false
         addCartButton.setTitle(productData.soLuong != 0 ? "Thêm giỏ hàng" : "Hết hàng", for: .normal)
-        
+
         layoutIfNeeded()
     }
-    
+
     func configure(categoryProductData: CategoryProduct, memberStatus: Int) {
         discountView.isHidden = categoryProductData.khuyenMai != nil ? false : true
 //        bonusCoinsLabel.isHidden = categoryProductData.bonusCoins != nil && categoryProductData.bonusCoins != 0 ? false : true
@@ -173,7 +173,7 @@ class ProductCVCell: UICollectionViewCell {
         addCartButton.backgroundColor = memberStatus == 2 && categoryProductData.soLuong != 0 ? .systemGreen : .lightGray
         addCartButton.isUserInteractionEnabled = memberStatus == 2 && categoryProductData.soLuong != 0 ? true : false
         addCartButton.setTitle(categoryProductData.soLuong != 0 ? "Thêm giỏ hàng" : "Hết hàng", for: .normal)
-        
+
         layoutIfNeeded()
     }
 }

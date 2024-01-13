@@ -8,17 +8,16 @@
 import UIKit
 
 class ManagementCell: UICollectionViewCell {
+    @IBOutlet var image: UIImageView!
+    @IBOutlet var title: UILabel!
 
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var title: UILabel!
-    
     static let identifier: String = "ManagementCell"
-    
+
     var cellTapOnClick: (() -> Void)?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
@@ -28,7 +27,7 @@ class ManagementCell: UICollectionViewCell {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutIfNeeded()
@@ -38,10 +37,9 @@ class ManagementCell: UICollectionViewCell {
     @objc private func cellTapped() {
         cellTapOnClick?()
     }
-    
-    func configure(item: MenuItem) {
-        self.image.image = UIImage(systemName: item.imageName)
-        self.title.text = item.title
-    }
 
+    func configure(item: MenuItem) {
+        image.image = UIImage(systemName: item.imageName)
+        title.text = item.title
+    }
 }

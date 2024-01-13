@@ -13,6 +13,14 @@ struct Description: Codable {
     let description: String
 }
 
+// MARK: - Logout
+
+struct LogoutResponse: Codable {
+    let code: Int
+    let message: [String]
+    let response: Description
+}
+
 // MARK: - Pharmacy Response
 
 // Pharmacy Register
@@ -34,7 +42,7 @@ struct PharmacyLoginResponseBody: Codable {
     let name: String
     let pharmacy: String
     let phoneNumber: String
-    let email: String
+    let email: String?
     let address: String
     let taxCode: String?
     let status: Int
@@ -76,7 +84,7 @@ struct CustomerLoginResponseBody: Codable {
     let idAgency: Int
     let name: String
     let phoneNumber: String
-    let email: String
+    let email: String?
     let address: String
     let taxCode: String?
     let status: Int

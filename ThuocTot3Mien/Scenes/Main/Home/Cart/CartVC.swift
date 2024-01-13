@@ -18,26 +18,35 @@ final class CartVC: BaseViewController {
     @IBOutlet var heightConstraint: NSLayoutConstraint!
 
     var tempCartProducts: [CartProduct] = []
+    var tempChangesSet = [(id: Int, number: Int)]()
     var cartProducts: [CartProduct] = []
     var isAllChecked = Bool()
     var checkmarkStatus = [(id: Int, check: Bool)]()
     var onEndEditing: (() -> Void)?
     var toggleCheckAll: (() -> Void)?
 
-//    var delegate: DismissProtocol?
-
     var totalNumber = 0
     var totalPrice = 0
     var reductionRate: String = ""
+
+    let dispatchGroup = DispatchGroup()
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()
     }
 
-    override func viewWillAppear(_: Bool) {
-        tabBarController?.tabBar.isHidden = true
-    }
+    override func viewWillAppear(_: Bool) {}
 
     func setupData() {
         NetworkManager.shared.fetchCart { [weak self] result in
@@ -56,8 +65,9 @@ final class CartVC: BaseViewController {
 
                 self?.cartProducts.forEach { product in
                     let id = product.id
-                    let tuple = (id, true)
-                    self?.checkmarkStatus.append(tuple)
+                    let number = product.soLuong
+                    let checkmarkTuple = (id, true)
+                    self?.checkmarkStatus.append(checkmarkTuple)
                 }
 
                 DispatchQueue.main.async {
@@ -90,7 +100,7 @@ final class CartVC: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleTextFieldChange(_:)), name: Notification.Name("TextFieldDidChange"), object: nil)
 
         let cellWidth = UIScreen.main.bounds.width
-        let cellHeight = (1 / 3) * UIScreen.main.bounds.height
+        let cellHeight = (1 / 4) * UIScreen.main.bounds.height
         let spacing = 0.0
         let padding = 0.0
 
@@ -116,8 +126,32 @@ final class CartVC: BaseViewController {
         heightConstraint.constant = contentHeight
     }
 
+    func containsID(id: Int) -> Bool {
+        return tempChangesSet.contains { $0.id == id }
+    }
+
+    func addTempChange(id: Int, number: Int) {
+        if !containsID(id: id) {
+            tempChangesSet.append((id: id, number: number))
+        } else {
+            if let index = tempChangesSet.firstIndex(where: { $0.id == id }) {
+                tempChangesSet[index] = (id: id, number: number)
+            }
+        }
+    }
+
+    func removeTempChange(id: Int) {
+        tempChangesSet.removeAll { $0.id == id }
+    }
+
     @IBAction func dismissTapped(_: Any) {
-        popWithCrossDissolve()
+        saveDataWithDispatchGroup { [self] success in
+            if success {
+                dispatchGroup.notify(queue: .main) {
+                    self.popWithCrossDissolve()
+                }
+            }
+        }
     }
 
     @IBAction func checkmarkAllTapped() {
@@ -128,43 +162,58 @@ final class CartVC: BaseViewController {
         }
 
         if isAllChecked {
-            NetworkManager.shared.fetchCart { [weak self] result in
-                switch result {
-                case let .success(data):
-                    guard let response = data.response else { return }
+            tempCartProducts = cartProducts
 
-                    self?.cartProducts = response.products.data
-                    self?.tempCartProducts = self?.cartProducts ?? []
+            var totalNumber = 0
+            var totalPrice = 0
 
-                    DispatchQueue.main.async {
-                        self?.checkmarkAllButton.image = UIImage(systemName: "checkmark.square.fill")
-                        self?.totalNumberLabel.text = String(response.totalNumber)
-                        self?.totalPriceLabel.text = String(response.totalPrice.formattedWithSeparator()) + " VNĐ"
-                        self?.continueButton.isUserInteractionEnabled = self?.tempCartProducts.isEmpty ?? true ? false : true
-                        self?.continueButton.backgroundColor = self?.tempCartProducts.isEmpty ?? true ? .placeholderText : .systemGreen
-                        self?.reloadDataAndAdjustHeight()
-                    }
-                case let .failure(error):
-                    print(error.localizedDescription)
-                }
+            tempCartProducts.forEach { product in
+                totalNumber += product.soLuong
+                totalPrice += product.donGia * product.soLuong
+            }
+
+            self.totalNumber = totalNumber
+            self.totalPrice = totalPrice
+
+            DispatchQueue.main.async {
+                self.checkmarkAllButton.image = UIImage(systemName: "checkmark.square.fill")
+                self.totalNumberLabel.text = String(self.totalNumber)
+                self.totalPriceLabel.text = String(self.totalPrice.formattedWithSeparator()) + " VNĐ"
+                self.reloadDataAndAdjustHeight()
+                self.continueButton.isUserInteractionEnabled = true
+                self.continueButton.backgroundColor = .systemGreen
             }
         } else {
-            tempCartProducts = []
+            tempCartProducts.removeAll()
 
             DispatchQueue.main.async { [self] in
                 checkmarkAllButton.image = UIImage(systemName: "square")
                 totalNumberLabel.text = "0"
                 totalPriceLabel.text = "0 VNĐ"
-                continueButton.isUserInteractionEnabled = tempCartProducts.isEmpty ? false : true
-                continueButton.backgroundColor = tempCartProducts.isEmpty ? .placeholderText : .systemGreen
                 reloadDataAndAdjustHeight()
+                continueButton.isUserInteractionEnabled = false
+                continueButton.backgroundColor = .placeholderText
+            }
+        }
+    }
+
+    func saveDataWithDispatchGroup(completion: @escaping (Bool) -> Void) {
+        for change in tempChangesSet {
+            dispatchGroup.enter()
+
+            NetworkManager.shared.updateCart(id: change.id, number: change.number) { [weak self] result in
+                switch result {
+                case .success:
+                    print("Updated \(self!.tempChangesSet)")
+                case .failure:
+                    completion(false)
+                }
+
+                self?.dispatchGroup.leave()
             }
         }
 
-//        DispatchQueue.main.async { [self] in
-//            continueButton.isUserInteractionEnabled = tempCartProducts.isEmpty ? false : true
-//            continueButton.backgroundColor = tempCartProducts.isEmpty ? .placeholderText : .systemGreen
-//        }
+        completion(true)
     }
 
     @IBAction func continueTapped() {
@@ -202,41 +251,9 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 
             let product = cartProducts[indexPath.item]
 
-            if cell.isChecked {
-                tempCartProducts.append(product)
-            } else {
-                tempCartProducts.removeAll { $0.id == product.id }
-            }
+            cell.isChecked ? tempCartProducts.append(product) : tempCartProducts.removeAll { $0.id == product.id }
 
-            if tempCartProducts.isEmpty {
-                DispatchQueue.main.async {
-                    self.totalNumberLabel.text = "0"
-                    self.totalPriceLabel.text = "0 VNĐ"
-                    self.reloadDataAndAdjustHeight()
-                }
-            } else {
-                var totalNumber = 0
-                var totalPrice = 0
-
-                cartProducts.forEach { product in
-                    if tempCartProducts.contains(where: { $0.id == product.id }) {
-                        totalNumber += product.soLuong
-                        totalPrice += product.donGia * product.soLuong
-                    }
-                    for index in tempCartProducts.indices {
-                        if tempCartProducts[index].id == product.id {
-                            tempCartProducts[index] = product
-                        }
-                    }
-                }
-
-                DispatchQueue.main.async { [self] in
-                    totalNumberLabel.text = String(totalNumber)
-                    totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                    reloadDataAndAdjustHeight()
-                }
-            }
+            updateCartInfo()
 
             DispatchQueue.main.async { [self] in
                 continueButton.isUserInteractionEnabled = tempCartProducts.isEmpty ? false : true
@@ -254,6 +271,9 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                         tempCartProducts.removeAll { $0.id == cartProducts[indexPath.item].id }
                     }
                 }
+
+                removeTempChange(id: cartProducts[indexPath.item].id)
+                print(tempChangesSet)
 
                 NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: 0) { [weak self] _ in
                     NetworkManager.shared.fetchCart { [weak self] result in
@@ -301,6 +321,9 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                         self?.totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
                                         self?.reloadDataAndAdjustHeight()
                                     }
+
+                                    self?.totalNumber = totalNumber
+                                    self?.totalPrice = totalPrice
                                 }
                             }
                         case let .failure(error):
@@ -323,6 +346,7 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 
         cell.minusOnClick = { [self] in
             view.endEditing(true)
+
             let product = cartProducts[indexPath.item]
 
             if let text = cell.amountField.text, var amount = Int(text) {
@@ -331,123 +355,19 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                         amount -= 1
                         let number = (amount < minAmount) ? minAmount : amount
                         cell.amountField.text = "\(number)"
-                        NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: number) { [weak self] _ in
-                            NetworkManager.shared.fetchCart { [weak self] result in
-                                switch result {
-                                case let .success(data):
-                                    guard let response = data.response else {
-                                        cartProducts = []
 
-                                        DispatchQueue.main.async {
-                                            totalNumberLabel.text = "0"
-                                            totalPriceLabel.text = "0 VNĐ"
-                                            //                                        if cartProducts.count == 1 {
-                                            //                                            checkmarkStatus.removeAll()
-                                            //                                        } else {
-                                            //                                            if let indexToRemove = checkmarkStatus.firstIndex(where: { $0.id == cartProducts[indexPath.item].id }) {
-                                            //                                                checkmarkStatus.remove(at: indexToRemove)
-                                            //                                            }
-                                            //                                        }
-                                            checkmarkAllButton.image = UIImage(systemName: "square")
-                                            reloadDataAndAdjustHeight()
-                                        }
+                        let id = cartProducts[indexPath.item].id
+                        // them vao mang tam sau khi press minus
+                        addTempChange(id: id, number: number)
+                        cartProducts[indexPath.item].soLuong = number
+                        print(tempChangesSet)
 
-                                        return
-                                    }
-
-                                    cartProducts = response.products.data
-
-                                    if tempCartProducts.isEmpty {
-                                        DispatchQueue.main.async {
-                                            totalNumberLabel.text = "0"
-                                            totalPriceLabel.text = "0 VNĐ"
-                                            self?.reloadDataAndAdjustHeight()
-                                        }
-                                    } else {
-                                        var totalNumber = 0
-                                        var totalPrice = 0
-
-                                        cartProducts.forEach { product in
-                                            if tempCartProducts.contains(where: { $0.id == product.id }) {
-                                                totalNumber += product.soLuong
-                                                totalPrice += product.donGia * product.soLuong
-                                            }
-                                            for index in tempCartProducts.indices {
-                                                if tempCartProducts[index].id == product.id {
-                                                    tempCartProducts[index] = product
-                                                }
-                                            }
-                                        }
-
-                                        DispatchQueue.main.async {
-                                            totalNumberLabel.text = String(totalNumber)
-                                            totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                                            reloadDataAndAdjustHeight()
-                                        }
-                                    }
-                                case let .failure(error):
-                                    print(error.localizedDescription)
-                                }
-                            }
-                        }
+                        updateCartInfo()
                     } else {
                         showAlert(title: "Số lượng không hợp lệ!", message: "Số lượng tối thiểu: \(minAmount)")
                         cell.amountField.text = "\(minAmount)"
-                        NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: minAmount) { [weak self] _ in
-                            NetworkManager.shared.fetchCart { [weak self] result in
-                                switch result {
-                                case let .success(data):
-                                    guard let response = data.response else {
-                                        cartProducts = []
-                                        DispatchQueue.main.async {
-                                            totalNumberLabel.text = "0"
-                                            totalPriceLabel.text = "0 VNĐ"
-                                            if let indexToRemove = checkmarkStatus.firstIndex(where: { $0.id == cartProducts[indexPath.item].id }) {
-                                                checkmarkStatus.remove(at: indexToRemove)
-                                            }
-                                            checkmarkAllButton.image = UIImage(systemName: "square")
-                                            reloadDataAndAdjustHeight()
-                                        }
-                                        return
-                                    }
 
-                                    cartProducts = response.products.data
-
-                                    if tempCartProducts.isEmpty {
-                                        DispatchQueue.main.async {
-                                            totalNumberLabel.text = "0"
-                                            totalPriceLabel.text = "0 VNĐ"
-                                            self?.reloadDataAndAdjustHeight()
-                                        }
-                                    } else {
-                                        var totalNumber = 0
-                                        var totalPrice = 0
-
-                                        cartProducts.forEach { product in
-                                            if tempCartProducts.contains(where: { $0.id == product.id }) {
-                                                totalNumber += product.soLuong
-                                                totalPrice += product.donGia * product.soLuong
-                                            }
-                                            for index in tempCartProducts.indices {
-                                                if tempCartProducts[index].id == product.id {
-                                                    tempCartProducts[index] = product
-                                                }
-                                            }
-                                        }
-
-                                        DispatchQueue.main.async {
-                                            totalNumberLabel.text = String(totalNumber)
-                                            totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                                            reloadDataAndAdjustHeight()
-                                        }
-                                    }
-                                case let .failure(error):
-                                    print(error.localizedDescription)
-                                }
-                            }
-                        }
+                        updateCartInfo()
                     }
                 } else {
                     if amount > 0 {
@@ -465,67 +385,44 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                     }
                                 }
 
+                                // them vao mang tam sau khi press minus
+//                                addTempChange(id: cartProducts[indexPath.item].id, number: 0)
+                                removeTempChange(id: cartProducts[indexPath.item].id)
+                                print(tempChangesSet)
+
                                 NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: 0) { [weak self] _ in
                                     NetworkManager.shared.fetchCart { [weak self] result in
                                         switch result {
                                         case let .success(data):
                                             guard let response = data.response else {
-                                                cartProducts = []
+                                                self?.cartProducts = []
                                                 DispatchQueue.main.async { [self] in
-                                                    totalNumberLabel.text = "0"
-                                                    totalPriceLabel.text = "0 VNĐ"
-                                                    checkmarkAllButton.image = UIImage(systemName: "square")
-                                                    reloadDataAndAdjustHeight()
+                                                    self?.totalNumberLabel.text = "0"
+                                                    self?.totalPriceLabel.text = "0 VNĐ"
+                                                    self?.checkmarkAllButton.image = UIImage(systemName: "square")
+                                                    self?.reloadDataAndAdjustHeight()
                                                 }
                                                 return
                                             }
 
-                                            cartProducts = response.products.data
+                                            self?.cartProducts = response.products.data
 
-                                            isAllChecked = checkmarkStatus.filter { $0.check == false }.count == 0
-                                            checkmarkAllButton.image = UIImage(systemName: isAllChecked ? "checkmark.square.fill" : "square")
+                                            self?.isAllChecked = self?.checkmarkStatus.filter { $0.check == false }.count == 0
+                                            self?.checkmarkAllButton.image = UIImage(systemName: self!.isAllChecked ? "checkmark.square.fill" : "square")
 
                                             DispatchQueue.main.async { [self] in
-                                                if cartProducts.isEmpty {
-                                                    checkmarkAllButton.image = UIImage(systemName: "square")
-                                                    totalNumberLabel.text = "0"
-                                                    totalPriceLabel.text = "0 VNĐ"
-                                                    reloadDataAndAdjustHeight()
-                                                } else if checkmarkStatus.filter({ $0.check == false }).count == 0 {
-                                                    checkmarkAllButton.image = UIImage(systemName: "checkmark.square.fill")
-                                                    totalNumberLabel.text = String(response.totalNumber)
-                                                    totalPriceLabel.text = String(response.totalPrice.formattedWithSeparator()) + " VNĐ"
-                                                    reloadDataAndAdjustHeight()
+                                                if self!.cartProducts.isEmpty {
+                                                    self?.checkmarkAllButton.image = UIImage(systemName: "square")
+                                                    self?.totalNumberLabel.text = "0"
+                                                    self?.totalPriceLabel.text = "0 VNĐ"
+                                                    self?.reloadDataAndAdjustHeight()
+                                                } else if self?.checkmarkStatus.filter({ $0.check == false }).count == 0 {
+                                                    self?.checkmarkAllButton.image = UIImage(systemName: "checkmark.square.fill")
+                                                    self?.totalNumberLabel.text = String(response.totalNumber)
+                                                    self?.totalPriceLabel.text = String(response.totalPrice.formattedWithSeparator()) + " VNĐ"
+                                                    self?.reloadDataAndAdjustHeight()
                                                 } else {
-                                                    if tempCartProducts.isEmpty {
-                                                        DispatchQueue.main.async {
-                                                            self?.totalNumberLabel.text = "0"
-                                                            self?.totalPriceLabel.text = "0 VNĐ"
-                                                            self?.reloadDataAndAdjustHeight()
-                                                        }
-                                                    } else {
-                                                        var totalNumber = 0
-                                                        var totalPrice = 0
-
-                                                        cartProducts.forEach { product in
-                                                            if tempCartProducts.contains(where: { $0.id == product.id }) {
-                                                                totalNumber += product.soLuong
-                                                                totalPrice += product.donGia * product.soLuong
-                                                            }
-                                                            for index in tempCartProducts.indices {
-                                                                if tempCartProducts[index].id == product.id {
-                                                                    tempCartProducts[index] = product
-                                                                }
-                                                            }
-                                                        }
-
-                                                        DispatchQueue.main.async {
-                                                            totalNumberLabel.text = String(totalNumber)
-                                                            totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                                                            reloadDataAndAdjustHeight()
-                                                        }
-                                                    }
+                                                    self?.updateCartInfo()
                                                 }
                                             }
                                         case let .failure(error):
@@ -543,74 +440,23 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                             showAlert(title: "Xoá sản phẩm", message: "\(cartProducts[indexPath.item].tenSanPham)", actions: actions)
                         } else {
                             cell.amountField.text = "\(amount)"
-                            NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: amount) { [weak self] _ in
-                                NetworkManager.shared.fetchCart { [weak self] result in
-                                    switch result {
-                                    case let .success(data):
-                                        guard let response = data.response else {
-                                            cartProducts = []
-                                            DispatchQueue.main.async {
-                                                totalNumberLabel.text = "0"
-                                                totalPriceLabel.text = "0 VNĐ"
-                                                //                                            if let indexToRemove = checkmarkStatus.firstIndex(where: { $0.id == cartProducts[indexPath.item].id }) {
-                                                //                                                checkmarkStatus.remove(at: indexToRemove)
-                                                //                                            }
-                                                checkmarkAllButton.image = UIImage(systemName: "square")
-                                                reloadDataAndAdjustHeight()
-                                            }
-                                            return
-                                        }
 
-                                        cartProducts = response.products.data
+                            // them vao mang tam sau khi press minus
+                            addTempChange(id: cartProducts[indexPath.item].id, number: amount)
+                            cartProducts[indexPath.item].soLuong = amount
+                            print(tempChangesSet)
 
-                                        if tempCartProducts.isEmpty {
-                                            DispatchQueue.main.async {
-                                                self?.totalNumberLabel.text = "0"
-                                                self?.totalPriceLabel.text = "0 VNĐ"
-                                                self?.reloadDataAndAdjustHeight()
-                                            }
-                                        } else {
-                                            var totalNumber = 0
-                                            var totalPrice = 0
-
-                                            cartProducts.forEach { product in
-                                                if tempCartProducts.contains(where: { $0.id == product.id }) {
-                                                    totalNumber += product.soLuong
-                                                    totalPrice += product.donGia * product.soLuong
-                                                }
-                                                for index in tempCartProducts.indices {
-                                                    if tempCartProducts[index].id == product.id {
-                                                        tempCartProducts[index] = product
-                                                    }
-                                                }
-                                            }
-
-                                            DispatchQueue.main.async {
-                                                totalNumberLabel.text = String(totalNumber)
-                                                totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                                                reloadDataAndAdjustHeight()
-                                            }
-                                        }
-                                    case let .failure(error):
-                                        print(error.localizedDescription)
-                                    }
-                                }
-                            }
+                            updateCartInfo()
                         }
                     }
                 }
-            }
-
-            DispatchQueue.main.async { [self] in
-                continueButton.isUserInteractionEnabled = cartProducts.isEmpty ? false : true
-                continueButton.backgroundColor = cartProducts.isEmpty ? .placeholderText : .systemGreen
             }
         }
 
         cell.plusOnClick = { [self] in
             view.endEditing(true)
             let product = cartProducts[indexPath.item]
+
             // need to get actual total amount from homepage, not this cart total amount...
 //            let totalAmount = product.soLuong
 
@@ -619,125 +465,65 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                     if maxAmount - amount > 0 {
                         amount += 1
                         cell.amountField.text = "\(amount)"
-                        NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: amount) { [weak self] _ in
-                            NetworkManager.shared.fetchCart { [weak self] result in
-                                switch result {
-                                case let .success(data):
-                                    guard let response = data.response else {
-                                        cartProducts = []
-                                        DispatchQueue.main.async { [self] in
-                                            totalNumberLabel.text = "0"
-                                            totalPriceLabel.text = "0 VNĐ"
-                                            if let indexToRemove = checkmarkStatus.firstIndex(where: { $0.id == cartProducts[indexPath.item].id }) {
-                                                checkmarkStatus.remove(at: indexToRemove)
-                                            }
-                                            checkmarkAllButton.image = UIImage(systemName: "square")
-                                            reloadDataAndAdjustHeight()
-                                        }
-                                        return
-                                    }
 
-                                    cartProducts = response.products.data
+                        let id = cartProducts[indexPath.item].id
+                        // them vao mang tam sau khi press plus
+                        addTempChange(id: id, number: amount)
+                        cartProducts[indexPath.item].soLuong = amount
+                        print(tempChangesSet)
 
-                                    if tempCartProducts.isEmpty {
-                                        DispatchQueue.main.async {
-                                            self?.totalNumberLabel.text = "0"
-                                            self?.totalPriceLabel.text = "0 VNĐ"
-                                            self?.reloadDataAndAdjustHeight()
-                                        }
-                                    } else {
-                                        var totalNumber = 0
-                                        var totalPrice = 0
-
-                                        cartProducts.forEach { product in
-                                            if tempCartProducts.contains(where: { $0.id == product.id }) {
-                                                totalNumber += product.soLuong
-                                                totalPrice += product.donGia * product.soLuong
-                                            }
-                                            for index in tempCartProducts.indices {
-                                                if tempCartProducts[index].id == product.id {
-                                                    tempCartProducts[index] = product
-                                                }
-                                            }
-                                        }
-
-                                        DispatchQueue.main.async { [self] in
-                                            totalNumberLabel.text = String(totalNumber)
-                                            totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                                            reloadDataAndAdjustHeight()
-                                        }
-                                    }
-                                case let .failure(error):
-                                    print(error.localizedDescription)
-                                }
-                            }
-                        }
+                        updateCartInfo()
                     }
                 } else {
                     amount += 1
                     cell.amountField.text = "\(amount)"
-                    NetworkManager.shared.updateCart(id: cartProducts[indexPath.item].id, number: amount) { [weak self] _ in
-                        NetworkManager.shared.fetchCart { [weak self] result in
-                            switch result {
-                            case let .success(data):
-                                guard let response = data.response else {
-                                    cartProducts = []
-                                    DispatchQueue.main.async { [self] in
-                                        totalNumberLabel.text = "0"
-                                        totalPriceLabel.text = "0 VNĐ"
-                                        if let indexToRemove = checkmarkStatus.firstIndex(where: { $0.id == cartProducts[indexPath.item].id }) {
-                                            checkmarkStatus.remove(at: indexToRemove)
-                                        }
-                                        checkmarkAllButton.image = UIImage(systemName: "square")
-                                        reloadDataAndAdjustHeight()
-                                    }
-                                    return
-                                }
 
-                                cartProducts = response.products.data
+                    // them vao mang tam sau khi press plus
+                    addTempChange(id: id, number: amount)
+                    cartProducts[indexPath.item].soLuong = amount
+                    print(tempChangesSet)
 
-                                if tempCartProducts.isEmpty {
-                                    DispatchQueue.main.async {
-                                        self?.totalNumberLabel.text = "0"
-                                        self?.totalPriceLabel.text = "0 VNĐ"
-                                        self?.reloadDataAndAdjustHeight()
-                                    }
-                                } else {
-                                    var totalNumber = 0
-                                    var totalPrice = 0
-
-                                    cartProducts.forEach { product in
-                                        if tempCartProducts.contains(where: { $0.id == product.id }) {
-                                            totalNumber += product.soLuong
-                                            totalPrice += product.donGia * product.soLuong
-                                        }
-                                        for index in tempCartProducts.indices {
-                                            if tempCartProducts[index].id == product.id {
-                                                tempCartProducts[index] = product
-                                            }
-                                        }
-                                    }
-
-                                    DispatchQueue.main.async { [self] in
-                                        totalNumberLabel.text = String(totalNumber)
-                                        totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
-
-                                        reloadDataAndAdjustHeight()
-                                    }
-                                }
-                            case let .failure(error):
-                                print(error.localizedDescription)
-                            }
-                        }
-                    }
+                    updateCartInfo()
                 }
-
-                // update and fetch cart right here...
             }
         }
 
         return cell
+    }
+
+    func updateCartInfo() {
+        if tempCartProducts.isEmpty {
+            DispatchQueue.main.async { [self] in
+                totalNumberLabel.text = "0"
+                totalPriceLabel.text = "0 VNĐ"
+                reloadDataAndAdjustHeight()
+            }
+        } else {
+            var totalNumber = 0
+            var totalPrice = 0
+
+            cartProducts.forEach { product in
+                if tempCartProducts.contains(where: { $0.id == product.id }) {
+                    totalNumber += product.soLuong
+                    totalPrice += product.donGia * product.soLuong
+                }
+                for index in tempCartProducts.indices {
+                    if tempCartProducts[index].id == product.id {
+                        tempCartProducts[index] = product
+                    }
+                }
+            }
+
+            self.totalNumber = totalNumber
+            self.totalPrice = totalPrice
+
+            DispatchQueue.main.async { [self] in
+                totalNumberLabel.text = String(totalNumber)
+                totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
+
+                reloadDataAndAdjustHeight()
+            }
+        }
     }
 }
 

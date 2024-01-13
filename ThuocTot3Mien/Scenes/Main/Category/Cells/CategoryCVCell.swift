@@ -11,7 +11,7 @@ class CategoryCVCell: UICollectionViewCell {
     @IBOutlet var label: UILabel!
 
     static let identifier: String = "CategoryCVCell"
-    
+
     var cellTapOnClick: (() -> Void)?
 
     override func awakeFromNib() {
@@ -22,11 +22,11 @@ class CategoryCVCell: UICollectionViewCell {
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
         layer.shadowRadius = 6.0
-        
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     @objc private func cellTapped() {
         cellTapOnClick?()
     }

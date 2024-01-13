@@ -21,7 +21,7 @@ final class WelcomeVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let _ = KeychainService.getToken() {
             let vc = TabBarVC()
             DispatchQueue.main.async {

@@ -44,12 +44,12 @@ final class CategoryVC: BaseViewController {
     override func viewWillAppear(_: Bool) {
         tabBarController?.tabBar.isHidden = false
         showLoadingIndicator()
-        
+
         NetworkManager.shared.fetchCategory { [weak self] result in
             switch result {
-            case .success(let data):
+            case let .success(data):
                 guard let response = data.response else { return }
-                
+
                 self?.categoriesData = response
 
                 DispatchQueue.main.async {
@@ -57,7 +57,7 @@ final class CategoryVC: BaseViewController {
                     self?.collectionView.reloadData()
                     self?.hideLoadingIndicator()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print(error.localizedDescription)
             }
         }
@@ -89,35 +89,35 @@ extension CategoryVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVCell.identifier, for: indexPath) as! CategoryCVCell
         let category = categoriesData[indexPath.section].category[indexPath.row]
         cell.configure(name: category.name)
-        
+
         cell.cellTapOnClick = { [weak self] in
             print("Tapped!!!")
-            
+
             let id = self?.categoriesData[indexPath.section].category[indexPath.row].value
             let name = self?.categoriesData[indexPath.section].category[indexPath.row].name
             let vc = ProductsVC()
             vc.section = indexPath.section
             vc.id = id ?? 0
-            
+
             NetworkManager.shared.fetchProducts(page: nil, category: nil, search: nil, hoatChat: indexPath.section == 0 ? id : nil, nhomThuoc: indexPath.section == 1 ? id : nil, nhaSanXuat: indexPath.section == 2 ? id : nil, hastag: nil) { result in
                 switch result {
-                case .success(let data):
+                case let .success(data):
                     guard let response = data.response else {
                         print(result)
                         return
                     }
                     vc.categoryProducts = response.data
                     vc.lastPage = response.lastPage
-                    
+
                     DispatchQueue.main.async {
                         self?.pushWithCrossDissolve(vc)
                     }
-                case .failure(let error):
+                case let .failure(error):
                     print(error.localizedDescription)
                 }
             }
         }
-        
+
         return cell
     }
 

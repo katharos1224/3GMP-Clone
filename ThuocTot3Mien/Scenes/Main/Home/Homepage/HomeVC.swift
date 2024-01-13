@@ -59,7 +59,7 @@ final class HomeVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 251/255, green: 251/255, blue: 204/255, alpha: 1.0)
+        view.backgroundColor = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
 
         NetworkManager.shared.fetchHomepage { [weak self] result in
             switch result {
@@ -100,6 +100,7 @@ final class HomeVC: BaseViewController {
                 self?.totalCart = response.totalCart
 
                 DispatchQueue.main.async {
+                    self?.usernameLabel.text = response.memberName
                     self?.cartAmountLabel.text = "\(response.totalCart)"
                     self?.cartAmountContainerView.isHidden = response.totalCart > 0 ? false : true
                     self?.hideLoadingIndicator()
@@ -148,7 +149,7 @@ final class HomeVC: BaseViewController {
         collectionView.registerHeaderFromNib(HomepageHeaderCRView.self, nibName: HomepageHeaderCRView.identifier)
         collectionView.registerCellFromNib(ProductCVCell.self, nibName: ProductCVCell.identifier)
         bannerCollectionView.registerCellFromNib(OnboardingCVCell.self, nibName: OnboardingCVCell.identifier)
-        
+
         collectionView.backgroundColor = .white
         bannerCollectionView.backgroundColor = .white
 
@@ -394,10 +395,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                     let vc = ProductsVC()
                     vc.titleLabel = self?.productsData[indexPath.section].name ?? ""
                     vc.memberStatus = self?.memberStatus ?? 0
-                    
+
                     let category = self?.productsData[indexPath.section].value
                     vc.category = category
-                    
+
                     DispatchQueue.main.async {
                         self?.pushWithCrossDissolve(vc)
                     }

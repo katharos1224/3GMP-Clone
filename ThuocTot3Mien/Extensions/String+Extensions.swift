@@ -71,4 +71,17 @@ extension String {
             return nil
         }
     }
+
+    func convertDateFormat(from inputFormat: String, to outputFormat: String) -> String? {
+        let dateFormatterInput = DateFormatter()
+        dateFormatterInput.dateFormat = inputFormat
+
+        if let date = dateFormatterInput.date(from: self) {
+            let dateFormatterOutput = DateFormatter()
+            dateFormatterOutput.dateFormat = outputFormat
+            return dateFormatterOutput.string(from: date)
+        } else {
+            return nil
+        }
+    }
 }

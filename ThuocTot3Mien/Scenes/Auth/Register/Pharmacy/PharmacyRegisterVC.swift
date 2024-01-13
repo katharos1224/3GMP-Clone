@@ -5,9 +5,9 @@
 //  Created by Katharos on 29/11/2023.
 //
 
+import Combine
 import DropDown
 import UIKit
-import Combine
 
 final class PharmacyRegisterVC: BaseViewController {
     @IBOutlet var termsOfUseButton: UIButton!
@@ -22,7 +22,6 @@ final class PharmacyRegisterVC: BaseViewController {
     @IBOutlet var businessLicenseImageField: FloatingTextField!
 
     @IBOutlet var businessLicenseImage: UIImageView!
-
     @IBOutlet var warningNameLabel: UILabel!
     @IBOutlet var warningPharmacyNameLabel: UILabel!
     @IBOutlet var warningPhoneLabel: UILabel!
@@ -36,7 +35,8 @@ final class PharmacyRegisterVC: BaseViewController {
 
     var isPasswordVisible = false
     var isCustomer: Bool = true
-    
+    var province: Int = 0
+
     private var cancellables: Set<AnyCancellable> = []
 
     let dropDown = DropDown()
@@ -134,15 +134,15 @@ final class PharmacyRegisterVC: BaseViewController {
         }
 
         if let image = businessLicenseImage.image, let imageData = image.jpegData(compressionQuality: 1.0), image != UIImage(systemName: "photo") {
-            let pharmacy = Pharmacy(ten: name, ten_nha_thuoc: pharmacy, dia_chi: address, tinh: province, sdt: phone, email: email, password: password)
-            
+            let pharmacy = Pharmacy(ten: name, ten_nha_thuoc: pharmacy, dia_chi: address, tinh: "\(self.province)", sdt: phone, email: email, password: password)
+
             setupRegisterObserver(pharmacy: pharmacy, imageData: imageData)
         }
     }
-    
+
     private func setupRegisterObserver(pharmacy: Pharmacy, imageData: Data) {
         viewModel.registerPharmacy(pharmacy: pharmacy, imageData: imageData)
-            .sink { _ in}
+            .sink { _ in }
             .store(in: &cancellables)
     }
 
@@ -151,19 +151,19 @@ final class PharmacyRegisterVC: BaseViewController {
             let action = UIAlertAction(title: "OK", style: .default) { _ in
                 self?.hide()
             }
-            
+
             DispatchQueue.main.async {
                 self?.showAlert(title: "Đăng ký thành công", message: "Đăng ký nhà thuốc thành công.", actions: [action])
             }
         }
-        
+
         viewModel.showResponseMessage = { [weak self] responseMessage in
             DispatchQueue.main.async {
                 self?.showAlert(title: "Đăng ký không thành công", message: responseMessage)
             }
         }
 
-        viewModel.showLoading = { [weak self] isLoading in
+        viewModel.showLoading = { [weak self] _ in
             DispatchQueue.main.async {
 //                self?.showLoadingIndicator(isLoading)
             }
@@ -192,8 +192,9 @@ final class PharmacyRegisterVC: BaseViewController {
             }
         }
 
-        dropDown.selectionAction = { [weak self] _, item in
+        dropDown.selectionAction = { [weak self] index, item in
             self?.provinceField.text = item
+            self?.province = index + 1
             self?.provinceField.updatePlaceholderFrame(true)
         }
     }

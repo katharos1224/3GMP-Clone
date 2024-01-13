@@ -8,15 +8,15 @@
 import UIKit
 
 class BannerView: UIView {
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var searchImage: UIImageView!
-    @IBOutlet weak var clearImage: UIImageView!
-    @IBOutlet weak var stackBar: UIStackView!
-    
+    @IBOutlet var contentView: UIView!
+    @IBOutlet var label: UILabel!
+    @IBOutlet var image: UIImageView!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var textField: UITextField!
+    @IBOutlet var searchImage: UIImageView!
+    @IBOutlet var clearImage: UIImageView!
+    @IBOutlet var stackBar: UIStackView!
+
     var dismiss: (() -> Void)?
 
     override init(frame: CGRect) {

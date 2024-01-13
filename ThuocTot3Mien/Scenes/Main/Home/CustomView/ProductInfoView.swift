@@ -103,7 +103,7 @@ class ProductInfoView: UIView {
 
         contentView.invalidateIntrinsicContentSize()
     }
-    
+
     func configure(productData: OrderedProductItem) {
         discountPriceLabel.isHidden = productData.khuyenMai != nil ? false : true
         discountView.isHidden = productData.khuyenMai != nil ? false : true
@@ -120,7 +120,7 @@ class ProductInfoView: UIView {
                 tagView.contentView.layer.cornerRadius = tagView.frame.size.height / 2
             }
         }
-        
+
         if let bonusCoins = productData.bonusCoins {
             bonusCoinsLabel.text = "Tặng \(String(describing: bonusCoins)) Coins"
         }

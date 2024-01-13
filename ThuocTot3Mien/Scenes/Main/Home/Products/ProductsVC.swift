@@ -8,13 +8,13 @@
 import UIKit
 
 final class ProductsVC: BaseViewController {
-    @IBOutlet weak var bannerView: BannerView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet var bannerView: BannerView!
+    @IBOutlet var collectionView: UICollectionView!
+
     var titleLabel: String = ""
     var categoryProducts: [CategoryProduct] = []
     var memberStatus: Int = 0
-    
+
     var search: String?
     var currentPage: Int = 1
     var lastPage: Int?
@@ -31,6 +31,16 @@ final class ProductsVC: BaseViewController {
     let bannerWidth = UIScreen.main.bounds.width - 32
     let bannerHeight = (264 / 651) * (UIScreen.main.bounds.width - 32)
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bannerView.configure(title: titleLabel)
@@ -45,17 +55,15 @@ final class ProductsVC: BaseViewController {
         layout.minimumInteritemSpacing = spacing
         layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
-
         collectionView.registerCellFromNib(ProductCVCell.self, nibName: ProductCVCell.identifier)
 
-        tabBarController?.tabBar.isHidden = true
         setupData()
     }
-    
+
     func setupData() {
         NetworkManager.shared.fetchProducts(page: 1, category: category, search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil, hastag: nil) { [weak self] result in
             switch result {
-            case .success(let data):
+            case let .success(data):
                 guard let response = data.response else {
                     return
                 }
@@ -65,16 +73,16 @@ final class ProductsVC: BaseViewController {
                     self?.collectionView.reloadData()
                     self?.hideLoadingIndicator()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print(error.localizedDescription)
             }
         }
     }
-    
-    override func viewWillAppear(_: Bool) {        
+
+    override func viewWillAppear(_: Bool) {
         bannerView.textField.text = search
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.layoutIfNeeded()
@@ -86,13 +94,13 @@ final class ProductsVC: BaseViewController {
 }
 
 extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return categoryProducts.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCVCell.identifier, for: indexPath) as! ProductCVCell
-        
+
         cell.configure(categoryProductData: categoryProducts[indexPath.item], memberStatus: memberStatus)
 
         cell.addCartButton.backgroundColor = memberStatus == 2 ? .systemGreen : .placeholderText
@@ -110,7 +118,7 @@ extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 
         return cell
     }
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate _: Bool) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -126,22 +134,22 @@ extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func loadMoreData() {
         isLoadingMore = true
         currentPage += 1
-        
-        NetworkManager.shared.fetchProducts(page: currentPage, category: self.category != nil ? self.category : nil, search: self.search != nil ? self.search : nil, hoatChat: section == 0 ? id : nil, nhomThuoc: section == 1 ? id : nil, nhaSanXuat: section == 2 ? id : nil, hastag: nil) { [weak self] result in
+
+        NetworkManager.shared.fetchProducts(page: currentPage, category: category != nil ? category : nil, search: search != nil ? search : nil, hoatChat: section == 0 ? id : nil, nhomThuoc: section == 1 ? id : nil, nhaSanXuat: section == 2 ? id : nil, hastag: nil) { [weak self] result in
             switch result {
-            case .success(let data):
+            case let .success(data):
                 guard let response = data.response else {
                     self?.isLoadingMore = false
                     return
                 }
-                
+
                 self?.categoryProducts += response.data
-                
+
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                     self?.isLoadingMore = false
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print(error.localizedDescription)
             }
         }

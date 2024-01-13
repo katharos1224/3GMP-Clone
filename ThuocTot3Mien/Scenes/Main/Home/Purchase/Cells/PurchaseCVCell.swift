@@ -43,7 +43,7 @@ class PurchaseCVCell: UICollectionViewCell {
         productView.configure(productData: productData)
         amountLabel.text = "x\(productData.soLuong)"
     }
-    
+
     func configure(productData: OrderedProductItem) {
         productView.configure(productData: productData)
         amountLabel.text = "x\(productData.soLuong)"

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().shouldResignOnTouchOutside = true
-        
+
         let navigationController = UINavigationController(rootViewController: WelcomeVC())
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

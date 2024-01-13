@@ -5,9 +5,9 @@
 //  Created by Katharos on 29/11/2023.
 //
 
+import Combine
 import DropDown
 import UIKit
-import Combine
 
 final class CustomerRegisterVC: BaseViewController {
     @IBOutlet var termsOfUseButton: UIButton!
@@ -34,9 +34,9 @@ final class CustomerRegisterVC: BaseViewController {
 
     var isPasswordVisible = false
     var isCustomer: Bool = true
-    var provinceID: Int?
+    var provinceID: Int = 0
     var agencyID: Int?
-    
+
     private var cancellables: Set<AnyCancellable> = []
 
     let dropDown = DropDown()
@@ -134,15 +134,15 @@ final class CustomerRegisterVC: BaseViewController {
         }
 
         if let image = avatarImage.image, let imageData = image.jpegData(compressionQuality: 1.0), image != UIImage(systemName: "photo") {
-            let customer = Customer(ten: name, id_agency: String(describing: agencyID!), dia_chi: address, tinh: String(describing: provinceID!), sdt: phone, email: email, password: password)
-            
+            let customer = Customer(ten: name, id_agency: String(describing: agencyID!), dia_chi: address, tinh: "\(provinceID)", sdt: phone, email: email, password: password)
+
             setupRegisterObserver(customer: customer, imageData: imageData)
         }
     }
-    
+
     private func setupRegisterObserver(customer: Customer, imageData: Data) {
         viewModel.registerCustomer(customer: customer, imageData: imageData)
-            .sink { _ in}
+            .sink { _ in }
             .store(in: &cancellables)
     }
 
@@ -151,19 +151,19 @@ final class CustomerRegisterVC: BaseViewController {
             let action = UIAlertAction(title: "OK", style: .default) { _ in
                 self?.hide()
             }
-            
+
             DispatchQueue.main.async {
                 self?.showAlert(title: "Đăng ký thành công", message: "Đăng ký khách hàng thành công.", actions: [action])
             }
         }
-        
+
         viewModel.showResponseMessage = { [weak self] responseMessage in
             DispatchQueue.main.async {
                 self?.showAlert(title: "Đăng ký không thành công", message: responseMessage)
             }
         }
 
-        viewModel.showLoading = { [weak self] isLoading in
+        viewModel.showLoading = { [weak self] _ in
             DispatchQueue.main.async {
 //                self?.showLoadingIndicator(isLoading)
             }
@@ -201,9 +201,7 @@ final class CustomerRegisterVC: BaseViewController {
                 }
             }
         case pharmacyField:
-            guard let province = provinceID else { return }
-
-            NetworkManager.shared.fetchAgency(provinceID: province) { [weak self] result in
+            NetworkManager.shared.fetchAgency(provinceID: provinceID) { [weak self] result in
                 switch result {
                 case let .success(agencies):
                     var agencyIDs: [Int] = []

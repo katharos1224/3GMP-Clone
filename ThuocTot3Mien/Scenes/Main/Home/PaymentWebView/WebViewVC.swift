@@ -10,11 +10,20 @@ import WebKit
 
 final class WebViewVC: BaseViewController {
     @IBOutlet var paymentWebView: WKWebView!
-    @IBOutlet weak var titleName: UILabel!
-    
-    
+    @IBOutlet var titleName: UILabel!
+
     var targetURL: URL?
-    var navTitle: String?
+    var navTitle: String = "Tin tức"
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     convenience init(url: URL) {
         self.init()
@@ -34,10 +43,8 @@ final class WebViewVC: BaseViewController {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            self.popToRoot()
 //        }
-        
-        if let title = navTitle {
-            titleName.text = title
-        }
+
+        titleName.text = navTitle
     }
 
     func loadWebView(with url: URL) {
@@ -51,18 +58,18 @@ final class WebViewVC: BaseViewController {
     @objc func dismissWebViewVC() {
         popWithCrossDissolve()
     }
-    
+
     @IBAction func dismissTapped() {
         popWithCrossDissolve()
     }
 }
 
 extension WebViewVC: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    func webView(_: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
         showLoadingIndicator()
     }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+
+    func webView(_: WKWebView, didFinish _: WKNavigation!) {
         hideLoadingIndicator()
     }
 }

@@ -74,7 +74,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-r4-NJ6">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="J8o-5f-g5J" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0329971100" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="J8o-5f-g5J" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -131,7 +131,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rm7-VA-rD0">
                                     <rect key="frame" x="0.0" y="108" width="300" height="100"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9WX-sX-bdl" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="56101560" allowsEditingTextAttributes="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9WX-sX-bdl" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

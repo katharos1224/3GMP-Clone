@@ -5,8 +5,8 @@
 //  Created by Katharos on 29/11/2023.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 final class LoginVC: BaseViewController {
     @IBOutlet var phoneField: FloatingTextField!
@@ -15,8 +15,9 @@ final class LoginVC: BaseViewController {
     @IBOutlet var passwordWarningLabel: UILabel!
     @IBOutlet var userImage: UIImageView!
 
-    let viewModel = AuthViewModel()
     private var cancellables: Set<AnyCancellable> = []
+
+    let viewModel = AuthViewModel()
 
     var isPasswordVisible = false
     var isCustomer: Bool = false
@@ -35,10 +36,19 @@ final class LoginVC: BaseViewController {
 
         textFields.forEach { textField in
             guard let text = textField.text, text.isEmpty else {
-                textField.updatePlaceholderFrame(true)
+                DispatchQueue.main.async {
+                    textField.updatePlaceholderFrame(true)
+                }
                 return
             }
         }
+        AppCoordinator.shared.completionPublisher
+            .sink { [weak self] in
+                DispatchQueue.main.async {
+                    self?.popToRoot()
+                }
+            }
+            .store(in: &cancellables)
     }
 
     @IBAction func dismiss() {
@@ -98,10 +108,10 @@ final class LoginVC: BaseViewController {
             field.bottomLineColor = .systemGreen
             field.updatedBottomLineColor(true)
         }
-        
+
         setupLoginObserver(username: phone, password: password)
     }
-    
+
     private func setupLoginObserver(username: String, password: String) {
         viewModel.login(username: username, password: password)
             .receive(on: DispatchQueue.main)
@@ -112,14 +122,14 @@ final class LoginVC: BaseViewController {
     private func setupViewModel() {
         viewModel.isCustomer = isCustomer
         viewModel.isPasswordVisible = isPasswordVisible
-        
+
         viewModel.updateUI = { [weak self] in
             DispatchQueue.main.async {
                 let vc = TabBarVC()
                 self?.show(vc)
             }
         }
-        
+
         viewModel.showResponseMessage = { [weak self] responseMessage in
             DispatchQueue.main.async {
                 self?.showAlert(title: "Đăng nhập không thành công", message: responseMessage)
@@ -128,7 +138,7 @@ final class LoginVC: BaseViewController {
 
         viewModel.showLoading = { [weak self] isLoading in
             DispatchQueue.main.async {
-//                self?.showLoadingIndicator(isLoading)
+                isLoading ? self?.showLoadingIndicator() : self?.hideLoadingIndicator()
             }
         }
     }

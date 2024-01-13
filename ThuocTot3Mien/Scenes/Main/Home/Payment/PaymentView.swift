@@ -310,13 +310,13 @@ class PaymentView: UIView {
         if useOnlinePayment {
             NetworkManager.shared.fetchOnlinePayment(params: paymentParams) { [weak self] result in
                 switch result {
-                case .success(let data):
+                case let .success(data):
                     guard let response = data.response else { return }
-                    
+
                     if let url = URL(string: response.urlPayment) {
                         self?.delegate?.didTapCreatePayment(withURL: url)
                     }
-                case .failure(let error):
+                case let .failure(error):
                     print(error.localizedDescription)
                 }
             }

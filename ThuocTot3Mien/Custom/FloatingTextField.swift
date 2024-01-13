@@ -2,7 +2,7 @@
 import UIKit
 
 let CScreenWidth = UIScreen.main.bounds.size.width
-let AnimationDuration = 0.3
+let AnimationDuration = 0.2
 let LeftPadding: CGFloat = 10.0
 
 @objc protocol FloatingTextFieldDelegate: AnyObject {

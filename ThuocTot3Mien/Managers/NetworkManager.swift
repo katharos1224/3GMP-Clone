@@ -35,6 +35,10 @@ enum APIService {
     case history(page: Int?)
     case historyDetail(id: Int, page: Int?)
     case contact
+    case news(page: Int?)
+    case profile
+    case updateProfile(profileRequest: Profile, fileData: Data?)
+    case logout
 }
 
 extension APIService: TargetType {
@@ -82,30 +86,33 @@ extension APIService: TargetType {
             return "history/payment_details"
         case .contact:
             return "system/contact"
+        case .news:
+            return "system/list_news"
+        case .profile, .updateProfile:
+            return "member/profile"
+        case .logout:
+            return "member/logout"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .provinces, .agency, .homepage, .voucher, .category, .contact:
+        case .provinces, .agency, .homepage, .voucher, .category, .contact, .news, .profile:
             return .get
-        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail:
+        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout:
             return .post
         }
     }
 
     var task: Task {
         switch self {
-        case .provinces:
+        case .provinces, .homepage, .cart, .category, .contact, .news, .profile, .logout:
             return .requestPlain
 
         case let .agency(provinceID):
             return .requestParameters(parameters: ["province_id": provinceID], encoding: URLEncoding.default)
 
-        case let .login(username, password):
-            return .requestParameters(parameters: ["username": username, "password": password], encoding: JSONEncoding.default)
-
-        case let .loginCustomer(username, password):
+        case let .login(username, password), let .loginCustomer(username, password):
             return .requestParameters(parameters: ["username": username, "password": password], encoding: JSONEncoding.default)
 
         case let .register(registerRequest, fileData):
@@ -151,14 +158,8 @@ extension APIService: TargetType {
 
             return .uploadMultipart(formData)
 
-        case .homepage:
-            return .requestPlain
-
         case let .addCart(id, number):
             return .requestParameters(parameters: ["id": id, "number": number as Any], encoding: JSONEncoding.default)
-
-        case .cart:
-            return .requestPlain
 
         case let .voucher(cartIDs):
             let productIDQueryItems = cartIDs.map { ["data_id[]": "\($0)"] }
@@ -195,9 +196,6 @@ extension APIService: TargetType {
 
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
 
-        case .category:
-            return .requestPlain
-
         case let .categoryType(type, page, search):
             let parameters: [String: Any] = ["type": type, "page": page, "search": search as Any]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
@@ -212,23 +210,42 @@ extension APIService: TargetType {
             if let nhomThuoc = nhomThuoc { parameters["nhom_thuoc"] = nhomThuoc }
             if let nhaSanXuat = nhaSanXuat { parameters["nha_san_xuat"] = nhaSanXuat }
             if let hastag = hastag { parameters["hastag"] = hastag }
-            
+
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
 
         case let .search(search):
             return .requestParameters(parameters: ["search": search as Any], encoding: JSONEncoding.default)
-            
+
         case let .history(page):
             var parameters: [String: Any] = [:]
 
             if let page = page { parameters["page"] = page }
-            
+
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-            
+
         case let .historyDetail(id, page):
             return .requestParameters(parameters: ["id": id, "page": page as Any], encoding: JSONEncoding.default)
-        case .contact:
-            return .requestPlain
+
+        case let .updateProfile(profileRequest, fileData):
+            var formData: [Moya.MultipartFormData] = []
+            let mirror = Mirror(reflecting: profileRequest)
+
+            for child in mirror.children {
+                guard let key = child.label, let value = child.value as? String else {
+                    continue
+                }
+
+                formData.append(MultipartFormData(provider: .data(value.data(using: .utf8)!), name: key))
+            }
+
+            if let imageData = fileData {
+                formData.append(MultipartFormData(provider: .data(imageData),
+                                                  name: "img",
+                                                  fileName: "image.jpg",
+                                                  mimeType: "image/jpeg"))
+            }
+
+            return .uploadMultipart(formData)
         }
     }
 
@@ -268,7 +285,7 @@ class NetworkManager {
     }
 
     // MARK: - Database Service
-    
+
     // Info
     func fetchProvinces(completion: @escaping (Result<ProvincesData, APIError>) -> Void) {
         let endpoint = APIService.provinces
@@ -296,7 +313,7 @@ class NetworkManager {
         let endpoint = APIService.cart
         request(endpoint: endpoint, completion: completion)
     }
-    
+
     func fetchVouchers(cartIDs: [Int], completion: @escaping (Result<VoucherResponse, APIError>) -> Void) {
         let endpoint = APIService.voucher(cartIDs: cartIDs)
         request(endpoint: endpoint, completion: completion)
@@ -339,20 +356,38 @@ class NetworkManager {
         let endpoint = APIService.search(search: search)
         request(endpoint: endpoint, completion: completion)
     }
-    
+
     // History
     func fetchHistory(page: Int?, completion: @escaping (Result<OrderHistoryResponse, APIError>) -> Void) {
         let endpoint = APIService.history(page: page)
         request(endpoint: endpoint, completion: completion)
     }
-    
+
     func fetchOrderDetail(id: Int, page: Int?, completion: @escaping (Result<OrderDetailResponse, APIError>) -> Void) {
         let endpoint = APIService.historyDetail(id: id, page: page)
         request(endpoint: endpoint, completion: completion)
     }
-    
+
+    // Contact Method
     func fetchContact(completion: @escaping (Result<ContactInfo, APIError>) -> Void) {
         let endpoint = APIService.contact
+        request(endpoint: endpoint, completion: completion)
+    }
+
+    // News
+    func fetchNews(page: Int?, completion: @escaping (Result<NewsResponse, APIError>) -> Void) {
+        let endpoint = APIService.news(page: page)
+        request(endpoint: endpoint, completion: completion)
+    }
+
+    // Profile
+    func fetchProfile(completion: @escaping (Result<ProfileResponse, APIError>) -> Void) {
+        let endpoint = APIService.profile
+        request(endpoint: endpoint, completion: completion)
+    }
+
+    func updateProfile(profileRequest: Profile, fileData: Data?, completion: @escaping (Result<UpdatedProfileResponse, APIError>) -> Void) {
+        let endpoint = APIService.updateProfile(profileRequest: profileRequest, fileData: fileData)
         request(endpoint: endpoint, completion: completion)
     }
 
@@ -377,6 +412,12 @@ class NetworkManager {
 
     func loginCustomer(username: String, password: String, completion: @escaping (Result<CustomerLoginResponse, APIError>) -> Void) {
         let endpoint = APIService.loginCustomer(username: username, password: password)
+        request(endpoint: endpoint, completion: completion)
+    }
+
+    // Logout
+    func logout(completion: @escaping (Result<LogoutResponse, APIError>) -> Void) {
+        let endpoint = APIService.logout
         request(endpoint: endpoint, completion: completion)
     }
 }

@@ -77,12 +77,23 @@
 		F48576DD2B3989BD00A0F8E5 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48576DB2B3989BD00A0F8E5 /* SearchResultVC.swift */; };
 		F48576DE2B3989BD00A0F8E5 /* SearchResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48576DC2B3989BD00A0F8E5 /* SearchResultVC.xib */; };
 		F488269F2B1774A4000C41A5 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F488269E2B1774A4000C41A5 /* FloatingTextField.swift */; };
+		F48B3B912B4CF1AC008C008B /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48B3B902B4CF1AC008C008B /* NewsResponse.swift */; };
+		F48B3B952B4CF2D3008C008B /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48B3B932B4CF2D3008C008B /* NewsVC.swift */; };
+		F48B3B962B4CF2D3008C008B /* NewsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48B3B942B4CF2D3008C008B /* NewsVC.xib */; };
+		F48B3B992B4CF330008C008B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48B3B972B4CF330008C008B /* NewsCell.swift */; };
+		F48B3B9A2B4CF330008C008B /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48B3B982B4CF330008C008B /* NewsCell.xib */; };
+		F48B3B9D2B4CFDCC008C008B /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48B3B9C2B4CFDCC008C008B /* Date+Extensions.swift */; };
+		F48B3BA12B4D037E008C008B /* PharmacyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48B3B9F2B4D037E008C008B /* PharmacyProfileVC.swift */; };
+		F48B3BA22B4D037E008C008B /* PharmacyProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F48B3BA02B4D037E008C008B /* PharmacyProfileVC.xib */; };
 		F48E2FC92B1B5475001A4EBB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E2FC82B1B5475001A4EBB /* AuthViewModel.swift */; };
 		F4902E112B329D5D00F3FBFB /* VouchersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4902E102B329D5D00F3FBFB /* VouchersView.swift */; };
 		F4902E132B329D6F00F3FBFB /* VouchersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4902E122B329D6F00F3FBFB /* VouchersView.xib */; };
 		F4902E172B32A2A400F3FBFB /* VoucherCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4902E152B32A2A400F3FBFB /* VoucherCVCell.swift */; };
 		F4902E182B32A2A400F3FBFB /* VoucherCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4902E162B32A2A400F3FBFB /* VoucherCVCell.xib */; };
 		F4902E1A2B32D0D100F3FBFB /* DiscountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4902E192B32D0D100F3FBFB /* DiscountResponse.swift */; };
+		F491C8182B4D1E1500AA0EC3 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491C8172B4D1E1500AA0EC3 /* AppCoordinator.swift */; };
+		F491C81A2B4D20D500AA0EC3 /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491C8192B4D20D500AA0EC3 /* ProfileResponse.swift */; };
+		F491C81C2B4D26A800AA0EC3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F491C81B2B4D26A800AA0EC3 /* Profile.swift */; };
 		F493FF982B2C0BEB00BE6316 /* PurchaseCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493FF962B2C0BEB00BE6316 /* PurchaseCVCell.swift */; };
 		F493FF992B2C0BEB00BE6316 /* PurchaseCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F493FF972B2C0BEB00BE6316 /* PurchaseCVCell.xib */; };
 		F4997F2B2B302205005EDA77 /* ProductInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4997F2A2B302205005EDA77 /* ProductInfoView.xib */; };
@@ -104,8 +115,8 @@
 		F4B0AA422B1F6F2E005C5FF7 /* CategoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B0AA402B1F6F2E005C5FF7 /* CategoryVC.xib */; };
 		F4B0AA452B1F6F3C005C5FF7 /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B0AA432B1F6F3C005C5FF7 /* HistoryVC.swift */; };
 		F4B0AA462B1F6F3C005C5FF7 /* HistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B0AA442B1F6F3C005C5FF7 /* HistoryVC.xib */; };
-		F4B0AA492B1F6F50005C5FF7 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B0AA472B1F6F50005C5FF7 /* InfoVC.swift */; };
-		F4B0AA4A2B1F6F50005C5FF7 /* InfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B0AA482B1F6F50005C5FF7 /* InfoVC.xib */; };
+		F4B0AA492B1F6F50005C5FF7 /* ManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B0AA472B1F6F50005C5FF7 /* ManagementVC.swift */; };
+		F4B0AA4A2B1F6F50005C5FF7 /* ManagementVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B0AA482B1F6F50005C5FF7 /* ManagementVC.xib */; };
 		F4B0AA4F2B1F78C7005C5FF7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B0AA4D2B1F78C7005C5FF7 /* HomeVC.swift */; };
 		F4B0AA502B1F78C7005C5FF7 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B0AA4E2B1F78C7005C5FF7 /* HomeVC.xib */; };
 		F4B0AA542B1F7ED2005C5FF7 /* HomepageHeaderCRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B0AA522B1F7ED2005C5FF7 /* HomepageHeaderCRView.swift */; };
@@ -199,12 +210,23 @@
 		F48576DB2B3989BD00A0F8E5 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		F48576DC2B3989BD00A0F8E5 /* SearchResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultVC.xib; sourceTree = "<group>"; };
 		F488269E2B1774A4000C41A5 /* FloatingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
+		F48B3B902B4CF1AC008C008B /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
+		F48B3B932B4CF2D3008C008B /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
+		F48B3B942B4CF2D3008C008B /* NewsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsVC.xib; sourceTree = "<group>"; };
+		F48B3B972B4CF330008C008B /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		F48B3B982B4CF330008C008B /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		F48B3B9C2B4CFDCC008C008B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		F48B3B9F2B4D037E008C008B /* PharmacyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyProfileVC.swift; sourceTree = "<group>"; };
+		F48B3BA02B4D037E008C008B /* PharmacyProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PharmacyProfileVC.xib; sourceTree = "<group>"; };
 		F48E2FC82B1B5475001A4EBB /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F4902E102B329D5D00F3FBFB /* VouchersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VouchersView.swift; sourceTree = "<group>"; };
 		F4902E122B329D6F00F3FBFB /* VouchersView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VouchersView.xib; sourceTree = "<group>"; };
 		F4902E152B32A2A400F3FBFB /* VoucherCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherCVCell.swift; sourceTree = "<group>"; };
 		F4902E162B32A2A400F3FBFB /* VoucherCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoucherCVCell.xib; sourceTree = "<group>"; };
 		F4902E192B32D0D100F3FBFB /* DiscountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountResponse.swift; sourceTree = "<group>"; };
+		F491C8172B4D1E1500AA0EC3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F491C8192B4D20D500AA0EC3 /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
+		F491C81B2B4D26A800AA0EC3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F493FF962B2C0BEB00BE6316 /* PurchaseCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCVCell.swift; sourceTree = "<group>"; };
 		F493FF972B2C0BEB00BE6316 /* PurchaseCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseCVCell.xib; sourceTree = "<group>"; };
 		F4997F2A2B302205005EDA77 /* ProductInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductInfoView.xib; sourceTree = "<group>"; };
@@ -228,8 +250,8 @@
 		F4B0AA402B1F6F2E005C5FF7 /* CategoryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryVC.xib; sourceTree = "<group>"; };
 		F4B0AA432B1F6F3C005C5FF7 /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		F4B0AA442B1F6F3C005C5FF7 /* HistoryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryVC.xib; sourceTree = "<group>"; };
-		F4B0AA472B1F6F50005C5FF7 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
-		F4B0AA482B1F6F50005C5FF7 /* InfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoVC.xib; sourceTree = "<group>"; };
+		F4B0AA472B1F6F50005C5FF7 /* ManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementVC.swift; sourceTree = "<group>"; };
+		F4B0AA482B1F6F50005C5FF7 /* ManagementVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagementVC.xib; sourceTree = "<group>"; };
 		F4B0AA4D2B1F78C7005C5FF7 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		F4B0AA4E2B1F78C7005C5FF7 /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		F4B0AA522B1F7ED2005C5FF7 /* HomepageHeaderCRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageHeaderCRView.swift; sourceTree = "<group>"; };
@@ -330,6 +352,7 @@
 				F4B84CBF2B1A563200B57CB1 /* Pharmacy.swift */,
 				F4B84CBC2B1A497500B57CB1 /* Customer.swift */,
 				F4486BB32B391F080009DDDE /* Payment.swift */,
+				F491C81B2B4D26A800AA0EC3 /* Profile.swift */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
@@ -548,6 +571,34 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		F48B3B922B4CF2BC008C008B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				F48B3B9B2B4CF337008C008B /* Cells */,
+				F48B3B932B4CF2D3008C008B /* NewsVC.swift */,
+				F48B3B942B4CF2D3008C008B /* NewsVC.xib */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		F48B3B9B2B4CF337008C008B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F48B3B972B4CF330008C008B /* NewsCell.swift */,
+				F48B3B982B4CF330008C008B /* NewsCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F48B3B9E2B4D0368008C008B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F48B3B9F2B4D037E008C008B /* PharmacyProfileVC.swift */,
+				F48B3BA02B4D037E008C008B /* PharmacyProfileVC.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		F4902E142B32A26200F3FBFB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,7 +678,6 @@
 				F40B52C42B183415000A0ECB /* Base */,
 				F4AC76F72B16DD1D009EDB79 /* Resources */,
 				F4AC76F62B16DD10009EDB79 /* Others */,
-				F4AC76EC2B16DBDF009EDB79 /* LaunchScreen.storyboard */,
 				F4AC76EF2B16DBDF009EDB79 /* Info.plist */,
 			);
 			path = ThuocTot3Mien;
@@ -636,6 +686,7 @@
 		F4AC76F52B16DD08009EDB79 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F4B0AA312B1F6C3C005C5FF7 /* TabBar */,
 				F4A234E92B4662EC00DDB54D /* CustomViews */,
 				F4B0AA362B1F6EB4005C5FF7 /* Main */,
 				F46368ED2B17112D006B2E6D /* Auth */,
@@ -649,6 +700,7 @@
 			children = (
 				F4AC76E12B16DBDD009EDB79 /* AppDelegate.swift */,
 				F4AC76E32B16DBDD009EDB79 /* SceneDelegate.swift */,
+				F4AC76EC2B16DBDF009EDB79 /* LaunchScreen.storyboard */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -690,6 +742,7 @@
 				F40B52C02B182E9C000A0ECB /* String+Extensions.swift */,
 				F440527D2B219A9800AA3660 /* UIView+Extensions.swift */,
 				F40A1E132B280BAD0026D103 /* UIStackView+Extensions.swift */,
+				F48B3B9C2B4CFDCC008C008B /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -707,7 +760,6 @@
 		F4B0AA362B1F6EB4005C5FF7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				F4B0AA312B1F6C3C005C5FF7 /* TabBar */,
 				F4B0AA3A2B1F6ED4005C5FF7 /* Management */,
 				F4B0AA392B1F6ECE005C5FF7 /* History */,
 				F4B0AA382B1F6EC4005C5FF7 /* Category */,
@@ -752,7 +804,7 @@
 				F40E0C002B454F830003755E /* Cells */,
 				F4B0AA432B1F6F3C005C5FF7 /* HistoryVC.swift */,
 				F4B0AA442B1F6F3C005C5FF7 /* HistoryVC.xib */,
-				F4E37BF22B46AD2B000EC402 /* TestVC */,
+				F4E37BF22B46AD2B000EC402 /* NestedVC */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -760,10 +812,12 @@
 		F4B0AA3A2B1F6ED4005C5FF7 /* Management */ = {
 			isa = PBXGroup;
 			children = (
+				F48B3B9E2B4D0368008C008B /* Profile */,
+				F48B3B922B4CF2BC008C008B /* News */,
 				F45A1BB12B4C3E3600EF39E2 /* Contact */,
 				F45A1BAC2B4C1FF000EF39E2 /* Cells */,
-				F4B0AA472B1F6F50005C5FF7 /* InfoVC.swift */,
-				F4B0AA482B1F6F50005C5FF7 /* InfoVC.xib */,
+				F4B0AA472B1F6F50005C5FF7 /* ManagementVC.swift */,
+				F4B0AA482B1F6F50005C5FF7 /* ManagementVC.xib */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -794,11 +848,13 @@
 				F4098D742B4536E3003991B2 /* OrderHistoryResponse.swift */,
 				F40E0C0C2B45677F0003755E /* OrderDetailResponse.swift */,
 				F45A1BBB2B4C408D00EF39E2 /* ContactInfo.swift */,
+				F48B3B902B4CF1AC008C008B /* NewsResponse.swift */,
+				F491C8192B4D20D500AA0EC3 /* ProfileResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
 		};
-		F4E37BF22B46AD2B000EC402 /* TestVC */ = {
+		F4E37BF22B46AD2B000EC402 /* NestedVC */ = {
 			isa = PBXGroup;
 			children = (
 				F47E8F6C2B48097400635B2F /* PaymentHistoryVC.swift */,
@@ -806,7 +862,7 @@
 				F47E8F702B48098000635B2F /* ViewController2.swift */,
 				F47E8F712B48098000635B2F /* ViewController2.xib */,
 			);
-			path = TestVC;
+			path = NestedVC;
 			sourceTree = "<group>";
 		};
 		F4E4B7612B206DEE008EEB21 /* Homepage */ = {
@@ -824,6 +880,7 @@
 			isa = PBXGroup;
 			children = (
 				F4CFA1E22B41721000065FC1 /* NetworkManager.swift */,
+				F491C8172B4D1E1500AA0EC3 /* AppCoordinator.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -938,13 +995,16 @@
 				F46368DD2B170E81006B2E6D /* CustomerRegisterVC.xib in Resources */,
 				F40E0C042B454F9C0003755E /* HistoryCVCell.xib in Resources */,
 				F44F94802B2855170068E2A6 /* AddCartSuccessfullyPopupView.xib in Resources */,
-				F4B0AA4A2B1F6F50005C5FF7 /* InfoVC.xib in Resources */,
+				F48B3BA22B4D037E008C008B /* PharmacyProfileVC.xib in Resources */,
+				F4B0AA4A2B1F6F50005C5FF7 /* ManagementVC.xib in Resources */,
 				F45A1BB02B4C201200EF39E2 /* ManagementCell.xib in Resources */,
 				F4120F522B3D0B0F0033F02A /* SearchResultCell.xib in Resources */,
 				F4CA69702B2007AA00683383 /* ProductCVCell.xib in Resources */,
 				F45A1BB52B4C3E4C00EF39E2 /* ContactVC.xib in Resources */,
 				F4B0AA502B1F78C7005C5FF7 /* HomeVC.xib in Resources */,
 				F4213D2E2B2C064900A27493 /* PurchaseVC.xib in Resources */,
+				F48B3B962B4CF2D3008C008B /* NewsVC.xib in Resources */,
+				F48B3B9A2B4CF330008C008B /* NewsCell.xib in Resources */,
 				F499F2282B4069DC00696BE5 /* CategoryCRView.xib in Resources */,
 				F4213D312B2C096D00A27493 /* PaymentView.xib in Resources */,
 			);
@@ -1005,9 +1065,11 @@
 				F4038BA32B204E030046CEA1 /* HomepageViewModel.swift in Sources */,
 				F46368D62B170E57006B2E6D /* ForgotPasswordVC.swift in Sources */,
 				F40A1E142B280BAD0026D103 /* UIStackView+Extensions.swift in Sources */,
+				F491C8182B4D1E1500AA0EC3 /* AppCoordinator.swift in Sources */,
 				F436E5AB2B19DB9600F5CEB2 /* PharmacyRegisterVC.swift in Sources */,
 				F4E37BEE2B466D42000EC402 /* NavBarView.swift in Sources */,
 				F44F94822B2856300068E2A6 /* AddCartSuccessfullyPopupView.swift in Sources */,
+				F48B3B912B4CF1AC008C008B /* NewsResponse.swift in Sources */,
 				F4815E0B2B26A32E00351E72 /* AddedProductCVCell.swift in Sources */,
 				F435122A2B317B72008058A9 /* VoucherResponse.swift in Sources */,
 				F4815E0E2B26B6A700351E72 /* CartResponse.swift in Sources */,
@@ -1018,6 +1080,7 @@
 				F46D92B82B3ABBC200B71CC1 /* CategoryResponse.swift in Sources */,
 				F46D5C492B24A8E000D00115 /* AddCartPopupView.swift in Sources */,
 				F40B52C82B184774000A0ECB /* CustomButton.swift in Sources */,
+				F48B3BA12B4D037E008C008B /* PharmacyProfileVC.swift in Sources */,
 				F4902E112B329D5D00F3FBFB /* VouchersView.swift in Sources */,
 				F4CA696F2B2007AA00683383 /* ProductCVCell.swift in Sources */,
 				F4B0AA412B1F6F2E005C5FF7 /* CategoryVC.swift in Sources */,
@@ -1027,6 +1090,7 @@
 				F45A1BB42B4C3E4C00EF39E2 /* ContactVC.swift in Sources */,
 				F4B0AA4F2B1F78C7005C5FF7 /* HomeVC.swift in Sources */,
 				F4997F2D2B302215005EDA77 /* ProductInfoView.swift in Sources */,
+				F48B3B9D2B4CFDCC008C008B /* Date+Extensions.swift in Sources */,
 				F40B52C62B183423000A0ECB /* BaseViewController.swift in Sources */,
 				F45A1BAF2B4C201200EF39E2 /* ManagementCell.swift in Sources */,
 				F41F5A9F2B231C38003F087E /* Sercurity.swift in Sources */,
@@ -1036,6 +1100,7 @@
 				F4CF50C82B1E1F0C002311B9 /* PagingCollectionViewLayout.swift in Sources */,
 				F40B52C12B182E9C000A0ECB /* String+Extensions.swift in Sources */,
 				F4486BB02B3913B70009DDDE /* Platform.swift in Sources */,
+				F48B3B952B4CF2D3008C008B /* NewsVC.swift in Sources */,
 				F46368DC2B170E81006B2E6D /* CustomerRegisterVC.swift in Sources */,
 				F4B0AA542B1F7ED2005C5FF7 /* HomepageHeaderCRView.swift in Sources */,
 				F4010CA02B24E05900F693B6 /* CartVC.swift in Sources */,
@@ -1048,9 +1113,10 @@
 				F40E0C092B4564D10003755E /* PaymentDetailVC.swift in Sources */,
 				F4120F542B3D227F0033F02A /* SearchResult.swift in Sources */,
 				F4B0AA342B1F6CBB005C5FF7 /* TabBarVC.swift in Sources */,
-				F4B0AA492B1F6F50005C5FF7 /* InfoVC.swift in Sources */,
+				F4B0AA492B1F6F50005C5FF7 /* ManagementVC.swift in Sources */,
 				F48E2FC92B1B5475001A4EBB /* AuthViewModel.swift in Sources */,
 				F4486BB42B391F080009DDDE /* Payment.swift in Sources */,
+				F491C81C2B4D26A800AA0EC3 /* Profile.swift in Sources */,
 				F45A1BB92B4C3F6300EF39E2 /* ContactCell.swift in Sources */,
 				F46D92B12B3AB00500B71CC1 /* CategoryCVCell.swift in Sources */,
 				F4B0AA452B1F6F3C005C5FF7 /* HistoryVC.swift in Sources */,
@@ -1068,11 +1134,13 @@
 				F45A1BBC2B4C408D00EF39E2 /* ContactInfo.swift in Sources */,
 				F40E0C032B454F9C0003755E /* HistoryCVCell.swift in Sources */,
 				F488269F2B1774A4000C41A5 /* FloatingTextField.swift in Sources */,
+				F491C81A2B4D20D500AA0EC3 /* ProfileResponse.swift in Sources */,
 				F48576DD2B3989BD00A0F8E5 /* SearchResultVC.swift in Sources */,
 				F4CFA1E32B41721000065FC1 /* NetworkManager.swift in Sources */,
 				F41DA6D02B26EB6800B5B63B /* TagView.swift in Sources */,
 				F47E8F6E2B48097400635B2F /* PaymentHistoryVC.swift in Sources */,
 				F4902E172B32A2A400F3FBFB /* VoucherCVCell.swift in Sources */,
+				F48B3B992B4CF330008C008B /* NewsCell.swift in Sources */,
 				F46368E12B170EFE006B2E6D /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

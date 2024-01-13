@@ -27,7 +27,7 @@ struct OrderDetailResponseData: Codable {
     let transferred: Int?
     let transferredValue: Int?
     let ghiChu: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case products
         case totalProducts = "total_products"

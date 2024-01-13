@@ -4,12 +4,10 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Cho phép ứng dụng truy cập thư viện ảnh</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Cho phép ứng dụng truy cập thư viện ảnh</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Cho phép ứng dụng truy cập camera</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>tel</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

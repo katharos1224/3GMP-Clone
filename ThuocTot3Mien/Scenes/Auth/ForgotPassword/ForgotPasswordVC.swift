@@ -15,7 +15,7 @@ final class ForgotPasswordVC: BaseViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
-    
+
     override func viewWillAppear(_: Bool) {
         DispatchQueue.main.async {
             self.hideLoadingIndicator()

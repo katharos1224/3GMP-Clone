@@ -19,6 +19,16 @@ final class SearchResultVC: BaseViewController {
     var lastPage: Int?
     var search: String = ""
 
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -55,15 +65,15 @@ final class SearchResultVC: BaseViewController {
     func performSearch(query: String? = nil) {
         NetworkManager.shared.fetchSearchResult(search: query) { [weak self] result in
             switch result {
-            case .success(let data):
+            case let .success(data):
                 guard let response = data.response else { return }
-                
+
                 self?.productsResult = response
 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 print(error.localizedDescription)
             }
         }
@@ -97,24 +107,24 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultCell.identifier, for: indexPath) as! SearchResultCell
         let product = productsResult[indexPath.row]
         cell.configure(product: product)
-        
+
         cell.cellTapOnClick = { [weak self] in
             let vc = ProductsVC()
             let search = product.tenSanPham
-            
+
             NetworkManager.shared.fetchProducts(page: nil, category: nil, search: search, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil, hastag: nil) { result in
                 switch result {
-                case .success(let data):
+                case let .success(data):
                     guard let response = data.response else {
                         return
                     }
                     vc.categoryProducts = response.data
                     vc.search = search
-                    
+
                     DispatchQueue.main.async {
                         self?.pushWithCrossDissolve(vc)
                     }
-                case .failure(let error):
+                case let .failure(error):
                     print(error.localizedDescription)
                 }
             }

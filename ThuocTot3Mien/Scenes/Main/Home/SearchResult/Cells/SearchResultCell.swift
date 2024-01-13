@@ -13,12 +13,12 @@ class SearchResultCell: UITableViewCell {
     @IBOutlet var coinsImage: UIImageView!
 
     static let identifier: String = "SearchResultCell"
-    
+
     var cellTapOnClick: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         addGestureRecognizer(tapGestureRecognizer)
     }
@@ -28,7 +28,7 @@ class SearchResultCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     @objc private func cellTapped() {
         cellTapOnClick?()
     }

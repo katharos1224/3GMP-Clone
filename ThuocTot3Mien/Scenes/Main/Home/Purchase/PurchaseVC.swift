@@ -14,7 +14,7 @@ final class PurchaseVC: BaseViewController {
     @IBOutlet var totalNumberLabel: UILabel!
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var confirmView: UIView!
-    
+
     var purchaseProducts: [CartProduct] = []
     var vouchersData: [Voucher] = []
     var totalNumber: Int = 0
@@ -42,7 +42,7 @@ final class PurchaseVC: BaseViewController {
 
     override func setupUI() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
+
         let cellWidth = UIScreen.main.bounds.width
         let cellHeight = (1 / 4) * UIScreen.main.bounds.height
         let spacing = 0.0

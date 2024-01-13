@@ -8,10 +8,9 @@
 import UIKit
 
 class NavBarView: UIView {
-    
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet var titleLabel: UILabel!
+
     var dismiss: (() -> Void)?
 
     override init(frame: CGRect) {
@@ -53,5 +52,4 @@ class NavBarView: UIView {
     @IBAction func dismissVC() {
         dismiss?()
     }
-
 }

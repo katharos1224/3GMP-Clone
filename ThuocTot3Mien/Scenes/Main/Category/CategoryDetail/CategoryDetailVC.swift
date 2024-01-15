@@ -80,10 +80,14 @@ final class CategoryDetailVC: BaseViewController {
         NetworkManager.shared.fetchCategoryType(type: type, page: currentPage, search: query) { [weak self] result in
             switch result {
             case let .success(data):
-                guard let response = data.response else { return }
+                guard let response = data.response else {
+                    print(data.message)
+                    return
+                }
 
                 self?.categories = response.data
                 self?.lastPage = response.lastPage
+                print(response)
 
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
@@ -97,6 +101,10 @@ final class CategoryDetailVC: BaseViewController {
 
     override func viewWillAppear(_: Bool) {
         performSearch()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        collectionView.reloadData()
     }
 }
 

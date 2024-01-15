@@ -21,22 +21,22 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFk-PI-1wN">
                         <rect key="frame" x="0.0" y="0.0" width="888" height="420"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-2W-2Dl">
-                                <rect key="frame" x="16" y="162" width="32" height="96"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-2W-2Dl">
+                                <rect key="frame" x="16" y="176" width="24" height="68"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Q4f-70-VJi">
-                                        <rect key="frame" x="0.0" y="1.6666666666666625" width="32" height="29.000000000000007"/>
+                                        <rect key="frame" x="0.0" y="1.6666666666666643" width="24" height="21.000000000000004"/>
                                         <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Q4f-70-VJi" secondAttribute="height" id="39E-Mt-MzB"/>
-                                            <constraint firstAttribute="height" constant="32" id="zfk-Fy-C74"/>
+                                            <constraint firstAttribute="height" constant="24" id="zfk-Fy-C74"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LIB-P9-zTu">
-                                        <rect key="frame" x="0.0" y="63.333333333333329" width="32" height="32"/>
+                                        <rect key="frame" x="0.0" y="43.333333333333329" width="24" height="24"/>
                                         <color key="tintColor" systemColor="placeholderTextColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="5pD-So-bYx"/>
+                                            <constraint firstAttribute="height" constant="24" id="5pD-So-bYx"/>
                                             <constraint firstAttribute="width" secondItem="LIB-P9-zTu" secondAttribute="height" id="x7S-Wg-KIv"/>
                                         </constraints>
                                     </imageView>
@@ -46,23 +46,23 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chọn số lượng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-KR-n3r">
-                                <rect key="frame" x="56.000000000000007" y="370.33333333333331" width="106.66666666666669" height="19.333333333333314"/>
+                                <rect key="frame" x="48.000000000000007" y="376.33333333333331" width="106.66666666666669" height="19.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jac-Up-Hje">
-                                <rect key="frame" x="709.33333333333337" y="360" width="162.66666666666663" height="40"/>
+                                <rect key="frame" x="753.33333333333337" y="372" width="118.66666666666663" height="28"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ES1-S7-FhK">
-                                        <rect key="frame" x="0.0" y="1" width="40" height="38.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.99999999999999822" width="28" height="26.666666666666664"/>
                                         <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ES1-S7-FhK" secondAttribute="height" id="Cum-vs-gRp"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nzi-M1-Dxz">
-                                        <rect key="frame" x="48.000000000000007" y="0.0" width="66.666666666666686" height="40"/>
+                                        <rect key="frame" x="36" y="0.0" width="46.666666666666657" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nzi-M1-Dxz" secondAttribute="height" multiplier="5:3" id="r6Q-5y-KQm"/>
                                         </constraints>
@@ -70,7 +70,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hqp-Vj-30c">
-                                        <rect key="frame" x="122.66666666666663" y="1" width="40" height="38.666666666666671"/>
+                                        <rect key="frame" x="90.666666666666629" y="0.99999999999999822" width="28" height="26.666666666666664"/>
                                         <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hqp-Vj-30c" secondAttribute="height" id="DRb-8e-q8S"/>
@@ -79,12 +79,12 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="2sK-sA-igy"/>
+                                    <constraint firstAttribute="height" constant="28" id="2sK-sA-igy"/>
                                     <constraint firstItem="hqp-Vj-30c" firstAttribute="width" secondItem="hqp-Vj-30c" secondAttribute="height" id="aKu-AX-oHW"/>
                                 </constraints>
                             </stackView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgP-bs-T1k" customClass="ProductInfoView" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                <rect key="frame" x="56" y="8" width="816" height="344"/>
+                                <rect key="frame" x="48" y="8" width="824" height="356"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>

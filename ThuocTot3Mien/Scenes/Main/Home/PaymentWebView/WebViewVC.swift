@@ -13,7 +13,7 @@ final class WebViewVC: BaseViewController {
     @IBOutlet var titleName: UILabel!
 
     var targetURL: URL?
-    var navTitle: String = "Tin tức"
+    var navTitle: String?
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -31,18 +31,15 @@ final class WebViewVC: BaseViewController {
     }
 
     override func viewDidLoad() {
-//        super.viewDidLoad()
-
+        super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         if let url = targetURL {
             loadWebView(with: url)
         }
 
         let backButton = UIBarButtonItem(title: "Trở về", style: .plain, target: self, action: #selector(dismissWebViewVC))
         navigationItem.leftBarButtonItem = backButton
-
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//            self.popToRoot()
-//        }
 
         titleName.text = navTitle
     }
@@ -54,13 +51,23 @@ final class WebViewVC: BaseViewController {
             self.hideLoadingIndicator()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.hideLoadingIndicator()
+        }
+    }
 
     @objc func dismissWebViewVC() {
         popWithCrossDissolve()
     }
 
     @IBAction func dismissTapped() {
-        popWithCrossDissolve()
+        if let _ = navigationController {
+            popWithCrossDissolve()
+        } else {
+            hide()
+        }
     }
 }
 

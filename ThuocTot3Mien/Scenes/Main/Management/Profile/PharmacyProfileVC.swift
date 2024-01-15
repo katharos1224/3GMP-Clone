@@ -283,6 +283,8 @@ extension PharmacyProfileVC {
                 
                 let imageAspectRatio = pickedImage.size.width / pickedImage.size.height
                 
+                NSLayoutConstraint.deactivate(self.image.constraints)
+                
                 NSLayoutConstraint.activate([
                     self.image.widthAnchor.constraint(equalTo: self.image.heightAnchor, multiplier: imageAspectRatio)
                 ])

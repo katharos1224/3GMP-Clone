@@ -64,11 +64,13 @@ class AuthViewModel {
                             KeychainService.saveToken(token: token)
                             self.updateUI?()
 
-                            guard let name = result.response?.name, let phone = result.response?.phoneNumber, let address = result.response?.address, let email = result.response?.email else { return }
+                            guard let name = result.response?.name, let phone = result.response?.phoneNumber, let address = result.response?.address else { return }
                             UserDefaults.standard.set(name, forKey: "name")
                             UserDefaults.standard.set(phone, forKey: "phone")
                             UserDefaults.standard.set(address, forKey: "address")
-                            UserDefaults.standard.set(email, forKey: "email")
+                            if let email = result.response?.email {
+                                UserDefaults.standard.set(email, forKey: "email")
+                            }
                         }
                     case .failure:
                         promise(.success(false))

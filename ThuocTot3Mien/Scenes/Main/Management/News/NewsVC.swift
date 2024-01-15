@@ -76,6 +76,7 @@ extension NewsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         cell.cellTapOnClick = { [weak self] in
             let url = URL(string: newsItem.url)
             let paymentWebView = WebViewVC(url: url!)
+            paymentWebView.navTitle = "Tin tức"
             self?.pushWithCrossDissolve(paymentWebView)
         }
 

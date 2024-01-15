@@ -26,7 +26,7 @@ final class PurchaseVC: BaseViewController {
 
     lazy var createPaymentContentView: PaymentView = {
         let width = UIScreen.main.bounds.size.width
-        let height = width * 8 / 5
+        let height = width * 31 / 20
         let frame = CGRect(x: 0, y: 0, width: width, height: height)
         let view = PaymentView(frame: frame)
         view.delegate = self
@@ -34,17 +34,28 @@ final class PurchaseVC: BaseViewController {
     }()
 
     var createPaymentPopupView = FFPopup()
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupData()
     }
+    
+    override func viewWillAppear(_: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 
     override func setupUI() {
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         let cellWidth = UIScreen.main.bounds.width
-        let cellHeight = (1 / 4) * UIScreen.main.bounds.height
+        let cellHeight = (1 / 5) * UIScreen.main.bounds.height
         let spacing = 0.0
         let padding = 0.0
 
@@ -80,6 +91,16 @@ final class PurchaseVC: BaseViewController {
             totalNumberLabel.text = String(totalNumber)
             totalPriceLabel.text = String(totalPrice.formattedWithSeparator()) + " VNĐ"
         }
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            createPaymentPopupView.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        createPaymentPopupView.frame.origin.y = 0
     }
 
     @IBAction func dismiss() {
@@ -138,6 +159,7 @@ final class PurchaseVC: BaseViewController {
         let layout = FFPopupLayout(horizontal: .center, vertical: .bottom)
         DispatchQueue.main.async {
             self.createPaymentPopupView.show(layout: layout)
+            self.createPaymentPopupView.layoutIfNeeded()
         }
     }
 
@@ -167,12 +189,8 @@ extension PurchaseVC: PaymentViewDelegate {
     func didTapCreatePayment(withURL url: URL) {
         DispatchQueue.main.async { [self] in
             let paymentWebView = WebViewVC(url: url)
-            navigationController?.setNavigationBarHidden(false, animated: false)
-            dismissPopup()
-            pushWithCrossDissolve(paymentWebView)
-
-            // if done (delay after 5s), pop to root
-//            popToRoot()
+            paymentWebView.navTitle = "Thanh toán"
+            show(paymentWebView)
         }
     }
 }

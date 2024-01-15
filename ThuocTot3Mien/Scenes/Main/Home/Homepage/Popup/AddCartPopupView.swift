@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import IQKeyboardManager
 
-class AddCartPopupView: UIView {
+class AddCartPopupView: UIView, UITextFieldDelegate {
     @IBOutlet var contentView: UIView!
     @IBOutlet var discountView: UIView!
     @IBOutlet var productImage: UIImageView!
@@ -59,6 +60,9 @@ class AddCartPopupView: UIView {
         let plusTap = UITapGestureRecognizer(target: self, action: #selector(plusTapped))
         minusImage.addGestureRecognizer(minusTap)
         plusImage.addGestureRecognizer(plusTap)
+        amountField.delegate = self
+        IQKeyboardManager.shared().isEnabled = true
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
     }
 
     override func layoutSubviews() {

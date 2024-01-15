@@ -91,10 +91,8 @@ extension CategoryVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         cell.configure(name: category.name)
 
         cell.cellTapOnClick = { [weak self] in
-            print("Tapped!!!")
-
             let id = self?.categoriesData[indexPath.section].category[indexPath.row].value
-            let name = self?.categoriesData[indexPath.section].category[indexPath.row].name
+//            let name = self?.categoriesData[indexPath.section].category[indexPath.row].name
             let vc = ProductsVC()
             vc.section = indexPath.section
             vc.id = id ?? 0

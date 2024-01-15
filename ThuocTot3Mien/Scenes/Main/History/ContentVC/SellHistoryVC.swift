@@ -1,5 +1,5 @@
 //
-//  ViewController2.swift
+//  SellHistoryVC.swift
 //  ThuocTot3Mien
 //
 //  Created by Katharos on 05/01/2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
+final class SellHistoryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 

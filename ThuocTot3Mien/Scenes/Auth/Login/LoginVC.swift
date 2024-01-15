@@ -50,6 +50,14 @@ final class LoginVC: BaseViewController {
             }
             .store(in: &cancellables)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.layoutIfNeeded()
+        
+        userImage.layer.cornerRadius = userImage.frame.size.height / 2
+        
+    }
 
     @IBAction func dismiss() {
         popWithCrossDissolve()

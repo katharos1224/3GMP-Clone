@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactVC: BaseViewController {
+final class ContactVC: BaseViewController {
     @IBOutlet var collectionView: UICollectionView!
 
     let cellWidth = UIScreen.main.bounds.width - 32

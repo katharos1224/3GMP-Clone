@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PaymentHistoryVC: BaseViewController {
+final class PaymentHistoryVC: BaseViewController {
     @IBOutlet var collectionView: UICollectionView!
 
     var historyData: [OrderHistoryItem] = []

@@ -33,7 +33,7 @@ final class HistoryVC: BaseViewController {
         viewPager.hostController = self
 
         let vc1 = PaymentHistoryVC()
-        let vc2 = ViewController2()
+        let vc2 = SellHistoryVC()
         subControllers = [vc1, vc2]
         viewPager.backgroundColor = .white
         viewPager.reload()

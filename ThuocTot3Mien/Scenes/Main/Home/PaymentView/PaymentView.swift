@@ -15,25 +15,31 @@ protocol PaymentViewDelegate: AnyObject {
 }
 
 class PaymentView: UIView {
-    @IBOutlet var contentView: UIView!
-    @IBOutlet var useOnlineCheckmark: UIImageView!
-    @IBOutlet var totalNumberLabel: UILabel!
-    @IBOutlet var totalPriceLabel: UILabel!
-    @IBOutlet var voucherField: FloatingTextField!
-    @IBOutlet var applyVoucherButton: UIButton!
-    @IBOutlet var useCoinsSwitch: UISwitch!
-    @IBOutlet var nameField: FloatingTextField!
-    @IBOutlet var phoneField: FloatingTextField!
-    @IBOutlet var emailField: FloatingTextField!
-    @IBOutlet var taxField: FloatingTextField!
-    @IBOutlet var addressField: FloatingTextField!
-    @IBOutlet var noteField: FloatingTextField!
-    @IBOutlet var givenCoinsLabel: UILabel!
-    @IBOutlet var warningVoucherLabel: UILabel!
-    @IBOutlet var usingCoinsLabel: UILabel!
-    @IBOutlet var reductionRateLabel: UILabel!
-    @IBOutlet var createPaymentButton: UIButton!
-
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var useOnlineCheckmark: UIImageView!
+    @IBOutlet weak var totalNumberLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var voucherField: FloatingTextField!
+    @IBOutlet weak var applyVoucherButton: UIButton!
+    @IBOutlet weak var useCoinsSwitch: UISwitch!
+    @IBOutlet weak var nameField: FloatingTextField!
+    @IBOutlet weak var phoneField: FloatingTextField!
+    @IBOutlet weak var emailField: FloatingTextField!
+    @IBOutlet weak var taxField: FloatingTextField!
+    @IBOutlet weak var addressField: FloatingTextField!
+    @IBOutlet weak var noteField: FloatingTextField!
+    @IBOutlet weak var givenCoinsLabel: UILabel!
+    @IBOutlet weak var warningVoucherLabel: UILabel!
+    @IBOutlet weak var usingCoinsLabel: UILabel!
+    @IBOutlet weak var reductionRateLabel: UILabel!
+    @IBOutlet weak var createPaymentButton: UIButton!
+    
+    @IBOutlet weak var nameWarningLabel: UILabel!
+    @IBOutlet weak var phoneWarningLabel: UILabel!
+    @IBOutlet weak var emailWarningLabel: UILabel!
+    @IBOutlet weak var taxWarningLabel: UILabel!
+    @IBOutlet weak var addressWarningLabel: UILabel!
+    
     weak var delegate: PaymentViewDelegate?
 
     var vouchers: [Voucher] = []
@@ -145,6 +151,8 @@ class PaymentView: UIView {
                         totalPriceLabel.text = "\((totalPrice - money).formattedWithSeparator()) VNĐ"
                         finalPrice = totalPrice - money
                     }
+                    
+                    layoutIfNeeded()
                 }
             case let .failure(error):
                 print(error.localizedDescription)
@@ -294,16 +302,46 @@ class PaymentView: UIView {
     }
 
     @IBAction func createPaymentTapped() {
-        guard let name = nameField.text,
-              let phone = phoneField.text,
-              let address = addressField.text,
-              let onlineTransfer = useOnlinePayment ? 1 : 0,
-              let coin = useCoinsSwitch.isOn ? 1 : 0
+        guard let name = nameField.text, !name.isEmpty,
+              let phone = phoneField.text, !phone.isEmpty,
+              let address = addressField.text, !address.isEmpty
         else {
+            if nameField.text == "" {
+                nameWarningLabel.textColor = .systemRed
+                nameField.bottomLineColor = .systemRed
+                nameField.updatedBottomLineColor(true)
+            }
+            
+            if phoneField.text == "" {
+                phoneWarningLabel.textColor = .systemRed
+                phoneField.bottomLineColor = .systemRed
+                phoneField.updatedBottomLineColor(true)
+            }
+            
+            if addressField.text == "" {
+                addressWarningLabel.textColor = .systemRed
+                addressField.bottomLineColor = .systemRed
+                addressField.updatedBottomLineColor(true)
+            }
+                        
             return
         }
-
+        
+        nameWarningLabel.textColor = .clear
+        nameField.bottomLineColor = .systemGreen
+        nameField.updatedBottomLineColor(true)
+        
+        phoneWarningLabel.textColor = .clear
+        phoneField.bottomLineColor = .systemGreen
+        phoneField.updatedBottomLineColor(true)
+        
+        addressWarningLabel.textColor = .clear
+        addressField.bottomLineColor = .systemGreen
+        addressField.updatedBottomLineColor(true)
+        
         let device = PlatformManager.getPlatform()
+        let onlineTransfer = useOnlinePayment ? 1 : 0
+        let coin = useCoinsSwitch.isOn ? 1 : 0
 
         let paymentParams = Payment(dataId: cartIDs, device: device, ten: name, sdt: phone, email: emailField.text, diaChi: address, maSoThue: taxField.text, ghiChu: noteField.text, ckTruoc: onlineTransfer, voucher: voucherField.text, coin: coin, totalPrice: String(finalPrice))
 

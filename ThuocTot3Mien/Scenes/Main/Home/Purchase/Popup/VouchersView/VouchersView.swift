@@ -31,7 +31,7 @@ class VouchersView: UIView {
     }
 
     private func setupView() {
-        Bundle.main.loadNibNamed("VouchersView", owner: self)
+        Bundle.main.loadNibNamed("\(Self.self)", owner: self)
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         contentView.layer.cornerRadius = 10

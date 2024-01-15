@@ -715,7 +715,7 @@
     </objects>
     <designables>
         <designable name="34n-EY-CHz">
-            <size key="intrinsicContentSize" width="72" height="33"/>
+            <size key="intrinsicContentSize" width="72" height="21"/>
         </designable>
     </designables>
     <resources>

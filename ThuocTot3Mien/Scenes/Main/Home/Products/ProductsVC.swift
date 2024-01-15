@@ -57,27 +57,31 @@ final class ProductsVC: BaseViewController {
         collectionView.collectionViewLayout = layout
         collectionView.registerCellFromNib(ProductCVCell.self, nibName: ProductCVCell.identifier)
 
-        setupData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.hideLoadingIndicator()
+        }
+//        setupData()
     }
 
-    func setupData() {
-        NetworkManager.shared.fetchProducts(page: 1, category: category, search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil, hastag: nil) { [weak self] result in
-            switch result {
-            case let .success(data):
-                guard let response = data.response else {
-                    return
-                }
-                self?.categoryProducts = response.data
-                self?.lastPage = response.lastPage
-                DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
-                    self?.hideLoadingIndicator()
-                }
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        }
-    }
+//    func setupData() {
+//        NetworkManager.shared.fetchProducts(page: 1, category: category, search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil, hastag: nil) { [weak self] result in
+//            switch result {
+//            case let .success(data):
+//                guard let response = data.response else {
+//                    return
+//                }
+//                self?.categoryProducts = response.data
+//                self?.lastPage = response.lastPage
+//                DispatchQueue.main.async {
+//                    self?.collectionView.reloadData()
+//                    self?.hideLoadingIndicator()
+//                }
+//            case let .failure(error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
 
     override func viewWillAppear(_: Bool) {
         bannerView.textField.text = search

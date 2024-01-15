@@ -90,7 +90,17 @@ final class PharmacyProfileVC: BaseViewController {
                     self?.taxField.text = response.maSoThue
                     self?.provinceField.text = response.provinces[response.tinh - 1].name
                     self?.rankIcon.sd_setImage(with: rankURL)
-                    self?.image.sd_setImage(with: imgURL, placeholderImage: UIImage(systemName: "photo"))
+                    self?.image.sd_setImage(with: imgURL, placeholderImage: UIImage(systemName: "photo"), completed: { pickedImage, _, _, _ in
+                        if let image = pickedImage {
+                            let imageAspectRatio = image.size.width / image.size.height
+                            
+                            NSLayoutConstraint.activate([
+                                self!.image.widthAnchor.constraint(equalTo: self!.image.heightAnchor, multiplier: imageAspectRatio)
+                            ])
+                            
+                            self?.image.layer.cornerRadius = 10
+                        }
+                    })
 
                     textFields.forEach { textField in
                         guard let text = textField.text, text.isEmpty else {
@@ -270,6 +280,14 @@ extension PharmacyProfileVC {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             DispatchQueue.main.async {
                 self.image.image = pickedImage
+                
+                let imageAspectRatio = pickedImage.size.width / pickedImage.size.height
+                
+                NSLayoutConstraint.activate([
+                    self.image.widthAnchor.constraint(equalTo: self.image.heightAnchor, multiplier: imageAspectRatio)
+                ])
+                
+                self.image.layer.cornerRadius = 10
             }
         }
 

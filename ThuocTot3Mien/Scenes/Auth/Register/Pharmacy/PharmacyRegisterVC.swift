@@ -205,6 +205,14 @@ extension PharmacyRegisterVC {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             DispatchQueue.main.async {
                 self.businessLicenseImage.image = pickedImage
+                
+                let imageAspectRatio = pickedImage.size.width / pickedImage.size.height
+                
+                NSLayoutConstraint.activate([
+                    self.businessLicenseImage.widthAnchor.constraint(equalTo: self.businessLicenseImage.heightAnchor, multiplier: imageAspectRatio)
+                ])
+                
+                self.businessLicenseImage.layer.cornerRadius = 10
             }
         }
 

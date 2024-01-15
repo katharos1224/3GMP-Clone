@@ -188,8 +188,8 @@ final class CartVC: BaseViewController {
 
             DispatchQueue.main.async { [self] in
                 checkmarkAllButton.image = UIImage(systemName: "square")
-                totalNumberLabel.text = "0"
-                totalPriceLabel.text = "0 VNĐ"
+                totalNumberLabel.text = ""
+                totalPriceLabel.text = ""
                 reloadDataAndAdjustHeight()
                 continueButton.isUserInteractionEnabled = false
                 continueButton.backgroundColor = .placeholderText
@@ -282,8 +282,8 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                             guard let response = data.response else {
                                 self?.cartProducts = []
                                 DispatchQueue.main.async {
-                                    self?.totalNumberLabel.text = "0"
-                                    self?.totalPriceLabel.text = "0 VNĐ"
+                                    self?.totalNumberLabel.text = ""
+                                    self?.totalPriceLabel.text = ""
                                     self?.checkmarkAllButton.image = UIImage(systemName: "square")
                                     self?.reloadDataAndAdjustHeight()
                                 }
@@ -298,8 +298,8 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                             DispatchQueue.main.async {
                                 if self?.cartProducts.count == 0 {
                                     self?.checkmarkAllButton.image = UIImage(systemName: "square")
-                                    self?.totalNumberLabel.text = "0"
-                                    self?.totalPriceLabel.text = "0 VNĐ"
+                                    self?.totalNumberLabel.text = ""
+                                    self?.totalPriceLabel.text = ""
                                     self?.reloadDataAndAdjustHeight()
                                 } else if self?.checkmarkStatus.filter({ $0.check == false }).count == 0 {
                                     self?.checkmarkAllButton.image = UIImage(systemName: "checkmark.square.fill")
@@ -397,8 +397,8 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                             guard let response = data.response else {
                                                 self?.cartProducts = []
                                                 DispatchQueue.main.async { [self] in
-                                                    self?.totalNumberLabel.text = "0"
-                                                    self?.totalPriceLabel.text = "0 VNĐ"
+                                                    self?.totalNumberLabel.text = ""
+                                                    self?.totalPriceLabel.text = ""
                                                     self?.checkmarkAllButton.image = UIImage(systemName: "square")
                                                     self?.reloadDataAndAdjustHeight()
                                                 }
@@ -413,8 +413,8 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                             DispatchQueue.main.async { [self] in
                                                 if self!.cartProducts.isEmpty {
                                                     self?.checkmarkAllButton.image = UIImage(systemName: "square")
-                                                    self?.totalNumberLabel.text = "0"
-                                                    self?.totalPriceLabel.text = "0 VNĐ"
+                                                    self?.totalNumberLabel.text = ""
+                                                    self?.totalPriceLabel.text = ""
                                                     self?.reloadDataAndAdjustHeight()
                                                 } else if self?.checkmarkStatus.filter({ $0.check == false }).count == 0 {
                                                     self?.checkmarkAllButton.image = UIImage(systemName: "checkmark.square.fill")
@@ -494,8 +494,8 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func updateCartInfo() {
         if tempCartProducts.isEmpty {
             DispatchQueue.main.async { [self] in
-                totalNumberLabel.text = "0"
-                totalPriceLabel.text = "0 VNĐ"
+                totalNumberLabel.text = ""
+                totalPriceLabel.text = ""
                 reloadDataAndAdjustHeight()
             }
         } else {

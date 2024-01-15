@@ -81,19 +81,19 @@
                     <rect key="frame" x="0.0" y="115" width="393" height="703"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oe0-Zw-iYA">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1484.6666666666667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1205"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5z-wo-zPR" customClass="CustomView" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                    <rect key="frame" x="30.666666666666657" y="0.0" width="332" height="1378.6666666666667"/>
+                                    <rect key="frame" x="40" y="0.0" width="313" height="1099"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông Tin Thành Viên" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnF-id-vVt">
-                                            <rect key="frame" x="16" y="15.999999999999998" width="300" height="20.333333333333329"/>
+                                            <rect key="frame" x="16" y="15.999999999999998" width="281" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gur-Tz-DZR">
-                                            <rect key="frame" x="126.66666666666666" y="44.333333333333343" width="78.666666666666657" height="40"/>
+                                            <rect key="frame" x="117.33333333333334" y="44.333333333333343" width="78.666666666666657" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIf-c3-GL3">
                                                     <rect key="frame" x="0.0" y="10.333333333333313" width="34.666666666666664" height="19.333333333333329"/>
@@ -102,7 +102,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rays" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cwx-6p-DKN">
-                                                    <rect key="frame" x="38.666666666666657" y="0.0" width="40" height="40"/>
+                                                    <rect key="frame" x="38.666666666666686" y="0.0" width="40" height="40"/>
                                                     <color key="tintColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Cwx-6p-DKN" secondAttribute="height" id="cNc-Qj-XJn"/>
@@ -112,13 +112,13 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-o9-iQH" userLabel="Member Stack View">
-                                            <rect key="frame" x="16" y="123.66666666666663" width="300" height="1239"/>
+                                            <rect key="frame" x="16" y="123.66666666666663" width="281" height="930.99999999999989"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="p59-qB-fwS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cii-JI-173" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -161,7 +161,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập họ tên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRU-Uj-Ry7">
-                                                            <rect key="frame" x="0.0" y="50.000000000000028" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50.000000000000028" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -169,10 +169,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="975-GD-GWB">
-                                                    <rect key="frame" x="0.0" y="108.00000000000003" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="108.00000000000003" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="a41-PZ-G8f" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -215,7 +215,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập tên nhà thuốc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIc-yM-RHt">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -223,10 +223,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bio-VW-7Dx">
-                                                    <rect key="frame" x="0.0" y="216" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="216" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PrE-gH-8O4" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -269,7 +269,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập số điện thoại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmd-6h-3hB">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -277,10 +277,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Z59-0x-hqu">
-                                                    <rect key="frame" x="0.0" y="324" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="324" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PPM-RN-Yk8" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -323,7 +323,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập đúng định dạng email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydo-7X-S1p">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -331,10 +331,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-KG-yvc">
-                                                    <rect key="frame" x="0.0" y="432" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="432" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iH3-Hb-HoA" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -377,7 +377,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập địa chỉ nhà thuốc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rM4-xZ-5Mg">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -385,10 +385,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TNZ-56-0KH">
-                                                    <rect key="frame" x="0.0" y="540" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="540" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ohr-ms-BHZ" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -431,7 +431,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã số thuế phải có 10 hoặc 13 chữ số" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxz-y8-X3w" userLabel="Mã số thuế phải có 10 hoặc 13 chữ số">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -439,10 +439,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DAX-8h-WYq">
-                                                    <rect key="frame" x="0.0" y="648" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="648" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="a6n-q3-QVC" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -486,7 +486,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mật khẩu phải từ 8 đến 255 ký tự" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m48-si-eRC">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -494,10 +494,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9xc-AA-qii">
-                                                    <rect key="frame" x="0.0" y="756" width="300" height="100"/>
+                                                    <rect key="frame" x="0.0" y="756" width="281" height="100"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CcW-fJ-dRy" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -541,7 +541,7 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập tỉnh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYf-S5-0ju">
-                                                            <rect key="frame" x="0.0" y="50.000000000000114" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="50.000000000000114" width="281" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -549,10 +549,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="71J-vW-FzB">
-                                                    <rect key="frame" x="0.0" y="864.00000000000011" width="300" height="67"/>
+                                                    <rect key="frame" x="0.0" y="864.00000000000011" width="281" height="67"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-7J-Q0y" customClass="FloatingTextField" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -596,29 +596,21 @@
                                                             </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng tải ảnh lên" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOm-T5-xnD">
-                                                            <rect key="frame" x="0.0" y="50" width="300" height="17"/>
+                                                            <rect key="frame" x="0.0" y="50" width="281" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ywG-mA-wiY">
-                                                    <rect key="frame" x="0.0" y="939" width="300" height="300"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="photo" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWM-Hf-OFa">
-                                                            <rect key="frame" x="0.0" y="1.6666666666666572" width="300" height="297"/>
-                                                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="HWM-Hf-OFa" secondAttribute="height" id="qUc-7V-OSw"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
-                                                </stackView>
                                             </subviews>
                                         </stackView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="photo" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWM-Hf-OFa">
+                                            <rect key="frame" x="16" y="1064.3333333333335" width="281" height="17.333333333333371"/>
+                                            <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIr-PA-fAu">
-                                            <rect key="frame" x="149.33333333333334" y="88.333333333333343" width="33" height="19.333333333333329"/>
+                                            <rect key="frame" x="140" y="88.333333333333343" width="33" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" red="1" green="0.63020056489999998" blue="0.063142038880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -627,15 +619,18 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="U1N-o9-iQH" firstAttribute="leading" secondItem="u5z-wo-zPR" secondAttribute="leading" constant="16" id="00e-SB-SJw"/>
-                                        <constraint firstAttribute="bottom" secondItem="U1N-o9-iQH" secondAttribute="bottom" constant="16" id="1LR-eE-Szj"/>
+                                        <constraint firstAttribute="bottom" secondItem="HWM-Hf-OFa" secondAttribute="bottom" constant="16" id="3Tt-Pt-7Up"/>
                                         <constraint firstAttribute="trailing" secondItem="U1N-o9-iQH" secondAttribute="trailing" constant="16" id="47n-Pp-G2V"/>
+                                        <constraint firstItem="HWM-Hf-OFa" firstAttribute="leading" secondItem="u5z-wo-zPR" secondAttribute="leading" constant="16" id="4vt-36-6US"/>
                                         <constraint firstAttribute="trailing" secondItem="PnF-id-vVt" secondAttribute="trailing" constant="16" id="6Cw-G9-Usi"/>
+                                        <constraint firstItem="HWM-Hf-OFa" firstAttribute="top" secondItem="U1N-o9-iQH" secondAttribute="bottom" constant="8" id="FfH-57-yQu"/>
                                         <constraint firstItem="gur-Tz-DZR" firstAttribute="centerX" secondItem="u5z-wo-zPR" secondAttribute="centerX" id="KOu-2e-gds"/>
                                         <constraint firstItem="gur-Tz-DZR" firstAttribute="top" secondItem="PnF-id-vVt" secondAttribute="bottom" constant="8" id="YFg-IQ-KtQ"/>
                                         <constraint firstItem="PnF-id-vVt" firstAttribute="leading" secondItem="u5z-wo-zPR" secondAttribute="leading" constant="16" id="dzJ-PO-alg"/>
                                         <constraint firstItem="U1N-o9-iQH" firstAttribute="top" secondItem="NIr-PA-fAu" secondAttribute="bottom" constant="16" id="iBw-Cc-fNu"/>
                                         <constraint firstItem="NIr-PA-fAu" firstAttribute="top" secondItem="gur-Tz-DZR" secondAttribute="bottom" constant="4" id="nYI-RQ-4JC"/>
                                         <constraint firstItem="PnF-id-vVt" firstAttribute="top" secondItem="u5z-wo-zPR" secondAttribute="top" constant="16" id="odz-Df-68R"/>
+                                        <constraint firstAttribute="trailing" secondItem="HWM-Hf-OFa" secondAttribute="trailing" constant="16" id="rlk-dD-IuJ"/>
                                         <constraint firstItem="NIr-PA-fAu" firstAttribute="centerX" secondItem="u5z-wo-zPR" secondAttribute="centerX" id="tJn-3g-uyF"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -645,7 +640,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34n-EY-CHz" customClass="CustomButton" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                    <rect key="frame" x="30.666666666666657" y="1418.6666666666667" width="332" height="50"/>
+                                    <rect key="frame" x="40" y="1139" width="313" height="50"/>
                                     <color key="backgroundColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="AxK-6P-K1D"/>
@@ -680,12 +675,13 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="u5z-wo-zPR" firstAttribute="centerX" secondItem="Oe0-Zw-iYA" secondAttribute="centerX" id="1rh-UZ-K4k"/>
                                 <constraint firstItem="34n-EY-CHz" firstAttribute="width" secondItem="u5z-wo-zPR" secondAttribute="width" id="bWO-nF-Ise"/>
+                                <constraint firstAttribute="trailing" secondItem="u5z-wo-zPR" secondAttribute="trailing" constant="40" id="if5-CC-a50"/>
                                 <constraint firstItem="34n-EY-CHz" firstAttribute="top" secondItem="u5z-wo-zPR" secondAttribute="bottom" constant="40" id="l49-fx-4iM"/>
                                 <constraint firstItem="34n-EY-CHz" firstAttribute="centerX" secondItem="Oe0-Zw-iYA" secondAttribute="centerX" id="n48-VF-5Qi"/>
                                 <constraint firstAttribute="bottom" secondItem="34n-EY-CHz" secondAttribute="bottom" constant="16" id="n5X-Lw-Mea"/>
                                 <constraint firstItem="u5z-wo-zPR" firstAttribute="top" secondItem="Oe0-Zw-iYA" secondAttribute="top" id="p52-qA-YD4"/>
+                                <constraint firstItem="u5z-wo-zPR" firstAttribute="leading" secondItem="Oe0-Zw-iYA" secondAttribute="leading" constant="40" id="yyD-eg-91G"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -719,7 +715,7 @@
     </objects>
     <designables>
         <designable name="34n-EY-CHz">
-            <size key="intrinsicContentSize" width="72" height="21"/>
+            <size key="intrinsicContentSize" width="72" height="33"/>
         </designable>
     </designables>
     <resources>

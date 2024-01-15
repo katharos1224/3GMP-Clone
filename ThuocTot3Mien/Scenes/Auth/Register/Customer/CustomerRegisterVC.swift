@@ -300,6 +300,14 @@ extension CustomerRegisterVC {
 
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             avatarImage.image = pickedImage
+            
+            let imageAspectRatio = pickedImage.size.width / pickedImage.size.height
+            
+            NSLayoutConstraint.activate([
+                avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: imageAspectRatio)
+            ])
+            
+            avatarImage.layer.cornerRadius = 10
         }
     }
 }

@@ -54,10 +54,10 @@ final class PurchaseVC: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        let cellWidth = UIScreen.main.bounds.width
-        let cellHeight = (1 / 5) * UIScreen.main.bounds.height
-        let spacing = 0.0
-        let padding = 0.0
+        let cellWidth = Constants.WIDTH_SCREEN
+        let cellHeight = (5 / 12) * cellWidth
+        let spacing = Constants.SPACING_ZERO
+        let padding = Constants.PADDING_ZERO
 
         let layout = PagingCollectionViewLayout()
         layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)

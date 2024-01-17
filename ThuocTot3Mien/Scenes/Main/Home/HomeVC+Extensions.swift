@@ -50,7 +50,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCVCell.identifier, for: indexPath) as! ProductCVCell
 
             let product = productsData[indexPath.section].data[indexPath.item]
-            let totalAmount = product.soLuong
 
             cell.configure(productData: product, memberStatus: memberStatus)
 
@@ -79,15 +78,15 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                 }
                             }
 
-                            if amount > totalAmount {
-                                showAlert(title: "Số lượng không hợp lệ!", message: "Vượt quá số lượng sản phẩm: \(totalAmount)")
-                                view.amountField.text = "\(totalAmount)"
-                            } else if amount < 1 {
+                            if amount < 1 {
                                 showAlert(title: "Số lượng không hợp lệ!", message: "Số lượng sản phẩm phải lớn hơn 0")
                                 view.amountField.text = "\(1)"
                             }
                         } else {
-                            view.amountField.text = "\(1)"
+                            showAlert(title: "Thông báo", message: "Số lượng không hợp lệ.")
+                            DispatchQueue.main.async {
+                                view.amountField.text = "\(product.soLuongToiThieu ?? 1)"
+                            }
                         }
                     }
 
@@ -130,13 +129,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                     view.amountField.text = "\(maxAmount)"
                                 }
                             } else {
-                                if totalAmount - amount > 0 {
-                                    amount += 1
-                                    view.amountField.text = "\(amount)"
-                                } else {
-                                    showAlert(title: "Số lượng không hợp lệ!", message: "Vượt quá số lượng sản phẩm: \(totalAmount)")
-                                    view.amountField.text = "\(totalAmount)"
-                                }
+                                amount += 1
+                                view.amountField.text = "\(amount)"
                             }
                         }
                     }
@@ -157,10 +151,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                 }
                             }
 
-                            if amount > totalAmount {
-                                showAlert(title: "Số lượng không hợp lệ!", message: "Vượt quá số lượng sản phẩm: \(totalAmount)")
-                                view.amountField.text = "\(totalAmount)"
-                            } else if amount < 1 {
+                            if amount < 1 {
                                 showAlert(title: "Số lượng không hợp lệ!", message: "Số lượng sản phẩm phải lớn hơn 0")
                                 view.amountField.text = "\(1)"
                             } else {
@@ -190,6 +181,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                                         print(error.localizedDescription)
                                     }
                                 }
+                            }
+                        } else {
+                            showAlert(title: "Thông báo", message: "Số lượng không hợp lệ.")
+                            DispatchQueue.main.async {
+                                view.amountField.text = "\(product.soLuongToiThieu ?? 1)"
                             }
                         }
                     }

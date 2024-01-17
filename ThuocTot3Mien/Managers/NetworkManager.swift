@@ -43,55 +43,55 @@ enum APIService {
 
 extension APIService: TargetType {
     var baseURL: URL {
-        return URL(string: "http://18.138.176.213/api/v2/")!
+        return URL(string: EndPointURL.BASE_API_URL)!
     }
 
     var path: String {
         switch self {
         case .provinces:
-            return "system/provinces"
+            return EndPointURL.PROVINCES
         case .agency:
-            return "system/provinces/agency_list"
+            return EndPointURL.AGENCY
         case .login:
-            return "member/login"
+            return EndPointURL.LOGIN
         case .loginCustomer:
-            return "customer/login"
+            return EndPointURL.CUSTOMER_LOGIN
         case .register:
-            return "member/register"
+            return EndPointURL.REGISTER
         case .registerCustomer:
-            return "customer/register"
+            return EndPointURL.CUSTOMER_REGISTER
         case .homepage:
-            return "system/homepage"
+            return EndPointURL.HOMEPAGE
         case .addCart:
-            return "cart/update"
+            return EndPointURL.CART_UPDATE
         case .cart:
-            return "cart/index"
+            return EndPointURL.CART
         case .voucher:
-            return "cart/list_voucher"
+            return EndPointURL.VOUCHER
         case .discount:
-            return "cart/discount"
+            return EndPointURL.DISCOUNT
         case .codPayment, .onlinePayment:
-            return "cart/payment"
+            return EndPointURL.PAYMENT
         case .category:
-            return "system/category"
+            return EndPointURL.CATEGORY
         case .categoryType:
-            return "system/category_type"
+            return EndPointURL.CATEGORY_TYPE
         case .product:
-            return "product/index"
+            return EndPointURL.PRODUCT
         case .search:
-            return "search"
+            return EndPointURL.SEARCH
         case .history:
-            return "history/payment"
+            return EndPointURL.HISTORY
         case .historyDetail:
-            return "history/payment_details"
+            return EndPointURL.HISTORY_DETAIL
         case .contact:
-            return "system/contact"
+            return EndPointURL.CONTACT
         case .news:
-            return "system/list_news"
+            return EndPointURL.NEWS
         case .profile, .updateProfile:
-            return "member/profile"
+            return EndPointURL.PROFILE
         case .logout:
-            return "member/logout"
+            return EndPointURL.LOGOUT
         }
     }
 

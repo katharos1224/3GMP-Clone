@@ -25,6 +25,8 @@ class AddCartPopupView: UIView, UITextFieldDelegate {
     @IBOutlet var minusImage: UIImageView!
     @IBOutlet var plusImage: UIImageView!
     @IBOutlet var addCartButton: UIButton!
+    @IBOutlet weak var tagStack: UIStackView!
+    
 
     var minusOnClick: (() -> Void)?
     var plusOnClick: (() -> Void)?
@@ -67,11 +69,11 @@ class AddCartPopupView: UIView, UITextFieldDelegate {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        layoutIfNeeded()
 
         discountView.layer.masksToBounds = true
         discountView.layer.cornerRadius = discountView.bounds.size.height / 2
         addCartButton.layer.cornerRadius = addCartButton.bounds.size.height / 2
+        layoutIfNeeded()
     }
 
     @objc private func minusTapped() {
@@ -83,6 +85,18 @@ class AddCartPopupView: UIView, UITextFieldDelegate {
     }
 
     func configure(productData: ProductData) {
+//        if !productData.tags.isEmpty {
+//            tagStack.isHidden = false
+//            productData.tags.forEach { tag in
+//                let tagView = TagView()
+//                tagView.configure(name: tag.name)
+//                tagView.layer.cornerRadius = tagView.frame.size.height / 2
+//                tagStack.addArrangedSubview(tagView)
+//            }
+//        } else {
+//            tagStack.isHidden = false
+//        }
+        
         discountPriceLabel.isHidden = productData.khuyenMai != nil ? false : true
         discountView.isHidden = productData.khuyenMai != nil ? false : true
         bonusCoinsLabel.isHidden = productData.bonusCoins != nil && productData.bonusCoins != 0 ? false : true

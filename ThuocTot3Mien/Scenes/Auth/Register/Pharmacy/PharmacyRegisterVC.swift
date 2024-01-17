@@ -8,6 +8,7 @@
 import Combine
 import DropDown
 import UIKit
+import FFPopup
 
 final class PharmacyRegisterVC: BaseViewController {
     @IBOutlet var termsOfUseButton: UIButton!
@@ -41,6 +42,16 @@ final class PharmacyRegisterVC: BaseViewController {
 
     let dropDown = DropDown()
 
+    let imagePickerContentView: ImagePickerView = {
+        let width = (4 / 5) * UIScreen.main.bounds.size.width
+        let height = width * (4 / 5)
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let view = ImagePickerView(frame: frame)
+        return view
+    }()
+
+    var imagePickerPopupView = FFPopup()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -60,6 +71,25 @@ final class PharmacyRegisterVC: BaseViewController {
                 return
             }
         }
+    }
+    
+    func showImagePickerPopup() {
+        imagePickerPopupView = FFPopup(contentView: imagePickerContentView, showType: .fadeIn, dismissType: .fadeOut, maskType: .dimmed, dismissOnBackgroundTouch: true, dismissOnContentTouch: true)
+        
+        imagePickerContentView.cameraOnClick = {
+            self.showImagePicker(sourceType: .camera)
+        }
+        
+        imagePickerContentView.libraryOnClick = {
+            self.showImagePicker(sourceType: .photoLibrary)
+        }
+        
+        let layout = FFPopupLayout(horizontal: .center, vertical: .center)
+        imagePickerPopupView.show(layout: layout)
+    }
+
+    func dismissPopup() {
+        imagePickerPopupView.dismiss(animated: true)
     }
 
     @IBAction func dismiss() {
@@ -208,6 +238,8 @@ extension PharmacyRegisterVC {
                 
                 let imageAspectRatio = pickedImage.size.width / pickedImage.size.height
                 
+                NSLayoutConstraint.deactivate(self.businessLicenseImage.constraints)
+                
                 NSLayoutConstraint.activate([
                     self.businessLicenseImage.widthAnchor.constraint(equalTo: self.businessLicenseImage.heightAnchor, multiplier: imageAspectRatio)
                 ])
@@ -252,7 +284,8 @@ extension PharmacyRegisterVC: FloatingTextFieldDelegate {
             textField.endEditing(true)
 
             DispatchQueue.main.async {
-                self.showImagePickerOptions()
+//                self.showImagePickerOptions()
+                self.showImagePickerPopup()
             }
         default:
             break

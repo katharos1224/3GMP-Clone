@@ -17,10 +17,10 @@ final class PaymentHistoryVC: BaseViewController {
     var lastPage: Int?
     var isLoadingMore = false
 
-    let cellWidth = UIScreen.main.bounds.width - 32
-    let cellHeight = (1 / 8) * UIScreen.main.bounds.height
-    let spacing = 16.0
-    let padding = 0.0
+    let cellWidth = Constants.WIDTH_SCREEN - 32
+    let cellHeight = (1 / 8) * Constants.HEIGHT_SCREEN
+    let spacing = Constants.SPACING
+    let padding = Constants.PADDING_ZERO
 
     override func viewDidLoad() {
         view.backgroundColor = .white

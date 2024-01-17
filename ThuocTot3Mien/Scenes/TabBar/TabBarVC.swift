@@ -22,10 +22,10 @@ final class TabBarVC: UITabBarController {
         let nav3 = UINavigationController(rootViewController: historyVC)
         let nav4 = UINavigationController(rootViewController: infoVC)
 
-        nav1.tabBarItem = UITabBarItem(title: "Trang chủ", image: UIImage(systemName: "house.fill"), tag: 0)
-        nav2.tabBarItem = UITabBarItem(title: "Danh mục", image: UIImage(systemName: "cart.fill"), tag: 1)
-        nav3.tabBarItem = UITabBarItem(title: "Lịch sử", image: UIImage(systemName: "clock.arrow.circlepath"), tag: 2)
-        nav4.tabBarItem = UITabBarItem(title: "Quản lý", image: UIImage(systemName: "info.circle.fill"), tag: 3)
+        nav1.tabBarItem = UITabBarItem(title: TabItemTitles.home.rawValue, image: UIImage(systemName: TabItemIcons.home.rawValue), tag: 0)
+        nav2.tabBarItem = UITabBarItem(title: TabItemTitles.category.rawValue, image: UIImage(systemName: TabItemIcons.category.rawValue), tag: 1)
+        nav3.tabBarItem = UITabBarItem(title: TabItemTitles.history.rawValue, image: UIImage(systemName: TabItemIcons.history.rawValue), tag: 2)
+        nav4.tabBarItem = UITabBarItem(title: TabItemTitles.management.rawValue, image: UIImage(systemName: TabItemIcons.management.rawValue), tag: 3)
 
         setViewControllers([nav1, nav2, nav3, nav4], animated: false)
 
@@ -33,11 +33,11 @@ final class TabBarVC: UITabBarController {
     }
 
     private func customizeTabBarAppearance() {
-        view.backgroundColor = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
+        view.backgroundColor = Colors.COLOR_BACKGROUND
         navigationController?.setNavigationBarHidden(true, animated: false)
         tabBar.isTranslucent = false
-        tabBar.barTintColor = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
-        tabBar.tintColor = UIColor(red: 79 / 255, green: 183 / 255, blue: 94 / 255, alpha: 1.0)
+        tabBar.barTintColor = Colors.COLOR_BAR_TINT
+        tabBar.tintColor = Colors.COLOR_TINT
         tabBar.unselectedItemTintColor = .black
         tabBar.selectedItem?.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemGreen], for: .selected)
     }

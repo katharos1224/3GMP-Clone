@@ -16,10 +16,10 @@ struct MenuItem {
 final class ManagementVC: BaseViewController {
     @IBOutlet var collectionView: UICollectionView!
 
-    let cellWidth = UIScreen.main.bounds.width - 32
-    let cellHeight = (1 / 13) * UIScreen.main.bounds.height
-    let spacing = 16.0
-    let padding = 16.0
+    let cellWidth = Constants.WIDTH_SCREEN - 32
+    let cellHeight = (1 / 13) * Constants.HEIGHT_SCREEN
+    let spacing = Constants.SPACING
+    let padding = Constants.PADDING
 
     let menuItems = [
         MenuItem(title: "Thông tin tài khoản", imageName: "person.fill"),
@@ -75,7 +75,7 @@ extension ManagementVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         cell.cellTapOnClick = { [weak self] in
             DispatchQueue.main.async { [self] in
                 if indexPath.item > 3 {
-                    let url = URL(string: "http://18.138.176.213/system/general_information/\(indexPath.item - 3)")
+                    let url = URL(string: "\(EndPointURL.GENERAL_INFO) + \(indexPath.item - 3)")
                     let paymentWebView = WebViewVC(url: url!)
                     paymentWebView.navTitle = menuItem.title
                     self?.pushWithCrossDissolve(paymentWebView)
@@ -87,7 +87,6 @@ extension ManagementVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
                         self?.pushWithCrossDissolve(vc)
                     case 1:
                         print(indexPath.item)
-                    // Quan ly gian hang
                     case 2:
                         let vc = ContactVC()
                         self?.pushWithCrossDissolve(vc)

@@ -42,47 +42,47 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="954-6I-ZhR">
-                            <rect key="frame" x="172" y="16" width="377" height="218"/>
+                            <rect key="frame" x="172" y="8" width="377" height="234"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ten_san_phamten_san_phamten_san_phamten_san_phamten_san_phamten_san_phamten_san_pham" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh5-Vf-PZa">
-                                    <rect key="frame" x="0.0" y="0.0" width="372.66666666666669" height="38.333333333333336"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="372.33333333333331" height="33.666666666666664"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="li6-Rx-ig0">
-                                    <rect key="frame" x="0.0" y="42.333333333333343" width="288.66666666666669" height="50"/>
+                                    <rect key="frame" x="0.0" y="37.666666666666664" width="288.66666666666669" height="49.999999999999993"/>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bonus_coins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njk-01-ZHL">
-                                    <rect key="frame" x="0.0" y="96.333333333333329" width="85.333333333333329" height="17"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <rect key="frame" x="0.0" y="91.666666666666671" width="74.666666666666671" height="14.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                     <color key="textColor" systemColor="systemOrangeColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="quy_cach_dong_goi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBP-NR-vpe">
-                                    <rect key="frame" x="0.0" y="117.33333333333334" width="130" height="18"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <rect key="frame" x="0.0" y="109.99999999999999" width="113.66666666666667" height="51.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="discount_price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ4-pz-BOC">
-                                    <rect key="frame" x="0.0" y="139.33333333333334" width="99.333333333333329" height="17"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                    <rect key="frame" x="0.0" y="165.33333333333334" width="87" height="14.333333333333343"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                     <color key="textColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="don_gia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3d-gg-57J">
-                                    <rect key="frame" x="0.0" y="160.33333333333334" width="53" height="17"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                    <rect key="frame" x="0.0" y="183.66666666666666" width="46.333333333333336" height="14.333333333333343"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jn3-ZE-Fzw">
-                                    <rect key="frame" x="0.0" y="181.33333333333334" width="117" height="16.333333333333343"/>
+                                    <rect key="frame" x="0.0" y="202" width="100.33333333333333" height="14"/>
                                     <attributedString key="attributedText">
                                         <fragment content="so_luong_toi_thieu">
                                             <attributes>
-                                                <font key="NSFont" size="14" name="SFMono-Regular"/>
+                                                <font key="NSFont" size="12" name="SFMono-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -90,11 +90,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnn-iO-0E9">
-                                    <rect key="frame" x="0.0" y="201.66666666666666" width="102.33333333333333" height="16.333333333333343"/>
+                                    <rect key="frame" x="0.0" y="220" width="87.666666666666671" height="14"/>
                                     <attributedString key="attributedText">
                                         <fragment content="so_luong_toi_da">
                                             <attributes>
-                                                <font key="NSFont" size="14" name="SFMono-Regular"/>
+                                                <font key="NSFont" size="12" name="SFMono-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
@@ -104,11 +104,11 @@
                             </subviews>
                         </stackView>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOO-hv-i8D" userLabel="Discount View">
-                            <rect key="frame" x="7.9999999999999964" y="4" width="53.666666666666657" height="33"/>
+                            <rect key="frame" x="8" y="3.9999999999999982" width="49" height="30.333333333333329"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-30%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dad-7C-sFB">
-                                    <rect key="frame" x="8" y="8" width="37.666666666666664" height="17"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                    <rect key="frame" x="8" y="8" width="33" height="14.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -124,7 +124,7 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="954-6I-ZhR" firstAttribute="top" secondItem="bvB-pZ-e8D" secondAttribute="top" constant="16" id="3pq-hL-Fvn"/>
+                        <constraint firstItem="954-6I-ZhR" firstAttribute="top" secondItem="bvB-pZ-e8D" secondAttribute="top" constant="8" id="3pq-hL-Fvn"/>
                         <constraint firstItem="ZOO-hv-i8D" firstAttribute="leading" secondItem="bvB-pZ-e8D" secondAttribute="leading" constant="8" id="5AM-7c-qhE"/>
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XMk-tA-lbl" secondAttribute="bottom" constant="8" id="8jz-OA-KaL"/>
                         <constraint firstItem="XMk-tA-lbl" firstAttribute="top" secondItem="bvB-pZ-e8D" secondAttribute="top" constant="8" id="EFT-bc-0KH"/>
@@ -132,7 +132,7 @@
                         <constraint firstAttribute="trailing" secondItem="954-6I-ZhR" secondAttribute="trailing" constant="8" id="h8f-2A-xN1"/>
                         <constraint firstItem="ZOO-hv-i8D" firstAttribute="top" secondItem="bvB-pZ-e8D" secondAttribute="top" constant="4" id="hI0-Yt-CGZ"/>
                         <constraint firstItem="954-6I-ZhR" firstAttribute="leading" secondItem="XMk-tA-lbl" secondAttribute="trailing" constant="8" id="kWU-Hj-1VW"/>
-                        <constraint firstAttribute="bottom" secondItem="954-6I-ZhR" secondAttribute="bottom" constant="16" id="rBD-4H-tkB"/>
+                        <constraint firstAttribute="bottom" secondItem="954-6I-ZhR" secondAttribute="bottom" constant="8" id="rBD-4H-tkB"/>
                     </constraints>
                 </view>
             </subviews>

@@ -10,10 +10,10 @@ import UIKit
 class NewsVC: BaseViewController {
     @IBOutlet var collectionView: UICollectionView!
 
-    let cellWidth = UIScreen.main.bounds.width - 32
-    let cellHeight = (1 / 5) * UIScreen.main.bounds.height
-    let spacing = 16.0
-    let padding = 16.0
+    let cellWidth = Constants.WIDTH_SCREEN - 32
+    let cellHeight = (1 / 5) * Constants.HEIGHT_SCREEN
+    let spacing = Constants.SPACING
+    let padding = Constants.PADDING
 
     var news: [NewsItem] = []
     var currentPage: Int = 0

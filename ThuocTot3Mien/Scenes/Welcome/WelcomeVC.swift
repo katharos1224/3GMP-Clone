@@ -14,10 +14,10 @@ final class WelcomeVC: BaseViewController {
     let numberOfPages: Int = 5
     var currentPage: Int = 0
 
-    let cellWidth = UIScreen.main.bounds.width - 32.0
-    let cellHeight = (700 / 1080) * UIScreen.main.bounds.width - 32.0
-    let cellSpacing = 32.0
-    let padding = 16.0
+    let cellWidth = Constants.WIDTH_SCREEN - 32.0
+    let cellHeight = (700 / 1080) * Constants.WIDTH_SCREEN - 32.0
+    let cellSpacing = 2 * Constants.SPACING
+    let padding = Constants.PADDING
 
     override func viewDidLoad() {
         super.viewDidLoad()

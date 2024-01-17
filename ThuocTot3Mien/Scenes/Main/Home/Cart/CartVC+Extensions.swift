@@ -21,7 +21,48 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.isChecked = checkmarkStatus[index].check
         }
         cell.configure(productData: cartProducts[indexPath.item])
-        cell.amountField.delegate = self
+        
+        cell.showPopupOnClick = { [self] in
+            DispatchQueue.main.async { [self] in
+                showChangeAmountPopup()
+                changeAmountContentView.textField.text = cell.amountField.text
+            }
+            
+            changeAmountContentView.agreeOnClick = { [self] in
+                view.endEditing(true)
+                
+                if let text = changeAmountContentView.textField.text, var number = Int(text), text != "\(0)", !text.isEmpty {
+                    
+                    if let minAmount = cartProducts[indexPath.item].soLuongToiThieu, number < minAmount {
+                        DispatchQueue.main.async {
+                            number = minAmount
+                            cell.amountField.text = "\(minAmount)"
+                        }
+                    }
+                    
+                    if let maxAmount = cartProducts[indexPath.item].soLuongToiDa, number > maxAmount {
+                        DispatchQueue.main.async {
+                            number = maxAmount
+                            cell.amountField.text = "\(maxAmount)"
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        cell.amountField.text = text
+                    }
+                    
+                    NetworkManager.shared.updateCart(id: id, number: number) { _ in
+                    }
+                    
+                    addTempChange(id: id, number: number)
+                    cartProducts[indexPath.item].soLuong = number
+                    print(tempChangesSet)
+                    updateCartInfo()
+                }
+                
+                changeAmountPopupView.dismiss(animated: true)
+            }
+        }
 
         cell.checkOnClick = { [self] in
             if let indexToToggle = checkmarkStatus.firstIndex(where: { $0.id == id }) {
@@ -290,7 +331,7 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cartProducts.forEach { product in
                 if tempCartProducts.contains(where: { $0.id == product.id }) {
                     totalNumber += product.soLuong
-                    totalPrice += product.donGia * product.soLuong
+                    totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(round(product.discountPrice)) * product.soLuong
                 }
                 for index in tempCartProducts.indices {
                     if tempCartProducts[index].id == product.id {
@@ -314,11 +355,13 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 
 extension CartVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        setupData()
+//        setupData()
+        view.endEditing(true)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        setupData()
+//        setupData()
+        view.endEditing(true)
         
         return true
     }

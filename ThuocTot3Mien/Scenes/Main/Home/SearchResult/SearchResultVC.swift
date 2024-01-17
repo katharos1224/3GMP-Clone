@@ -134,7 +134,7 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height / 12
+        return Constants.HEIGHT_SCREEN / 12
     }
 }
 

@@ -102,6 +102,11 @@ class ProductCVCell: UICollectionViewCell {
 //        discountPriceLabel.isHidden = productData.khuyenMai != nil && memberStatus == 2 ? false : true
         unitPriceLabel.textColor = productData.khuyenMai != nil ? .black : .systemGreen
         discountPriceLabel.isHidden = productData.khuyenMai != nil ? false : true
+        
+        unitPriceLabel.isHidden = memberStatus == 1 ? true : false
+        if productData.khuyenMai != nil {
+            discountPriceLabel.isHidden = memberStatus == 1 ? true : false
+        }
 
         if let minNumber = productData.soLuongToiThieu {
             minAmountLabel.isHidden = false
@@ -122,6 +127,12 @@ class ProductCVCell: UICollectionViewCell {
         addCartButton.backgroundColor = memberStatus == 2 && productData.soLuong != 0 ? .systemGreen : .lightGray
         addCartButton.isUserInteractionEnabled = memberStatus == 2 && productData.soLuong != 0 ? true : false
         addCartButton.setTitle(productData.soLuong != 0 ? "Thêm giỏ hàng" : "Hết hàng", for: .normal)
+        
+        if productData.soLuongToiDa == 0 {
+            addCartButton.setTitle("Hết hàng", for: .normal)
+            addCartButton.isUserInteractionEnabled = false
+            addCartButton.backgroundColor = .lightGray
+        }
 
         layoutIfNeeded()
     }
@@ -153,6 +164,11 @@ class ProductCVCell: UICollectionViewCell {
 //        discountPriceLabel.isHidden = categoryProductData.khuyenMai != nil && memberStatus == 2 ? false : true
         unitPriceLabel.textColor = categoryProductData.khuyenMai != nil ? .black : .systemGreen
         discountPriceLabel.isHidden = categoryProductData.khuyenMai != nil ? false : true
+        
+        unitPriceLabel.isHidden = memberStatus == 1 ? true : false
+        if categoryProductData.khuyenMai != nil {
+            discountPriceLabel.isHidden = memberStatus == 1 ? true : false
+        }
 
         if let minNumber = categoryProductData.soLuongToiThieu {
             minAmountLabel.isHidden = false

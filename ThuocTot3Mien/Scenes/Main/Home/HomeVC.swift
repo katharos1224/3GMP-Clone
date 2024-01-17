@@ -42,12 +42,12 @@ final class HomeVC: BaseViewController {
     var addCartPopupView = FFPopup()
     var successfullyPopupView = FFPopup()
 
-    let cellWidth = (1 / 2) * UIScreen.main.bounds.width - 24
-    let cellHeight = (19 / 50) * UIScreen.main.bounds.height
-    let spacing = 16.0
-    let padding = 16.0
-    let bannerWidth = UIScreen.main.bounds.width - 32
-    let bannerHeight = (264 / 651) * (UIScreen.main.bounds.width - 32)
+    let cellWidth = (1 / 2) * Constants.WIDTH_SCREEN - 24
+    let cellHeight = (9 / 10) * Constants.WIDTH_SCREEN
+    let spacing = Constants.SPACING
+    let padding = Constants.PADDING
+    let bannerWidth = Constants.WIDTH_SCREEN - 32
+    let bannerHeight = (264 / 651) * (Constants.WIDTH_SCREEN - 32)
 
     var memberStatus: Int = 0
     var totalCart: Int = 0
@@ -63,7 +63,7 @@ final class HomeVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
+        view.backgroundColor = Colors.COLOR_BACKGROUND
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)

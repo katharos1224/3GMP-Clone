@@ -11,10 +11,10 @@ final class CategoryVC: BaseViewController {
     @IBOutlet var bannerView: BannerView!
     @IBOutlet var collectionView: UICollectionView!
 
-    let cellWidth = UIScreen.main.bounds.width - 32
-    let cellHeight = (3 / 25) * UIScreen.main.bounds.width
-    let spacing = 16.0
-    let padding = 16.0
+    let cellWidth = Constants.WIDTH_SCREEN - 32
+    let cellHeight = (1 / 9) * Constants.WIDTH_SCREEN
+    let spacing = Constants.SPACING
+    let padding = Constants.PADDING
 
     var categoriesData: [CategoryResponseData] = []
 

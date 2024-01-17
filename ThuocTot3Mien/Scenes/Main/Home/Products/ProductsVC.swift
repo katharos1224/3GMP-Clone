@@ -23,13 +23,13 @@ final class ProductsVC: BaseViewController {
     var id: Int = 0
     var category: String?
 
-    let cellWidth = (1 / 2) * UIScreen.main.bounds.width - 24
-    let cellHeight = (2 / 5) * UIScreen.main.bounds.height
-    let spacing = 16.0
-    let padding = 16.0
+    let cellWidth = (1 / 2) * Constants.WIDTH_SCREEN - 24
+    let cellHeight = (2 / 5) * Constants.HEIGHT_SCREEN
+    let spacing = Constants.SPACING
+    let padding = Constants.PADDING
 
-    let bannerWidth = UIScreen.main.bounds.width - 32
-    let bannerHeight = (264 / 651) * (UIScreen.main.bounds.width - 32)
+    let bannerWidth = Constants.WIDTH_SCREEN - 32
+    let bannerHeight = (264 / 651) * (Constants.WIDTH_SCREEN - 32)
 
     init() {
         super.init(nibName: nil, bundle: nil)

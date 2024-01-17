@@ -67,7 +67,7 @@ extension HistoryVC: LZViewPagerDelegate, LZViewPagerDataSource {
     }
 
     func heightForHeader() -> CGFloat {
-        return 1 / 13 * UIScreen.main.bounds.height
+        return 1 / 13 * Constants.HEIGHT_SCREEN
     }
 
     func heightForIndicator() -> CGFloat {

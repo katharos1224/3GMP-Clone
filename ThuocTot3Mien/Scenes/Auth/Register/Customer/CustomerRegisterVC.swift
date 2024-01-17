@@ -8,6 +8,7 @@
 import Combine
 import DropDown
 import UIKit
+import FFPopup
 
 final class CustomerRegisterVC: BaseViewController {
     @IBOutlet var termsOfUseButton: UIButton!
@@ -40,6 +41,16 @@ final class CustomerRegisterVC: BaseViewController {
     private var cancellables: Set<AnyCancellable> = []
 
     let dropDown = DropDown()
+    
+    let imagePickerContentView: ImagePickerView = {
+        let width = (4 / 5) * UIScreen.main.bounds.size.width
+        let height = width * (4 / 5)
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let view = ImagePickerView(frame: frame)
+        return view
+    }()
+
+    var imagePickerPopupView = FFPopup()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +71,25 @@ final class CustomerRegisterVC: BaseViewController {
                 return
             }
         }
+    }
+    
+    func showImagePickerPopup() {
+        imagePickerPopupView = FFPopup(contentView: imagePickerContentView, showType: .fadeIn, dismissType: .fadeOut, maskType: .dimmed, dismissOnBackgroundTouch: true, dismissOnContentTouch: true)
+        
+        imagePickerContentView.cameraOnClick = {
+            self.showImagePicker(sourceType: .camera)
+        }
+        
+        imagePickerContentView.libraryOnClick = {
+            self.showImagePicker(sourceType: .photoLibrary)
+        }
+        
+        let layout = FFPopupLayout(horizontal: .center, vertical: .center)
+        imagePickerPopupView.show(layout: layout)
+    }
+
+    func dismissPopup() {
+        imagePickerPopupView.dismiss(animated: true)
     }
 
     @IBAction func dismiss() {
@@ -253,7 +283,8 @@ extension CustomerRegisterVC: FloatingTextFieldDelegate {
             textField.endEditing(true)
 
             DispatchQueue.main.async {
-                self.showImagePickerOptions()
+//                self.showImagePickerOptions()
+                self.showImagePickerPopup()
             }
         case passwordField:
             isPasswordVisible.toggle()
@@ -302,6 +333,8 @@ extension CustomerRegisterVC {
             avatarImage.image = pickedImage
             
             let imageAspectRatio = pickedImage.size.width / pickedImage.size.height
+            
+            NSLayoutConstraint.deactivate(self.avatarImage.constraints)
             
             NSLayoutConstraint.activate([
                 avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: imageAspectRatio)

@@ -56,6 +56,7 @@ class PaymentView: UIView {
     var useCoinsOnClick: (() -> Void)?
     var useOnlinePayment: Bool = false
     var useVoucher: Bool = false
+    var availableVoucher: Bool = false
 
     let vouchersContentView: VouchersView = {
         let width = UIScreen.main.bounds.size.width - 32
@@ -123,13 +124,11 @@ class PaymentView: UIView {
         usingCoinsLabel.isHidden = coinStatus == 1 ? false : true
 
         NetworkManager.shared.fetchDiscount(cartIDs: cartIDs, coinStatus: coinStatus, voucherValue: voucherField.text ?? "") { [self] result in
-//            guard let result = result,
-//                  let response = result.response else {
-//                return
-//            }
             switch result {
             case let .success(data):
                 guard let response = data.response else { return }
+                
+                availableVoucher = response.voucherAvailable == 1 ? true : false
 
                 DispatchQueue.main.async { [self] in
                     warningVoucherLabel.isHidden = response.voucherDescription == "" ? true : false
@@ -143,7 +142,6 @@ class PaymentView: UIView {
 
                     money = response.money
                     if useOnlinePayment {
-                        //                    let newPrice = (totalPrice - money) - Int(round(((Double(totalPrice / 100)) * reductionRate)))
                         let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
                         totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                         finalPrice = newPrice
@@ -166,12 +164,23 @@ class PaymentView: UIView {
         useOnlineCheckmark.tintColor = useOnlinePayment ? .systemGreen : .placeholderText
 
         if useOnlinePayment {
-            let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
-            totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
-            finalPrice = newPrice
+            if availableVoucher {
+                let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
+                totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
+                finalPrice = newPrice
+            } else {
+                let newPrice = (totalPrice) - Int(round(Double((totalPrice) / 100) * reductionRate))
+                totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
+                finalPrice = newPrice
+            }
         } else {
-            totalPriceLabel.text = "\((totalPrice - money).formattedWithSeparator()) VNĐ"
-            finalPrice = totalPrice - money
+            if availableVoucher {
+                totalPriceLabel.text = "\((totalPrice - money).formattedWithSeparator()) VNĐ"
+                finalPrice = totalPrice - money
+            } else {
+                totalPriceLabel.text = "\((totalPrice).formattedWithSeparator()) VNĐ"
+                finalPrice = totalPrice
+            }
         }
     }
 
@@ -196,6 +205,7 @@ class PaymentView: UIView {
                     guard let response = data.response else { return }
 
                     useVoucher = true
+                    availableVoucher = response.voucherAvailable == 1 ? true : false
 
                     DispatchQueue.main.async { [self] in
                         warningVoucherLabel.isHidden = response.voucherDescription == "" ? true : false
@@ -264,6 +274,7 @@ class PaymentView: UIView {
             switch result {
             case let .success(data):
                 guard let response = data.response else { return }
+                print(response.money)
 
                 useVoucher.toggle()
 
@@ -285,13 +296,25 @@ class PaymentView: UIView {
                     warningVoucherLabel.isHidden = useVoucher ? false : true
 
                     money = useVoucher ? response.money : 0
+                    
                     if useOnlinePayment {
-                        let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
-                        totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
-                        finalPrice = newPrice
+                        if response.voucherAvailable == 1 {
+                            let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
+                            totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
+                            finalPrice = newPrice
+                        } else {
+                            let newPrice = (totalPrice) - Int(round(Double((totalPrice) / 100) * reductionRate))
+                            totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
+                            finalPrice = newPrice
+                        }
                     } else {
-                        totalPriceLabel.text = "\((totalPrice - money).formattedWithSeparator()) VNĐ"
-                        finalPrice = totalPrice - money
+                        if response.voucherAvailable == 1 {
+                            totalPriceLabel.text = "\((totalPrice - money).formattedWithSeparator()) VNĐ"
+                            finalPrice = totalPrice - money
+                        } else {
+                            totalPriceLabel.text = "\((totalPrice).formattedWithSeparator()) VNĐ"
+                            finalPrice = totalPrice
+                        }
                     }
                 }
 

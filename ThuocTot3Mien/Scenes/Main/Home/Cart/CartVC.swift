@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FFPopup
 
 final class CartVC: BaseViewController {
     @IBOutlet var collectionView: UICollectionView!
@@ -28,6 +29,16 @@ final class CartVC: BaseViewController {
     var totalNumber = 0
     var totalPrice = 0
     var reductionRate: String = ""
+    
+    let changeAmountContentView: ChangeAmountView = {
+        let width = (4 / 5) * UIScreen.main.bounds.size.width
+        let height = width * (3 / 5)
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let view = ChangeAmountView(frame: frame)
+        return view
+    }()
+
+    var changeAmountPopupView = FFPopup()
 
     let dispatchGroup = DispatchGroup()
 
@@ -56,6 +67,10 @@ final class CartVC: BaseViewController {
                     self?.cartProducts = []
                     return
                 }
+                
+                self?.totalNumber = 0
+                self?.totalPrice = 0
+                
                 self?.cartProducts = response.products.data
                 self?.tempCartProducts = response.products.data
                 self?.reductionRate = "\(response.tiLeGiam)"
@@ -66,14 +81,19 @@ final class CartVC: BaseViewController {
                 self?.cartProducts.forEach { product in
                     let id = product.id
                     let number = product.soLuong
+                    let price = (product.khuyenMai != 0 && product.khuyenMai != nil) ? Int(round(product.discountPrice)) : product.donGia
+                    
+                    self?.totalNumber += number
+                    self?.totalPrice += price * number
+                    
                     let checkmarkTuple = (id, true)
                     self?.checkmarkStatus.append(checkmarkTuple)
                 }
 
                 DispatchQueue.main.async {
                     self?.checkmarkAllButton.isEnabled = haveProducts ? true : false
-                    self?.totalNumberLabel.text = String(response.totalNumber)
-                    self?.totalPriceLabel.text = String(response.totalPrice.formattedWithSeparator()) + " VNĐ"
+                    self?.totalNumberLabel.text = String(self!.totalNumber)
+                    self?.totalPriceLabel.text = String(self!.totalPrice.formattedWithSeparator()) + " VNĐ"
                     self?.checkmarkAllButton.image = UIImage(systemName: self?.isAllChecked ?? true ? "checkmark.square.fill" : "square")
                     self?.continueButton.isUserInteractionEnabled = self?.tempCartProducts.isEmpty ?? true ? false : true
                     self?.continueButton.backgroundColor = self?.tempCartProducts.isEmpty ?? true ? .placeholderText : .systemGreen
@@ -99,10 +119,10 @@ final class CartVC: BaseViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleTextFieldChange(_:)), name: Notification.Name("TextFieldDidChange"), object: nil)
 
-        let cellWidth = UIScreen.main.bounds.width
-        let cellHeight = (1 / 4) * UIScreen.main.bounds.height
-        let spacing = 0.0
-        let padding = 0.0
+        let cellWidth = Constants.WIDTH_SCREEN
+        let cellHeight = (5 / 9) * cellWidth
+        let spacing = Constants.SPACING_ZERO
+        let padding = Constants.PADDING_ZERO
 
         let layout = PagingCollectionViewLayout()
         layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
@@ -143,6 +163,17 @@ final class CartVC: BaseViewController {
     func removeTempChange(id: Int) {
         tempChangesSet.removeAll { $0.id == id }
     }
+    
+    func showChangeAmountPopup() {
+        changeAmountPopupView = FFPopup(contentView: changeAmountContentView, showType: .fadeIn, dismissType: .fadeOut, maskType: .dimmed, dismissOnBackgroundTouch: true, dismissOnContentTouch: false)
+        
+        let layout = FFPopupLayout(horizontal: .center, vertical: .center)
+        changeAmountPopupView.show(layout: layout)
+    }
+
+    func dismissPopup() {
+        changeAmountPopupView.dismiss(animated: true)
+    }
 
     @IBAction func dismissTapped(_: Any) {
         saveDataWithDispatchGroup { [self] success in
@@ -169,7 +200,7 @@ final class CartVC: BaseViewController {
 
             tempCartProducts.forEach { product in
                 totalNumber += product.soLuong
-                totalPrice += product.donGia * product.soLuong
+                totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(round(product.discountPrice)) * product.soLuong
             }
 
             self.totalNumber = totalNumber

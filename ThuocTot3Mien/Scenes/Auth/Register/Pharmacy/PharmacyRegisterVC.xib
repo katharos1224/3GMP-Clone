@@ -38,7 +38,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7I-pN-bTa">
-                    <rect key="frame" x="0.0" y="0.0" width="146" height="340.66666666666669"/>
+                    <rect key="frame" x="0.0" y="0.0" width="275" height="340.66666666666669"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TlH-pv-Fpd">
                             <rect key="frame" x="8" y="60.000000000000007" width="40" height="38.666666666666664"/>
@@ -60,13 +60,13 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86T-Z4-Vvg">
-                    <rect key="frame" x="0.0" y="115" width="146" height="703"/>
+                    <rect key="frame" x="0.0" y="115" width="275" height="703"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCD-JC-Ybl">
-                            <rect key="frame" x="0.0" y="0.0" width="146" height="1080.3333333333333"/>
+                            <rect key="frame" x="0.0" y="0.0" width="275" height="1080.3333333333333"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAc-M8-gJG" customClass="CustomView" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                    <rect key="frame" x="40" y="0.0" width="66" height="919.66666666666663"/>
+                                    <rect key="frame" x="40" y="0.0" width="195" height="919.66666666666663"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng Ký Thành Viên" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-ND-E4H">
                                             <rect key="frame" x="16" y="15.999999999999998" width="163" height="20.333333333333329"/>
@@ -511,7 +511,7 @@
                                             </subviews>
                                         </stackView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="photo" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hv3-UN-35V">
-                                            <rect key="frame" x="16" y="885" width="34" height="17.333333333333371"/>
+                                            <rect key="frame" x="16" y="885" width="163" height="17.333333333333371"/>
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                     </subviews>
@@ -526,6 +526,7 @@
                                         <constraint firstItem="pFE-ND-evF" firstAttribute="leading" secondItem="FAc-M8-gJG" secondAttribute="leading" constant="16" id="atH-Ec-7R4"/>
                                         <constraint firstItem="pFE-ND-evF" firstAttribute="top" secondItem="c4G-ND-E4H" secondAttribute="bottom" constant="16" id="tGI-vD-5I9"/>
                                         <constraint firstItem="hv3-UN-35V" firstAttribute="leading" secondItem="FAc-M8-gJG" secondAttribute="leading" constant="16" id="tdf-0J-UH4"/>
+                                        <constraint firstItem="c4G-ND-E4H" firstAttribute="centerX" secondItem="FAc-M8-gJG" secondAttribute="centerX" id="wBN-Z5-Vwi"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -534,13 +535,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đăng ký tài khoản thành viên bạn đã đồng ý với" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTJ-ie-mTv">
-                                    <rect key="frame" x="-107" y="935.66666666666674" width="360" height="20.333333333333371"/>
+                                    <rect key="frame" x="-42.333333333333343" y="935.66666666666674" width="359.66666666666674" height="20.333333333333371"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJh-y8-DGw">
-                                    <rect key="frame" x="-18" y="964" width="182" height="34.333333333333371"/>
+                                    <rect key="frame" x="46.666666666666671" y="964" width="181.66666666666663" height="34.333333333333371"/>
                                     <color key="tintColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Điều khoản sử dụng">
@@ -548,7 +549,7 @@
                                     </buttonConfiguration>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxE-uA-yjL" customClass="CustomButton" customModule="ThuocTot3Mien" customModuleProvider="target">
-                                    <rect key="frame" x="40" y="1014.3333333333333" width="66" height="50"/>
+                                    <rect key="frame" x="40" y="1014.3333333333333" width="195" height="50"/>
                                     <color key="backgroundColor" red="0.1035426036" green="0.83107942339999996" blue="0.2335835695" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="uLh-vu-aBm"/>

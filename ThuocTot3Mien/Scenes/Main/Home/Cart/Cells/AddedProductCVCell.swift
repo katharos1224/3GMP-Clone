@@ -24,6 +24,7 @@ class AddedProductCVCell: UICollectionViewCell {
     var deleteOnClick: (() -> Void)?
     var minusOnClick: (() -> Void)?
     var plusOnClick: (() -> Void)?
+    var showPopupOnClick: (() -> Void)?
 
     var cartData: CartProduct?
 
@@ -106,6 +107,11 @@ class AddedProductCVCell: UICollectionViewCell {
 }
 
 extension AddedProductCVCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        endEditing(true)
+        showPopupOnClick?()
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateProductData(textField: textField)
         endEditing(true)
@@ -119,8 +125,26 @@ extension AddedProductCVCell: UITextFieldDelegate {
 
     // need to validate product amount
     func updateProductData(textField: UITextField) {
-        guard let cartData = cartData, let number = Int(textField.text!) else { return }
-        NetworkManager.shared.updateCart(id: cartData.id, number: number) { [weak self] result in
+        guard let cartData = cartData, var number = Int(textField.text!), number != 0 else {
+            amountField.text = "\(String(describing: cartData!.soLuong))"
+            return
+        }
+        
+        if let minAmount = cartData.soLuongToiThieu {
+            if number < minAmount {
+                number = minAmount
+                amountField.text = "\(minAmount)"
+            }
+        }
+        
+        if let maxAmount = cartData.soLuongToiDa {
+            if number > maxAmount {
+                number = maxAmount
+                amountField.text = "\(maxAmount)"
+            }
+        }
+        
+        NetworkManager.shared.updateCart(id: cartData.id, number: number) { result in
             switch result {
             case let .success(data):
                 guard let response = data.response else { return }

@@ -62,10 +62,10 @@ final class PaymentDetailVC: BaseViewController {
 
         titleLabel.text = "Chi tiết đơn hàng \(paymentID)"
 
-        let cellWidth = UIScreen.main.bounds.width
-        let cellHeight = (1 / 5) * UIScreen.main.bounds.height
-        let spacing = 0.0
-        let padding = 0.0
+        let cellWidth = Constants.WIDTH_SCREEN
+        let cellHeight = (1 / 5) * Constants.HEIGHT_SCREEN
+        let spacing = Constants.SPACING_ZERO
+        let padding = Constants.PADDING_ZERO
 
         let layout = PagingCollectionViewLayout()
         layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
@@ -211,7 +211,7 @@ final class PaymentDetailVC: BaseViewController {
 
         view.addSubview(detailView)
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
-            self.heightConstraint.constant = UIScreen.main.bounds.height * 3 / 10
+            self.heightConstraint.constant = Constants.HEIGHT_SCREEN * 3 / 10
             self.updateBottomViewHeight()
             self.view.layoutIfNeeded()
         }

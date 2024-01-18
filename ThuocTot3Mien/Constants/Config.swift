@@ -8,9 +8,8 @@
 import Foundation
 
 class Config {
-
     static let shared = Config()
-    
+
     var BASE_API_URL: String {
         return baseUrl
     }
@@ -20,5 +19,4 @@ class Config {
     init() {
         baseUrl = "http://18.138.176.213/api/v2/"
     }
-
 }

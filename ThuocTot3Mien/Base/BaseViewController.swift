@@ -37,11 +37,11 @@ class BaseViewController: UIViewController {
     func setupUI() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
-        
+
         showLoadingIndicator()
     }
-    
-    @objc func baseTextFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+    @objc func baseTextFieldShouldReturn(_: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }

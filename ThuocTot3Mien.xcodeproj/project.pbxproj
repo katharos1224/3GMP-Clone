@@ -306,7 +306,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F4010C9D2B24E03D00F693B6 /* Cart */ = {
+		F4010C9D2B24E03D00F693B6 /* CartVC */ = {
 			isa = PBXGroup;
 			children = (
 				F4010CA22B24E05E00F693B6 /* Cells */,
@@ -314,7 +314,7 @@
 				F4010C9F2B24E05900F693B6 /* CartVC.xib */,
 				F4ADCE292B559DF400D9C78D /* CartVC+Extensions.swift */,
 			);
-			path = Cart;
+			path = CartVC;
 			sourceTree = "<group>";
 		};
 		F4010CA22B24E05E00F693B6 /* Cells */ = {
@@ -343,13 +343,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		F40E0C062B4564B20003755E /* PaymentDetail */ = {
+		F40E0C062B4564B20003755E /* PaymentDetailVC */ = {
 			isa = PBXGroup;
 			children = (
 				F40E0C072B4564D10003755E /* PaymentDetailVC.swift */,
 				F40E0C082B4564D10003755E /* PaymentDetailVC.xib */,
 			);
-			path = PaymentDetail;
+			path = PaymentDetailVC;
 			sourceTree = "<group>";
 		};
 		F40E0C0B2B4565B60003755E /* Parameters */ = {
@@ -380,15 +380,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F4213D292B2C05FC00A27493 /* Purchase */ = {
+		F4213D292B2C05FC00A27493 /* PurchaseVC */ = {
 			isa = PBXGroup;
 			children = (
 				F4213D2A2B2C062E00A27493 /* Cells */,
 				F4213D2B2B2C064900A27493 /* PurchaseVC.swift */,
 				F4213D2C2B2C064900A27493 /* PurchaseVC.xib */,
-				F4213D2F2B2C07D500A27493 /* Voucher */,
 			);
-			path = Purchase;
+			path = PurchaseVC;
 			sourceTree = "<group>";
 		};
 		F4213D2A2B2C062E00A27493 /* Cells */ = {
@@ -410,31 +409,31 @@
 			path = Voucher;
 			sourceTree = "<group>";
 		};
-		F436E5A62B19DAE900F5CEB2 /* Customer */ = {
+		F436E5A62B19DAE900F5CEB2 /* RegisterCustomerVC */ = {
 			isa = PBXGroup;
 			children = (
 				F46368DA2B170E81006B2E6D /* CustomerRegisterVC.swift */,
 				F46368DB2B170E81006B2E6D /* CustomerRegisterVC.xib */,
 			);
-			path = Customer;
+			path = RegisterCustomerVC;
 			sourceTree = "<group>";
 		};
-		F436E5A72B19DAF100F5CEB2 /* Pharmacy */ = {
+		F436E5A72B19DAF100F5CEB2 /* RegisterPharmacyVC */ = {
 			isa = PBXGroup;
 			children = (
 				F436E5A82B19DB9600F5CEB2 /* PharmacyRegisterVC.swift */,
 				F436E5AA2B19DB9600F5CEB2 /* PharmacyRegisterVC.xib */,
 			);
-			path = Pharmacy;
+			path = RegisterPharmacyVC;
 			sourceTree = "<group>";
 		};
-		F44052782B21711D00AA3660 /* Products */ = {
+		F44052782B21711D00AA3660 /* ProductsVC */ = {
 			isa = PBXGroup;
 			children = (
 				F44052792B21715300AA3660 /* ProductsVC.swift */,
 				F440527A2B21715300AA3660 /* ProductsVC.xib */,
 			);
-			path = Products;
+			path = ProductsVC;
 			sourceTree = "<group>";
 		};
 		F4486BAE2B39138F0009DDDE /* Common */ = {
@@ -454,13 +453,13 @@
 			path = PaymentView;
 			sourceTree = "<group>";
 		};
-		F4486BB62B393AD40009DDDE /* PaymentWebView */ = {
+		F4486BB62B393AD40009DDDE /* PaymentWebViewVC */ = {
 			isa = PBXGroup;
 			children = (
 				F44D5D662B3B275400829B20 /* WebViewVC.swift */,
 				F44D5D672B3B275400829B20 /* WebViewVC.xib */,
 			);
-			path = PaymentWebView;
+			path = PaymentWebViewVC;
 			sourceTree = "<group>";
 		};
 		F45A1BAC2B4C1FF000EF39E2 /* Cells */ = {
@@ -472,14 +471,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		F45A1BB12B4C3E3600EF39E2 /* Contact */ = {
+		F45A1BB12B4C3E3600EF39E2 /* ContactVC */ = {
 			isa = PBXGroup;
 			children = (
 				F45A1BB62B4C3F4600EF39E2 /* Cells */,
 				F45A1BB22B4C3E4C00EF39E2 /* ContactVC.swift */,
 				F45A1BB32B4C3E4C00EF39E2 /* ContactVC.xib */,
 			);
-			path = Contact;
+			path = ContactVC;
 			sourceTree = "<group>";
 		};
 		F45A1BB62B4C3F4600EF39E2 /* Cells */ = {
@@ -491,38 +490,38 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		F46368D82B170E61006B2E6D /* Login */ = {
+		F46368D82B170E61006B2E6D /* LoginVC */ = {
 			isa = PBXGroup;
 			children = (
 				F46368DF2B170EFE006B2E6D /* LoginVC.swift */,
 				F46368E02B170EFE006B2E6D /* LoginVC.xib */,
 			);
-			path = Login;
+			path = LoginVC;
 			sourceTree = "<group>";
 		};
 		F46368D92B170E69006B2E6D /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				F436E5A72B19DAF100F5CEB2 /* Pharmacy */,
-				F436E5A62B19DAE900F5CEB2 /* Customer */,
+				F436E5A72B19DAF100F5CEB2 /* RegisterPharmacyVC */,
+				F436E5A62B19DAE900F5CEB2 /* RegisterCustomerVC */,
 			);
 			path = Register;
 			sourceTree = "<group>";
 		};
-		F46368DE2B170EDA006B2E6D /* ForgotPassword */ = {
+		F46368DE2B170EDA006B2E6D /* ForgotPasswordVC */ = {
 			isa = PBXGroup;
 			children = (
 				F46368D42B170E57006B2E6D /* ForgotPasswordVC.swift */,
 				F46368D52B170E57006B2E6D /* ForgotPasswordVC.xib */,
 			);
-			path = ForgotPassword;
+			path = ForgotPasswordVC;
 			sourceTree = "<group>";
 		};
 		F46368ED2B17112D006B2E6D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				F46368DE2B170EDA006B2E6D /* ForgotPassword */,
-				F46368D82B170E61006B2E6D /* Login */,
+				F46368DE2B170EDA006B2E6D /* ForgotPasswordVC */,
+				F46368D82B170E61006B2E6D /* LoginVC */,
 				F46368D92B170E69006B2E6D /* Register */,
 				F48E2FC82B1B5475001A4EBB /* AuthViewModel.swift */,
 			);
@@ -538,62 +537,45 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		F46D92B92B3AD73B00B71CC1 /* CategoryDetail */ = {
+		F46D92B92B3AD73B00B71CC1 /* CategoryDetailVC */ = {
 			isa = PBXGroup;
 			children = (
 				F46D92BA2B3AD92800B71CC1 /* CategoryDetailVC.swift */,
 				F46D92BB2B3AD92800B71CC1 /* CategoryDetailVC.xib */,
 			);
-			path = CategoryDetail;
+			path = CategoryDetailVC;
 			sourceTree = "<group>";
 		};
-		F48576DA2B39899A00A0F8E5 /* SearchResult */ = {
+		F48576DA2B39899A00A0F8E5 /* SearchResultVC */ = {
 			isa = PBXGroup;
 			children = (
 				F4120F4E2B3D0AF50033F02A /* Cells */,
 				F48576DB2B3989BD00A0F8E5 /* SearchResultVC.swift */,
 				F48576DC2B3989BD00A0F8E5 /* SearchResultVC.xib */,
 			);
-			path = SearchResult;
+			path = SearchResultVC;
 			sourceTree = "<group>";
 		};
 		F488269D2B177497000C41A5 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				F499F2232B4069DC00696BE5 /* CategoryCRView.swift */,
-				F499F2242B4069DC00696BE5 /* CategoryCRView.xib */,
-				F4B0AA522B1F7ED2005C5FF7 /* HomepageHeaderCRView.swift */,
-				F4B0AA532B1F7ED2005C5FF7 /* HomepageHeaderCRView.xib */,
-				F4CF50C72B1E1F0C002311B9 /* PagingCollectionViewLayout.swift */,
-				F488269E2B1774A4000C41A5 /* FloatingTextField.swift */,
-				F40B52BE2B182E86000A0ECB /* UIView.swift */,
-				F40B52C72B184774000A0ECB /* UIButton.swift */,
-				F4E37BEB2B466D1A000EC402 /* NavBarView.xib */,
-				F4E37BED2B466D42000EC402 /* NavBarView.swift */,
-				F41DA6CD2B26EAFA00B5B63B /* TagView.xib */,
-				F41DA6CF2B26EB6800B5B63B /* TagView.swift */,
-				F4997F2A2B302205005EDA77 /* ProductInfoView.xib */,
-				F4997F2C2B302215005EDA77 /* ProductInfoView.swift */,
-				F46D5C482B24A8E000D00115 /* AddCartPopupView.swift */,
-				F46D5C442B24A64800D00115 /* AddCartPopupView.xib */,
-				F44F94812B2856300068E2A6 /* AddCartSuccessfullyPopupView.swift */,
-				F44F947F2B2855170068E2A6 /* AddCartSuccessfullyPopupView.xib */,
-				F4ACAE442B57B15300630E78 /* ImagePickerView.swift */,
-				F4ACAE462B57B18700630E78 /* ImagePickerView.xib */,
-				F4ACAE482B57BE9A00630E78 /* ChangeAmountView.swift */,
-				F44BE48F2B57BF1A0024A48B /* ChangeAmountView.xib */,
+				F4AB74F82B59286E00825063 /* Header+Footer */,
+				F4AB74F92B59288600825063 /* CustomLayout */,
+				F4AB74FA2B5928A200825063 /* CustomTextField */,
+				F4AB74FB2B5928B800825063 /* CustomView */,
+				F4AB74FC2B5928D300825063 /* CustomButton */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
 		};
-		F48B3B922B4CF2BC008C008B /* News */ = {
+		F48B3B922B4CF2BC008C008B /* NewsVC */ = {
 			isa = PBXGroup;
 			children = (
 				F48B3B9B2B4CF337008C008B /* Cells */,
 				F48B3B932B4CF2D3008C008B /* NewsVC.swift */,
 				F48B3B942B4CF2D3008C008B /* NewsVC.xib */,
 			);
-			path = News;
+			path = NewsVC;
 			sourceTree = "<group>";
 		};
 		F48B3B9B2B4CF337008C008B /* Cells */ = {
@@ -605,13 +587,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		F48B3B9E2B4D0368008C008B /* Profile */ = {
+		F48B3B9E2B4D0368008C008B /* ProfileVC */ = {
 			isa = PBXGroup;
 			children = (
 				F48B3B9F2B4D037E008C008B /* PharmacyProfileVC.swift */,
 				F48B3BA02B4D037E008C008B /* PharmacyProfileVC.xib */,
 			);
-			path = Profile;
+			path = ProfileVC;
 			sourceTree = "<group>";
 		};
 		F4902E142B32A26200F3FBFB /* Cells */ = {
@@ -621,6 +603,119 @@
 				F4902E162B32A2A400F3FBFB /* VoucherCVCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F4AB74F32B5926D600825063 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F4B0AA372B1F6EBD005C5FF7 /* HomepageVC */,
+				F4486BB62B393AD40009DDDE /* PaymentWebViewVC */,
+				F4486BB52B393AC80009DDDE /* PaymentView */,
+				F4213D292B2C05FC00A27493 /* PurchaseVC */,
+				F4213D2F2B2C07D500A27493 /* Voucher */,
+				F4010C9D2B24E03D00F693B6 /* CartVC */,
+				F44052782B21711D00AA3660 /* ProductsVC */,
+				F48576DA2B39899A00A0F8E5 /* SearchResultVC */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F4AB74F42B59270E00825063 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F4B0AA382B1F6EC4005C5FF7 /* CategoryVC */,
+				F46D92B92B3AD73B00B71CC1 /* CategoryDetailVC */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		F4AB74F52B59277500825063 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F4B0AA392B1F6ECE005C5FF7 /* HistoryVC */,
+				F40E0C062B4564B20003755E /* PaymentDetailVC */,
+				F4E37BF22B46AD2B000EC402 /* ContentVC */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		F4AB74F62B5927A300825063 /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				F4B0AA3A2B1F6ED4005C5FF7 /* ManagementVC */,
+				F45A1BB12B4C3E3600EF39E2 /* ContactVC */,
+				F48B3B922B4CF2BC008C008B /* NewsVC */,
+				F48B3B9E2B4D0368008C008B /* ProfileVC */,
+			);
+			path = Management;
+			sourceTree = "<group>";
+		};
+		F4AB74F72B5927ED00825063 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				F46368ED2B17112D006B2E6D /* Auth */,
+				F4AC76F92B16EEA0009EDB79 /* WelcomeVC */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		F4AB74F82B59286E00825063 /* Header+Footer */ = {
+			isa = PBXGroup;
+			children = (
+				F499F2232B4069DC00696BE5 /* CategoryCRView.swift */,
+				F499F2242B4069DC00696BE5 /* CategoryCRView.xib */,
+				F4B0AA522B1F7ED2005C5FF7 /* HomepageHeaderCRView.swift */,
+				F4B0AA532B1F7ED2005C5FF7 /* HomepageHeaderCRView.xib */,
+			);
+			path = "Header+Footer";
+			sourceTree = "<group>";
+		};
+		F4AB74F92B59288600825063 /* CustomLayout */ = {
+			isa = PBXGroup;
+			children = (
+				F4CF50C72B1E1F0C002311B9 /* PagingCollectionViewLayout.swift */,
+			);
+			path = CustomLayout;
+			sourceTree = "<group>";
+		};
+		F4AB74FA2B5928A200825063 /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				F488269E2B1774A4000C41A5 /* FloatingTextField.swift */,
+			);
+			path = CustomTextField;
+			sourceTree = "<group>";
+		};
+		F4AB74FB2B5928B800825063 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				F40B52BE2B182E86000A0ECB /* UIView.swift */,
+				F41DA6CD2B26EAFA00B5B63B /* TagView.xib */,
+				F41DA6CF2B26EB6800B5B63B /* TagView.swift */,
+				F4E37BEB2B466D1A000EC402 /* NavBarView.xib */,
+				F4E37BED2B466D42000EC402 /* NavBarView.swift */,
+				F4997F2A2B302205005EDA77 /* ProductInfoView.xib */,
+				F4997F2C2B302215005EDA77 /* ProductInfoView.swift */,
+				F46D5C442B24A64800D00115 /* AddCartPopupView.xib */,
+				F46D5C482B24A8E000D00115 /* AddCartPopupView.swift */,
+				F44F947F2B2855170068E2A6 /* AddCartSuccessfullyPopupView.xib */,
+				F44F94812B2856300068E2A6 /* AddCartSuccessfullyPopupView.swift */,
+				F4ACAE462B57B18700630E78 /* ImagePickerView.xib */,
+				F4ACAE442B57B15300630E78 /* ImagePickerView.swift */,
+				F44BE48F2B57BF1A0024A48B /* ChangeAmountView.xib */,
+				F4ACAE482B57BE9A00630E78 /* ChangeAmountView.swift */,
+				F4E37BE92B46636B000EC402 /* BannerView.xib */,
+				F46D92AC2B3AA98B00B71CC1 /* BannerView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		F4AB74FC2B5928D300825063 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				F40B52C72B184774000A0ECB /* UIButton.swift */,
+			);
+			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		F4AC76D52B16DBDD009EDB79 = {
@@ -663,9 +758,8 @@
 			isa = PBXGroup;
 			children = (
 				F4B0AA312B1F6C3C005C5FF7 /* TabBar */,
-				F4B0AA362B1F6EB4005C5FF7 /* Main */,
-				F46368ED2B17112D006B2E6D /* Auth */,
-				F4AC76F92B16EEA0009EDB79 /* Welcome */,
+				F4B0AA362B1F6EB4005C5FF7 /* Core */,
+				F4AB74F72B5927ED00825063 /* Others */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -688,14 +782,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F4AC76F92B16EEA0009EDB79 /* Welcome */ = {
+		F4AC76F92B16EEA0009EDB79 /* WelcomeVC */ = {
 			isa = PBXGroup;
 			children = (
 				F4AC76FA2B16EEA7009EDB79 /* Cells */,
 				F4AC76E52B16DBDD009EDB79 /* WelcomeVC.swift */,
 				F41F5AA22B23308F003F087E /* WelcomeVC.xib */,
 			);
-			path = Welcome;
+			path = WelcomeVC;
 			sourceTree = "<group>";
 		};
 		F4AC76FA2B16EEA7009EDB79 /* Cells */ = {
@@ -734,74 +828,60 @@
 			isa = PBXGroup;
 			children = (
 				F4B0AA322B1F6CBB005C5FF7 /* TabBarVC.swift */,
-				F46D92AC2B3AA98B00B71CC1 /* BannerView.swift */,
-				F4E37BE92B46636B000EC402 /* BannerView.xib */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		F4B0AA362B1F6EB4005C5FF7 /* Main */ = {
+		F4B0AA362B1F6EB4005C5FF7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				F4B0AA3A2B1F6ED4005C5FF7 /* Management */,
-				F4B0AA392B1F6ECE005C5FF7 /* History */,
-				F4B0AA382B1F6EC4005C5FF7 /* Category */,
-				F4B0AA372B1F6EBD005C5FF7 /* Home */,
+				F4AB74F32B5926D600825063 /* Home */,
+				F4AB74F42B59270E00825063 /* Category */,
+				F4AB74F52B59277500825063 /* History */,
+				F4AB74F62B5927A300825063 /* Management */,
 			);
-			path = Main;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		F4B0AA372B1F6EBD005C5FF7 /* Home */ = {
+		F4B0AA372B1F6EBD005C5FF7 /* HomepageVC */ = {
 			isa = PBXGroup;
 			children = (
 				F4B0AA562B1F81CC005C5FF7 /* Cells */,
 				F4B0AA4D2B1F78C7005C5FF7 /* HomeVC.swift */,
 				F4B0AA4E2B1F78C7005C5FF7 /* HomeVC.xib */,
 				F4ADCE272B559D9C00D9C78D /* HomeVC+Extensions.swift */,
-				F48576DA2B39899A00A0F8E5 /* SearchResult */,
-				F44052782B21711D00AA3660 /* Products */,
-				F4010C9D2B24E03D00F693B6 /* Cart */,
-				F4213D292B2C05FC00A27493 /* Purchase */,
-				F4486BB52B393AC80009DDDE /* PaymentView */,
-				F4486BB62B393AD40009DDDE /* PaymentWebView */,
 			);
-			path = Home;
+			path = HomepageVC;
 			sourceTree = "<group>";
 		};
-		F4B0AA382B1F6EC4005C5FF7 /* Category */ = {
+		F4B0AA382B1F6EC4005C5FF7 /* CategoryVC */ = {
 			isa = PBXGroup;
 			children = (
 				F46D92AE2B3AAFE000B71CC1 /* Cells */,
 				F4B0AA3F2B1F6F2E005C5FF7 /* CategoryVC.swift */,
 				F4B0AA402B1F6F2E005C5FF7 /* CategoryVC.xib */,
-				F46D92B92B3AD73B00B71CC1 /* CategoryDetail */,
 			);
-			path = Category;
+			path = CategoryVC;
 			sourceTree = "<group>";
 		};
-		F4B0AA392B1F6ECE005C5FF7 /* History */ = {
+		F4B0AA392B1F6ECE005C5FF7 /* HistoryVC */ = {
 			isa = PBXGroup;
 			children = (
 				F40E0C002B454F830003755E /* Cells */,
 				F4B0AA432B1F6F3C005C5FF7 /* HistoryVC.swift */,
 				F4B0AA442B1F6F3C005C5FF7 /* HistoryVC.xib */,
-				F4E37BF22B46AD2B000EC402 /* ContentVC */,
-				F40E0C062B4564B20003755E /* PaymentDetail */,
 			);
-			path = History;
+			path = HistoryVC;
 			sourceTree = "<group>";
 		};
-		F4B0AA3A2B1F6ED4005C5FF7 /* Management */ = {
+		F4B0AA3A2B1F6ED4005C5FF7 /* ManagementVC */ = {
 			isa = PBXGroup;
 			children = (
 				F45A1BAC2B4C1FF000EF39E2 /* Cells */,
 				F4B0AA472B1F6F50005C5FF7 /* ManagementVC.swift */,
 				F4B0AA482B1F6F50005C5FF7 /* ManagementVC.xib */,
-				F48B3B9E2B4D0368008C008B /* Profile */,
-				F48B3B922B4CF2BC008C008B /* News */,
-				F45A1BB12B4C3E3600EF39E2 /* Contact */,
 			);
-			path = Management;
+			path = ManagementVC;
 			sourceTree = "<group>";
 		};
 		F4B0AA562B1F81CC005C5FF7 /* Cells */ = {

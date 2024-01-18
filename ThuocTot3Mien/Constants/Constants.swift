@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Constants {
+enum Constants {
     static let WIDTH_SCREEN = UIScreen.main.bounds.width
     static let HEIGHT_SCREEN = UIScreen.main.bounds.height
     static let PADDING = 16.0
@@ -17,7 +17,7 @@ struct Constants {
     static let SPACING_ZERO = 16.0
 }
 
-struct EndPointURL {
+enum EndPointURL {
     static let BASE_API_URL: String = Config.shared.BASE_API_URL
     static let PROVINCES: String = "system/provinces"
     static let AGENCY: String = "system/provinces/agency_list"
@@ -51,7 +51,7 @@ enum TabItemTitles: String {
     case management = "Quản lý"
 
     var localized: String {
-        return NSLocalizedString(self.rawValue, comment: "")
+        return NSLocalizedString(rawValue, comment: "")
     }
 }
 

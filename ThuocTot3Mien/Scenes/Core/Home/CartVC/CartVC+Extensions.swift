@@ -334,7 +334,7 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cartProducts.forEach { product in
                 if tempCartProducts.contains(where: { $0.id == product.id }) {
                     totalNumber += product.soLuong
-                    totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(round(product.discountPrice)) * product.soLuong
+                    totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(ceil(product.discountPrice)) * product.soLuong
                 }
                 for index in tempCartProducts.indices {
                     if tempCartProducts[index].id == product.id {

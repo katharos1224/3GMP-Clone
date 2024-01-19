@@ -13,7 +13,7 @@ class Config {
     var BASE_API_URL: String {
         return baseUrl
     }
-    
+
     var API_VERSION: String {
         return apiVersion
     }

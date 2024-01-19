@@ -12,12 +12,17 @@ class BannerView: UIView {
     @IBOutlet var label: UILabel!
     @IBOutlet var image: UIImageView!
     @IBOutlet var backButton: UIButton!
+    @IBOutlet var cartButton: UIButton!
     @IBOutlet var textField: UITextField!
     @IBOutlet var searchImage: UIImageView!
     @IBOutlet var clearImage: UIImageView!
     @IBOutlet var stackBar: UIStackView!
+    @IBOutlet var totalCartView: UIView!
+    @IBOutlet var totalNumber: UILabel!
 
     var dismiss: (() -> Void)?
+    var goToCartOnClick: (() -> Void)?
+    var number: Int = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,6 +58,10 @@ class BannerView: UIView {
 
     func configure(title: String) {
         label.text = title
+    }
+
+    @IBAction func goToCartTapped() {
+        goToCartOnClick?()
     }
 
     @IBAction func dismissVC() {

@@ -88,7 +88,7 @@ extension WelcomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
-        currentPage = Int(round(scrollView.contentOffset.x + width / 2.0) / width)
+        currentPage = Int(ceil(scrollView.contentOffset.x + width / 2.0) / width)
         pageControl.currentPage = currentPage
     }
 }

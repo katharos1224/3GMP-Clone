@@ -73,10 +73,10 @@ class ProductInfoView: UIView {
         }
 
         bonusCoinsLabel.text = "Tặng \(String(describing: productData.bonusCoins)) Coins"
-        discountLabel.text = "-\(String(describing: Int(round(productData.khuyenMai ?? 0))))%"
+        discountLabel.text = "-\(String(describing: Int(ceil(productData.khuyenMai ?? 0))))%"
         productNameLabel.text = productData.tenSanPham
         packingLabel.text = productData.quyCachDongGoi
-        discountPriceLabel.text = "\(Int(round(productData.discountPrice)).formattedWithSeparator()) VNĐ"
+        discountPriceLabel.text = "\(Int(ceil(productData.discountPrice)).formattedWithSeparator()) VNĐ"
 
         let unitPriceText = "\(Int(productData.donGia).formattedWithSeparator()) VNĐ"
         if productData.khuyenMai != nil {
@@ -117,9 +117,11 @@ class ProductInfoView: UIView {
         if let tags = productData.tags, !tags.isEmpty {
             tags.forEach { tag in
                 let tagView = TagView()
-                tagView.configure(name: tag.name)
-                tagStack.addArrangedSubview(tagView)
-                tagView.contentView.layer.cornerRadius = tagView.frame.size.height / 2
+                if tag.name != "#haha" {
+                    tagView.configure(name: tag.name)
+                    tagStack.addArrangedSubview(tagView)
+                    tagView.contentView.layer.cornerRadius = tagView.frame.size.height / 2
+                }
             }
         }
 
@@ -128,7 +130,7 @@ class ProductInfoView: UIView {
         }
         discountLabel.text = "-\(String(describing: productData.khuyenMai ?? 0))%"
         productNameLabel.text = productData.tenSanPham
-        discountPriceLabel.text = "\(Int(round(productData.discountPrice)).formattedWithSeparator()) VNĐ"
+        discountPriceLabel.text = "\(Int(ceil(productData.discountPrice)).formattedWithSeparator()) VNĐ"
 
         let unitPriceText = "\(Int(productData.donGia).formattedWithSeparator()) VNĐ"
         if productData.khuyenMai != nil {

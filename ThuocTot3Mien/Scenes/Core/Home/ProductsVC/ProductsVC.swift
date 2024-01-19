@@ -12,9 +12,11 @@ final class ProductsVC: BaseViewController {
     @IBOutlet var collectionView: UICollectionView!
 
     @IBOutlet var heightConstraint: NSLayoutConstraint!
+
     var titleLabel: String = ""
     var categoryProducts: [CategoryProduct] = []
     var memberStatus: Int = 0
+    var totalNumber: Int = 0
 
     var search: String?
     var currentPage: Int = 1
@@ -44,9 +46,21 @@ final class ProductsVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bannerView.cartButton.isHidden = false
+
         bannerView.configure(title: titleLabel)
+
         bannerView.dismiss = {
             self.popWithCrossDissolve()
+        }
+
+        bannerView.goToCartOnClick = {
+            let vc = CartVC()
+            if let _ = self.navigationController {
+                self.pushWithCrossDissolve(vc)
+            } else {
+                self.show(vc)
+            }
         }
 
         let layout = PagingCollectionViewLayout()
@@ -67,11 +81,14 @@ final class ProductsVC: BaseViewController {
 
     override func viewWillAppear(_: Bool) {
         bannerView.textField.text = search
+        bannerView.totalNumber.text = "\(totalNumber)"
+        bannerView.totalCartView.isHidden = totalNumber > 0 ? false : true
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.layoutIfNeeded()
+        bannerView.totalCartView.layer.cornerRadius = bannerView.totalCartView.frame.size.height / 2
     }
 
     func reloadDataAndAdjustHeight() {

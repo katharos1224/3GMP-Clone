@@ -210,6 +210,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                     let vc = ProductsVC()
                     vc.titleLabel = self?.productsData[indexPath.section].name ?? ""
                     vc.memberStatus = self?.memberStatus ?? 0
+                    vc.totalNumber = self?.totalCart ?? 0
 
                     let category = self?.productsData[indexPath.section].value
                     vc.category = category

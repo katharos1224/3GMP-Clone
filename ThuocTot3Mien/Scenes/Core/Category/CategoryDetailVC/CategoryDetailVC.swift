@@ -115,7 +115,6 @@ extension CategoryDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if indexPath.item < categories.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVCell.identifier, for: indexPath) as! CategoryCVCell
             let category = categories[indexPath.row]
@@ -150,15 +149,15 @@ extension CategoryDetailVC: UICollectionViewDelegate, UICollectionViewDataSource
             return cell
         } else {
             let indicatorCell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.identifier, for: indexPath) as! IndicatorCell
-            
+
             indicatorCell.indicator.startAnimating()
-            
+
             if currentPage == lastPage {
                 DispatchQueue.main.async {
                     indicatorCell.indicator.stopAnimating()
                 }
             }
-            
+
             return indicatorCell
         }
     }

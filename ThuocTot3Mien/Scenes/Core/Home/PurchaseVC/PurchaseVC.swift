@@ -82,7 +82,7 @@ final class PurchaseVC: BaseViewController {
     private func setupData() {
         purchaseProducts.forEach { product in
             totalNumber += product.soLuong
-            totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(round(product.discountPrice)) * product.soLuong
+            totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(ceil(product.discountPrice)) * product.soLuong
             coins += product.bonusCoins
             cartIDs.append(product.gioHangId)
         }
@@ -105,7 +105,11 @@ final class PurchaseVC: BaseViewController {
     }
 
     @IBAction func dismiss() {
-        popWithCrossDissolve()
+        if let _ = navigationController {
+            popWithCrossDissolve()
+        } else {
+            hide()
+        }
     }
 
     @IBAction func confirmTapped() {
@@ -195,7 +199,14 @@ extension PurchaseVC: PaymentViewDelegate {
         DispatchQueue.main.async { [self] in
             let paymentWebView = WebViewVC(url: url)
             paymentWebView.navTitle = "Thanh toán"
-            show(paymentWebView)
+            DispatchQueue.main.async {
+                self.dismissPopup()
+                if let _ = self.navigationController {
+                    self.pushWithCrossDissolve(paymentWebView)
+                } else {
+                    self.show(paymentWebView)
+                }
+            }
         }
     }
 }

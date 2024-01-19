@@ -101,10 +101,10 @@ class AddCartPopupView: UIView, UITextFieldDelegate {
         bonusCoinsLabel.isHidden = productData.bonusCoins != nil && productData.bonusCoins != 0 ? false : true
 
         bonusCoinsLabel.text = "Tặng \(String(describing: productData.bonusCoins ?? 0)) Coins"
-        discountLabel.text = "-\(String(describing: Int(round(productData.khuyenMai ?? 0))))%"
+        discountLabel.text = "-\(String(describing: Int(ceil(productData.khuyenMai ?? 0))))%"
         productNameLabel.text = productData.tenSanPham
         packingLabel.text = productData.quyCachDongGoi
-        discountPriceLabel.text = "\(Int(round(productData.discountPrice)).formattedWithSeparator()) VNĐ"
+        discountPriceLabel.text = "\(Int(ceil(productData.discountPrice)).formattedWithSeparator()) VNĐ"
 
         let unitPriceText = "\(Int(productData.donGia).formattedWithSeparator()) VNĐ"
         if productData.khuyenMai != nil {

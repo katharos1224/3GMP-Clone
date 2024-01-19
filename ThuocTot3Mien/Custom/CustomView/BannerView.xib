@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BannerView" customModule="ThuocTot3Mien" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="wsw-6R-bre" id="ui9-dw-3yF"/>
+                <outlet property="cartButton" destination="YpV-qa-jtr" id="ErL-L2-fRe"/>
                 <outlet property="clearImage" destination="KGL-Bj-u8g" id="ux3-Y9-7im"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="S25-Lo-Ync"/>
                 <outlet property="image" destination="2uY-jc-eco" id="PZN-cp-lGo"/>
@@ -19,6 +20,8 @@
                 <outlet property="searchImage" destination="m8k-1B-BeO" id="QjY-f5-2UI"/>
                 <outlet property="stackBar" destination="cfE-kg-IL8" id="p0a-Dq-PQ7"/>
                 <outlet property="textField" destination="ndQ-Hn-TOP" id="BfX-a9-hxB"/>
+                <outlet property="totalCartView" destination="l49-H3-7cz" id="57U-sj-gV4"/>
+                <outlet property="totalNumber" destination="RGL-bN-VY2" id="cyq-gH-IdG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -60,12 +63,48 @@
                                 <action selector="dismissVC" destination="-1" eventType="touchUpInside" id="vp5-Ty-9Kd"/>
                             </connections>
                         </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpV-qa-jtr">
+                            <rect key="frame" x="394" y="8" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="YpV-qa-jtr" secondAttribute="height" id="5Bu-kh-9Se"/>
+                                <constraint firstAttribute="height" constant="40" id="AX7-6j-xIg"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="cart.fill" catalog="system"/>
+                            <connections>
+                                <action selector="dismissVC" destination="-1" eventType="touchUpInside" id="5Of-Al-F7N"/>
+                                <action selector="goToCartTapped" destination="-1" eventType="touchUpInside" id="n0U-Ga-bM4"/>
+                            </connections>
+                        </button>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l49-H3-7cz" userLabel="Total Cart View">
+                            <rect key="frame" x="419.33333333333331" y="8" width="14.666666666666686" height="12"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGL-bN-VY2">
+                                    <rect key="frame" x="4" y="0.0" width="6.6666666666666679" height="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemRedColor"/>
+                            <constraints>
+                                <constraint firstItem="RGL-bN-VY2" firstAttribute="centerY" secondItem="l49-H3-7cz" secondAttribute="centerY" id="1bf-j2-HII"/>
+                                <constraint firstItem="RGL-bN-VY2" firstAttribute="centerX" secondItem="l49-H3-7cz" secondAttribute="centerX" id="g28-eE-KqN"/>
+                                <constraint firstItem="RGL-bN-VY2" firstAttribute="top" secondItem="l49-H3-7cz" secondAttribute="top" id="qSF-J9-OQS"/>
+                                <constraint firstItem="RGL-bN-VY2" firstAttribute="leading" secondItem="l49-H3-7cz" secondAttribute="leading" constant="4" id="swF-aj-cH5"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="wsw-6R-bre" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="1LV-Ts-bSD"/>
                         <constraint firstItem="wsw-6R-bre" firstAttribute="leading" secondItem="e2t-qA-MSn" secondAttribute="leading" constant="16" id="DOb-qn-Kej"/>
+                        <constraint firstItem="l49-H3-7cz" firstAttribute="top" secondItem="YpV-qa-jtr" secondAttribute="top" id="Jsf-c8-Ka4"/>
                         <constraint firstItem="cfE-kg-IL8" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="KaF-VN-RwC"/>
+                        <constraint firstAttribute="trailing" secondItem="YpV-qa-jtr" secondAttribute="trailing" constant="16" id="L0o-Wd-NfF"/>
+                        <constraint firstItem="l49-H3-7cz" firstAttribute="trailing" secondItem="YpV-qa-jtr" secondAttribute="trailing" id="Mzg-YS-8QZ"/>
+                        <constraint firstItem="YpV-qa-jtr" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="Wd1-hN-WyV"/>
                         <constraint firstAttribute="height" constant="56" id="cYY-UV-WTf"/>
                         <constraint firstItem="cfE-kg-IL8" firstAttribute="centerX" secondItem="e2t-qA-MSn" secondAttribute="centerX" id="yVu-YM-W4T"/>
                     </constraints>

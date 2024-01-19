@@ -81,7 +81,7 @@ final class CartVC: BaseViewController {
                 self?.cartProducts.forEach { product in
                     let id = product.id
                     let number = product.soLuong
-                    let price = (product.khuyenMai != 0 && product.khuyenMai != nil) ? Int(round(product.discountPrice)) : product.donGia
+                    let price = (product.khuyenMai != 0 && product.khuyenMai != nil) ? Int(ceil(product.discountPrice)) : product.donGia
 
                     self?.totalNumber += number
                     self?.totalPrice += price * number
@@ -179,7 +179,11 @@ final class CartVC: BaseViewController {
         saveDataWithDispatchGroup { [self] success in
             if success {
                 dispatchGroup.notify(queue: .main) {
-                    self.popWithCrossDissolve()
+                    if let _ = self.navigationController {
+                        self.popWithCrossDissolve()
+                    } else {
+                        self.hide()
+                    }
                 }
             }
         }
@@ -200,7 +204,7 @@ final class CartVC: BaseViewController {
 
             tempCartProducts.forEach { product in
                 totalNumber += product.soLuong
-                totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(round(product.discountPrice)) * product.soLuong
+                totalPrice += product.discountPrice == 0 ? product.donGia * product.soLuong : Int(ceil(product.discountPrice)) * product.soLuong
             }
 
             self.totalNumber = totalNumber
@@ -251,6 +255,10 @@ final class CartVC: BaseViewController {
         let vc = PurchaseVC()
         vc.purchaseProducts = tempCartProducts
         vc.reductionRate = reductionRate
-        pushWithCrossDissolve(vc)
+        if let _ = navigationController {
+            pushWithCrossDissolve(vc)
+        } else {
+            show(vc)
+        }
     }
 }

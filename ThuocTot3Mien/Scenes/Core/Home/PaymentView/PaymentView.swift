@@ -147,7 +147,7 @@ class PaymentView: UIView {
 
                     money = response.money
                     if useOnlinePayment {
-                        let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
+                        let newPrice = (totalPrice - money) - Int(ceil(Double((totalPrice - money) / 100) * reductionRate))
                         totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                         finalPrice = newPrice
                     } else {
@@ -170,11 +170,11 @@ class PaymentView: UIView {
 
         if useOnlinePayment {
             if availableVoucher {
-                let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
+                let newPrice = (totalPrice - money) - Int(ceil(Double((totalPrice - money) / 100) * reductionRate))
                 totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                 finalPrice = newPrice
             } else {
-                let newPrice = totalPrice - Int(round(Double(totalPrice / 100) * reductionRate))
+                let newPrice = totalPrice - Int(ceil(Double(totalPrice / 100) * reductionRate))
                 totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                 finalPrice = newPrice
             }
@@ -232,11 +232,11 @@ class PaymentView: UIView {
 
                         if useOnlinePayment {
                             if response.voucherAvailable == 1 {
-                                let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
+                                let newPrice = (totalPrice - money) - Int(ceil(Double((totalPrice - money) / 100) * reductionRate))
                                 totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                                 finalPrice = newPrice
                             } else {
-                                let newPrice = totalPrice - Int(round(Double(totalPrice / 100) * reductionRate))
+                                let newPrice = totalPrice - Int(ceil(Double(totalPrice / 100) * reductionRate))
                                 totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                                 finalPrice = newPrice
                             }
@@ -304,11 +304,11 @@ class PaymentView: UIView {
 
                     if useOnlinePayment {
                         if response.voucherAvailable == 1 {
-                            let newPrice = (totalPrice - money) - Int(round(Double((totalPrice - money) / 100) * reductionRate))
+                            let newPrice = (totalPrice - money) - Int(ceil(Double((totalPrice - money) / 100) * reductionRate))
                             totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                             finalPrice = newPrice
                         } else {
-                            let newPrice = totalPrice - Int(round(Double(totalPrice / 100) * reductionRate))
+                            let newPrice = totalPrice - Int(ceil(Double(totalPrice / 100) * reductionRate))
                             totalPriceLabel.text = "\(newPrice.formattedWithSeparator()) VNĐ"
                             finalPrice = newPrice
                         }

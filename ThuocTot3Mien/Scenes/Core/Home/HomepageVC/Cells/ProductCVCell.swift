@@ -92,10 +92,10 @@ class ProductCVCell: UICollectionViewCell {
         }
 
         bonusCoinsLabel.text = "Tặng \(String(describing: productData.bonusCoins ?? 0)) Coins"
-        discountLabel.text = "-\(String(describing: Int(round(productData.khuyenMai ?? 0))))%"
+        discountLabel.text = "-\(String(describing: Int(ceil(productData.khuyenMai ?? 0))))%"
         productNameLabel.text = productData.tenSanPham
         packingLabel.text = productData.quyCachDongGoi
-        discountPriceLabel.text = "\(Int(round(productData.discountPrice)).formattedWithSeparator()) VNĐ"
+        discountPriceLabel.text = "\(Int(ceil(productData.discountPrice)).formattedWithSeparator()) VNĐ"
 
         let unitPriceText = "\(productData.donGia.formattedWithSeparator()) VNĐ"
 
@@ -156,10 +156,10 @@ class ProductCVCell: UICollectionViewCell {
         }
 
 //        bonusCoinsLabel.text = "Tặng \(String(describing: categoryProductData.bonusCoins ?? 0)) Coins"
-        discountLabel.text = "-\(String(describing: Int(round(categoryProductData.khuyenMai ?? 0))))%"
+        discountLabel.text = "-\(String(describing: Int(ceil(categoryProductData.khuyenMai ?? 0))))%"
         productNameLabel.text = categoryProductData.tenSanPham
         packingLabel.text = categoryProductData.quyCachDongGoi
-        discountPriceLabel.text = "\(Int(round(categoryProductData.discountPrice))) VNĐ"
+        discountPriceLabel.text = "\(Int(ceil(categoryProductData.discountPrice))) VNĐ"
 
         let unitPriceText = "\(Int(categoryProductData.donGia)) VNĐ"
 

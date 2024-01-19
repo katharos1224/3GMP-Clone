@@ -64,7 +64,7 @@ final class WebViewVC: BaseViewController {
 
     @IBAction func dismissTapped() {
         if let _ = navigationController {
-            popWithCrossDissolve()
+            popToRoot()
         } else {
             hide()
         }

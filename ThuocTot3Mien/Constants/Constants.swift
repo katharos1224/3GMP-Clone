@@ -18,7 +18,7 @@ enum Constants {
 }
 
 enum EndPointURL {
-    static let BASE_API_URL: String = Config.shared.BASE_API_URL
+    static let BASE_API_URL: String = Config.shared.BASE_API_URL + Config.shared.API_VERSION
     static let PROVINCES: String = "system/provinces"
     static let AGENCY: String = "system/provinces/agency_list"
     static let LOGIN: String = "member/login"

@@ -23,49 +23,48 @@ extension CartVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         cell.configure(productData: cartProducts[indexPath.item])
 
         cell.showPopupOnClick = { [self] in
-            self.collectionView.isUserInteractionEnabled = false
             DispatchQueue.main.async { [self] in
                 showChangeAmountPopup()
                 changeAmountContentView.textField.text = cell.amountField.text
             }
-        }
 
-        changeAmountContentView.agreeOnClick = { [self] in
-            view.endEditing(true)
+            changeAmountContentView.agreeOnClick = { [self] in
+                view.endEditing(true)
 
-            if let text = changeAmountContentView.textField.text, var number = Int(text), text != "\(0)", !text.isEmpty {
-                if let minAmount = cartProducts[indexPath.item].soLuongToiThieu, number < minAmount {
-                    DispatchQueue.main.async {
-                        number = minAmount
-                        cell.amountField.text = "\(minAmount)"
+                if let text = changeAmountContentView.textField.text, var number = Int(text), text != "\(0)", !text.isEmpty {
+                    if let minAmount = cartProducts[indexPath.item].soLuongToiThieu, number < minAmount {
+                        DispatchQueue.main.async {
+                            number = minAmount
+                            cell.amountField.text = "\(minAmount)"
+                        }
                     }
-                }
 
-                if let maxAmount = cartProducts[indexPath.item].soLuongToiDa, number > maxAmount {
-                    DispatchQueue.main.async {
-                        number = maxAmount
-                        cell.amountField.text = "\(maxAmount)"
+                    if let maxAmount = cartProducts[indexPath.item].soLuongToiDa, number > maxAmount {
+                        DispatchQueue.main.async {
+                            number = maxAmount
+                            cell.amountField.text = "\(maxAmount)"
+                        }
                     }
+
+                    DispatchQueue.main.async {
+                        cell.amountField.text = text
+                    }
+
+                    NetworkManager.shared.updateCart(id: id, number: number) { _ in
+                    }
+
+                    addTempChange(id: id, number: number)
+                    cartProducts[indexPath.item].soLuong = number
+                    print(tempChangesSet)
+                    updateCartInfo()
                 }
 
                 DispatchQueue.main.async {
-                    cell.amountField.text = text
+                    self.dismissPopup()
                 }
-
-                NetworkManager.shared.updateCart(id: id, number: number) { _ in
-                }
-
-                addTempChange(id: id, number: number)
-                cartProducts[indexPath.item].soLuong = number
-                print(tempChangesSet)
-                updateCartInfo()
             }
 
-            self.collectionView.isUserInteractionEnabled = true
-
-            DispatchQueue.main.async {
-                self.dismissPopup()
-            }
+            print("tempcart: \(tempCartProducts.count)")
         }
 
         cell.checkOnClick = { [self] in

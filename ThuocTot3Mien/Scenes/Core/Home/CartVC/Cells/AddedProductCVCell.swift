@@ -113,18 +113,17 @@ extension AddedProductCVCell: UITextFieldDelegate {
         showPopupOnClick?()
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_: UITextField) {
         endEditing(true)
-        updateProductData(textField: textField)
+//        updateProductData(textField: textField)
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_: UITextField) -> Bool {
         endEditing(true)
-        updateProductData(textField: textField)
+//        updateProductData(textField: textField)
         return true
     }
 
-    // need to validate product amount
     func updateProductData(textField: UITextField) {
         guard let cartData = cartData, var number = Int(textField.text!), number != 0 else {
             amountField.text = "\(String(describing: cartData!.soLuong))"

@@ -63,7 +63,7 @@ final class HomeVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.COLOR_BACKGROUND
+        view.backgroundColor = Colors.COLOR_BAR_BACKGROUND
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -138,7 +138,7 @@ final class HomeVC: BaseViewController {
         let layout = PagingCollectionViewLayout()
         let bannerLayout = PagingCollectionViewLayout()
 
-        layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+        layout.sectionInset = .init(top: 0.0, left: padding, bottom: padding, right: padding)
         layout.itemSize = .init(width: cellWidth, height: cellHeight)
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing

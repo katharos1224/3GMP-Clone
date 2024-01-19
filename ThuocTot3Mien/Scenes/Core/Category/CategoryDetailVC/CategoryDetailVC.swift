@@ -57,6 +57,7 @@ final class CategoryDetailVC: BaseViewController {
         layout.minimumInteritemSpacing = spacing
         collectionView.collectionViewLayout = layout
         collectionView.registerCellFromNib(CategoryCVCell.self, nibName: CategoryCVCell.identifier)
+        collectionView.registerCell(IndicatorCell.self)
 
         cancellable = NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: bannerView.textField)
@@ -110,41 +111,47 @@ final class CategoryDetailVC: BaseViewController {
 
 extension CategoryDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return categories.count
+        return categories.count + 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVCell.identifier, for: indexPath) as! CategoryCVCell
-        let category = categories[indexPath.row]
-        cell.configure(name: category.name)
+        if indexPath.item < categories.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCVCell.identifier, for: indexPath) as! CategoryCVCell
+            let category = categories[indexPath.row]
+            cell.configure(name: category.name)
 
-        cell.cellTapOnClick = { [weak self] in
-            let id = self?.categories[indexPath.row].value
-            let name = self?.categories[indexPath.row].name
-            let vc = ProductsVC()
-            vc.section = indexPath.section
-            vc.id = id ?? 0
+            cell.cellTapOnClick = { [weak self] in
+                let id = self?.categories[indexPath.row].value
+                let name = self?.categories[indexPath.row].name
+                let vc = ProductsVC()
+                vc.section = indexPath.section
+                vc.id = id ?? 0
 
-            NetworkManager.shared.fetchProducts(page: nil, category: nil, search: nil, hoatChat: indexPath.section == 0 ? id : nil, nhomThuoc: indexPath.section == 1 ? id : nil, nhaSanXuat: indexPath.section == 2 ? id : nil, hastag: nil) { result in
-                switch result {
-                case let .success(data):
-                    guard let response = data.response else {
-                        print(result)
-                        return
+                NetworkManager.shared.fetchProducts(page: nil, category: nil, search: nil, hoatChat: indexPath.section == 0 ? id : nil, nhomThuoc: indexPath.section == 1 ? id : nil, nhaSanXuat: indexPath.section == 2 ? id : nil, hastag: nil) { result in
+                    switch result {
+                    case let .success(data):
+                        guard let response = data.response else {
+                            print(result)
+                            return
+                        }
+                        vc.categoryProducts = response.data
+                        vc.lastPage = response.lastPage
+
+                        DispatchQueue.main.async {
+                            self?.pushWithCrossDissolve(vc)
+                        }
+                    case let .failure(error):
+                        print(error.localizedDescription)
                     }
-                    vc.categoryProducts = response.data
-                    vc.lastPage = response.lastPage
-
-                    DispatchQueue.main.async {
-                        self?.pushWithCrossDissolve(vc)
-                    }
-                case let .failure(error):
-                    print(error.localizedDescription)
                 }
             }
-        }
 
-        return cell
+            return cell
+        } else {
+            let indicatorCell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.identifier, for: indexPath) as! IndicatorCell
+            indicatorCell.indicator.startAnimating()
+            return indicatorCell
+        }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate _: Bool) {

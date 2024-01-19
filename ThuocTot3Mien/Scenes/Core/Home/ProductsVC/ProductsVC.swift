@@ -57,6 +57,7 @@ final class ProductsVC: BaseViewController {
         layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
         collectionView.registerCellFromNib(ProductCVCell.self, nibName: ProductCVCell.identifier)
+        collectionView.backgroundColor = .white
 
         DispatchQueue.main.async {
             self.reloadDataAndAdjustHeight()

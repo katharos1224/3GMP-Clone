@@ -33,7 +33,7 @@ final class TabBarVC: UITabBarController {
     }
 
     private func customizeTabBarAppearance() {
-        view.backgroundColor = Colors.COLOR_BACKGROUND
+        view.backgroundColor = Colors.COLOR_BAR_BACKGROUND
         navigationController?.setNavigationBarHidden(true, animated: false)
         tabBar.isTranslucent = false
         tabBar.barTintColor = Colors.COLOR_BAR_TINT

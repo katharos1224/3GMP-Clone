@@ -63,7 +63,8 @@ enum TabItemIcons: String {
 }
 
 enum Colors {
-    static let COLOR_BACKGROUND = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
+    static let COLOR_BAR_BACKGROUND = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
     static let COLOR_BAR_TINT = UIColor(red: 251 / 255, green: 251 / 255, blue: 204 / 255, alpha: 1.0)
     static let COLOR_TINT = UIColor(red: 79 / 255, green: 183 / 255, blue: 94 / 255, alpha: 1.0)
+    static let COLOR_BACKGROUND = UIColor(red: 70 / 255, green: 183 / 255, blue: 85 / 255, alpha: 1.0)
 }

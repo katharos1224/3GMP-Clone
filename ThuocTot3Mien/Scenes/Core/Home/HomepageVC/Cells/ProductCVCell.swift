@@ -147,9 +147,11 @@ class ProductCVCell: UICollectionViewCell {
         if !categoryProductData.tags.isEmpty {
             categoryProductData.tags.forEach { tag in
                 let tagView = TagView()
-                tagView.configure(name: tag.name)
-                tagView.layer.cornerRadius = tagView.frame.size.height / 2
-                tagStack.addArrangedSubview(tagView)
+                if tag.name != "#haha" {
+                    tagView.configure(name: tag.name)
+                    tagView.layer.cornerRadius = tagView.frame.size.height / 2
+                    tagStack.addArrangedSubview(tagView)
+                }
             }
         }
 

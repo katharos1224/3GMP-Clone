@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +23,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRn-hJ-N3c" customClass="BannerView" customModule="ThuocTot3Mien" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="59" width="393" height="122"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" red="0.27386748789999998" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="122" id="kRW-It-7VV"/>
                     </constraints>
@@ -37,7 +36,7 @@
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Zr6-3n-0hr">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="671"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="671" id="YRr-tO-qch"/>
                                     </constraints>
@@ -53,7 +52,7 @@
                                     </connections>
                                 </collectionView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Zr6-3n-0hr" firstAttribute="top" secondItem="WEu-LK-16N" secondAttribute="top" id="2LK-2y-QCv"/>
                                 <constraint firstAttribute="bottom" secondItem="Zr6-3n-0hr" secondAttribute="bottom" id="6fb-tA-Qww"/>
@@ -62,6 +61,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="WEu-LK-16N" firstAttribute="top" secondItem="87E-mT-wt7" secondAttribute="top" id="Xj4-as-4KX"/>
                         <constraint firstItem="WEu-LK-16N" firstAttribute="width" secondItem="87E-mT-wt7" secondAttribute="width" id="cRA-1k-RiR"/>
@@ -73,7 +73,7 @@
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.27450980392156865" green="0.71946042779999997" blue="0.33518844840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="87E-mT-wt7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0UA-SD-9j6"/>
                 <constraint firstAttribute="bottom" secondItem="87E-mT-wt7" secondAttribute="bottom" id="Flo-Jx-gyK"/>
@@ -86,9 +86,4 @@
             <point key="canvasLocation" x="38.931297709923662" y="-12.67605633802817"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

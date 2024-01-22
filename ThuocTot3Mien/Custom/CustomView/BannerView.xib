@@ -20,6 +20,7 @@
                 <outlet property="searchImage" destination="m8k-1B-BeO" id="QjY-f5-2UI"/>
                 <outlet property="stackBar" destination="cfE-kg-IL8" id="p0a-Dq-PQ7"/>
                 <outlet property="textField" destination="ndQ-Hn-TOP" id="BfX-a9-hxB"/>
+                <outlet property="titleLabel" destination="dBb-4O-dMe" id="z7p-5R-kiG"/>
                 <outlet property="totalCartView" destination="l49-H3-7cz" id="57U-sj-gV4"/>
                 <outlet property="totalNumber" destination="RGL-bN-VY2" id="cyq-gH-IdG"/>
             </connections>
@@ -63,6 +64,12 @@
                                 <action selector="dismissVC" destination="-1" eventType="touchUpInside" id="vp5-Ty-9Kd"/>
                             </connections>
                         </button>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBb-4O-dMe">
+                            <rect key="frame" x="65.333333333333329" y="16" width="37" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpV-qa-jtr">
                             <rect key="frame" x="394" y="8" width="40" height="40"/>
                             <constraints>
@@ -100,10 +107,13 @@
                     <constraints>
                         <constraint firstItem="wsw-6R-bre" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="1LV-Ts-bSD"/>
                         <constraint firstItem="wsw-6R-bre" firstAttribute="leading" secondItem="e2t-qA-MSn" secondAttribute="leading" constant="16" id="DOb-qn-Kej"/>
+                        <constraint firstItem="dBb-4O-dMe" firstAttribute="leading" secondItem="wsw-6R-bre" secondAttribute="trailing" constant="24" id="H6r-uK-8D5"/>
                         <constraint firstItem="l49-H3-7cz" firstAttribute="top" secondItem="YpV-qa-jtr" secondAttribute="top" id="Jsf-c8-Ka4"/>
                         <constraint firstItem="cfE-kg-IL8" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="KaF-VN-RwC"/>
                         <constraint firstAttribute="trailing" secondItem="YpV-qa-jtr" secondAttribute="trailing" constant="16" id="L0o-Wd-NfF"/>
+                        <constraint firstItem="dBb-4O-dMe" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="Mha-Da-HnH"/>
                         <constraint firstItem="l49-H3-7cz" firstAttribute="trailing" secondItem="YpV-qa-jtr" secondAttribute="trailing" id="Mzg-YS-8QZ"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dBb-4O-dMe" secondAttribute="trailing" constant="16" id="RgG-1u-6bY"/>
                         <constraint firstItem="YpV-qa-jtr" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="Wd1-hN-WyV"/>
                         <constraint firstAttribute="height" constant="56" id="cYY-UV-WTf"/>
                         <constraint firstItem="cfE-kg-IL8" firstAttribute="centerX" secondItem="e2t-qA-MSn" secondAttribute="centerX" id="yVu-YM-W4T"/>

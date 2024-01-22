@@ -19,7 +19,8 @@ class BannerView: UIView {
     @IBOutlet var stackBar: UIStackView!
     @IBOutlet var totalCartView: UIView!
     @IBOutlet var totalNumber: UILabel!
-
+    @IBOutlet var titleLabel: UILabel!
+    
     var dismiss: (() -> Void)?
     var goToCartOnClick: (() -> Void)?
     var number: Int = 0

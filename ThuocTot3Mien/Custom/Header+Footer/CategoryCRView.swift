@@ -12,7 +12,8 @@ class CategoryCRView: UICollectionReusableView {
     @IBOutlet var containerView: UIView!
     @IBOutlet var image: UIImageView!
     @IBOutlet var name: UILabel!
-
+    @IBOutlet var icon: UIImageView!
+    
     var onClick: (() -> Void)?
 
     static let identifier: String = "CategoryCRView"

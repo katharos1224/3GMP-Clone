@@ -132,6 +132,9 @@
 		F4B84CBD2B1A497500B57CB1 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B84CBC2B1A497500B57CB1 /* Customer.swift */; };
 		F4B84CC02B1A563200B57CB1 /* Pharmacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B84CBF2B1A563200B57CB1 /* Pharmacy.swift */; };
 		F4B84CC42B1A593900B57CB1 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B84CC32B1A593900B57CB1 /* AuthResponse.swift */; };
+		F4C8A3032B5E415300DCC06D /* AgencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C8A3012B5E415300DCC06D /* AgencyVC.swift */; };
+		F4C8A3042B5E415300DCC06D /* AgencyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C8A3022B5E415300DCC06D /* AgencyVC.xib */; };
+		F4C8A3072B5E558300DCC06D /* AgencyCategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C8A3062B5E558300DCC06D /* AgencyCategoryResponse.swift */; };
 		F4CA696F2B2007AA00683383 /* ProductCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CA696D2B2007AA00683383 /* ProductCVCell.swift */; };
 		F4CA69702B2007AA00683383 /* ProductCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4CA696E2B2007AA00683383 /* ProductCVCell.xib */; };
 		F4CA69722B200A3A00683383 /* HomepageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CA69712B200A3A00683383 /* HomepageResponse.swift */; };
@@ -275,6 +278,9 @@
 		F4B84CBC2B1A497500B57CB1 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		F4B84CBF2B1A563200B57CB1 /* Pharmacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pharmacy.swift; sourceTree = "<group>"; };
 		F4B84CC32B1A593900B57CB1 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		F4C8A3012B5E415300DCC06D /* AgencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyVC.swift; sourceTree = "<group>"; };
+		F4C8A3022B5E415300DCC06D /* AgencyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgencyVC.xib; sourceTree = "<group>"; };
+		F4C8A3062B5E558300DCC06D /* AgencyCategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyCategoryResponse.swift; sourceTree = "<group>"; };
 		F4CA696D2B2007AA00683383 /* ProductCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCVCell.swift; sourceTree = "<group>"; };
 		F4CA696E2B2007AA00683383 /* ProductCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCVCell.xib; sourceTree = "<group>"; };
 		F4CA69712B200A3A00683383 /* HomepageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageResponse.swift; sourceTree = "<group>"; };
@@ -654,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				F4B0AA3A2B1F6ED4005C5FF7 /* ManagementVC */,
+				F4C8A3002B5E40C100DCC06D /* AgencyVC */,
 				F45A1BB12B4C3E3600EF39E2 /* ContactVC */,
 				F48B3B922B4CF2BC008C008B /* NewsVC */,
 				F48B3B9E2B4D0368008C008B /* ProfileVC */,
@@ -923,8 +930,18 @@
 				F45A1BBB2B4C408D00EF39E2 /* ContactInfo.swift */,
 				F48B3B902B4CF1AC008C008B /* NewsResponse.swift */,
 				F491C8192B4D20D500AA0EC3 /* ProfileResponse.swift */,
+				F4C8A3062B5E558300DCC06D /* AgencyCategoryResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		F4C8A3002B5E40C100DCC06D /* AgencyVC */ = {
+			isa = PBXGroup;
+			children = (
+				F4C8A3012B5E415300DCC06D /* AgencyVC.swift */,
+				F4C8A3022B5E415300DCC06D /* AgencyVC.xib */,
+			);
+			path = AgencyVC;
 			sourceTree = "<group>";
 		};
 		F4E37BF22B46AD2B000EC402 /* ContentVC */ = {
@@ -1052,6 +1069,7 @@
 				F46368DD2B170E81006B2E6D /* CustomerRegisterVC.xib in Resources */,
 				F40E0C042B454F9C0003755E /* HistoryCVCell.xib in Resources */,
 				F44F94802B2855170068E2A6 /* AddCartSuccessfullyPopupView.xib in Resources */,
+				F4C8A3042B5E415300DCC06D /* AgencyVC.xib in Resources */,
 				F48B3BA22B4D037E008C008B /* PharmacyProfileVC.xib in Resources */,
 				F4B0AA4A2B1F6F50005C5FF7 /* ManagementVC.xib in Resources */,
 				F45A1BB02B4C201200EF39E2 /* ManagementCell.xib in Resources */,
@@ -1181,6 +1199,7 @@
 				F4ADCE282B559D9C00D9C78D /* HomeVC+Extensions.swift in Sources */,
 				F491C81C2B4D26A800AA0EC3 /* Profile.swift in Sources */,
 				F45A1BB92B4C3F6300EF39E2 /* ContactCell.swift in Sources */,
+				F4C8A3032B5E415300DCC06D /* AgencyVC.swift in Sources */,
 				F46D92B12B3AB00500B71CC1 /* CategoryCVCell.swift in Sources */,
 				F4B0AA452B1F6F3C005C5FF7 /* HistoryVC.swift in Sources */,
 				F4098D752B4536E3003991B2 /* OrderHistoryResponse.swift in Sources */,
@@ -1194,6 +1213,7 @@
 				F40E0C0D2B45677F0003755E /* OrderDetailResponse.swift in Sources */,
 				F4902E1A2B32D0D100F3FBFB /* DiscountResponse.swift in Sources */,
 				F4CA69722B200A3A00683383 /* HomepageResponse.swift in Sources */,
+				F4C8A3072B5E558300DCC06D /* AgencyCategoryResponse.swift in Sources */,
 				F45A1BBC2B4C408D00EF39E2 /* ContactInfo.swift in Sources */,
 				F40E0C032B454F9C0003755E /* HistoryCVCell.swift in Sources */,
 				F488269F2B1774A4000C41A5 /* FloatingTextField.swift in Sources */,

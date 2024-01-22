@@ -37,6 +37,16 @@ final class ManagementVC: BaseViewController {
         MenuItem(title: "Chính sách kiểm hàng", imageName: "checkmark.seal.fill"),
         MenuItem(title: "Nghĩa vụ của người bán và khách hàng trong mỗi giao dịch", imageName: "person.2.fill"),
     ]
+    
+//    init() {
+//        super.init(nibName: nil, bundle: nil)
+//        hidesBottomBarWhenPushed = true
+//    }
+//
+//    @available(*, unavailable)
+//    required init?(coder _: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +85,13 @@ extension ManagementVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         cell.cellTapOnClick = { [weak self] in
             DispatchQueue.main.async { [self] in
                 if indexPath.item > 3 {
-                    let url = URL(string: "\(EndPointURL.GENERAL_INFO) + \(indexPath.item - 3)")
-                    let paymentWebView = WebViewVC(url: url!)
-                    paymentWebView.navTitle = menuItem.title
-                    self?.pushWithCrossDissolve(paymentWebView)
+                    if let url = URL(string: "\(EndPointURL.GENERAL_INFO)\(indexPath.item - 3)") {
+                        let paymentWebView = WebViewVC(url: url)
+                        paymentWebView.navTitle = menuItem.title
+                        self?.pushWithCrossDissolve(paymentWebView)
+                    } else {
+                        print("URL is invalid!")
+                    }
                 } else {
                     switch indexPath.item {
                     case 0:
@@ -87,6 +100,8 @@ extension ManagementVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
                         self?.pushWithCrossDissolve(vc)
                     case 1:
                         print(indexPath.item)
+                        let vc = AgencyVC()
+                        self?.pushWithCrossDissolve(vc)
                     case 2:
                         let vc = ContactVC()
                         self?.pushWithCrossDissolve(vc)

@@ -18,7 +18,7 @@ enum APIError: Error, Codable {
 }
 
 enum APIService {
-    case provinces, homepage, cart, category
+    case provinces, homepage, cart, category, agencyCategory
     case agency(provinceID: Int)
     case addCart(id: Int, number: Int)
     case voucher(cartIDs: [Int])
@@ -27,6 +27,7 @@ enum APIService {
     case onlinePayment(params: Payment)
     case categoryType(type: String, page: Int, search: String?)
     case product(page: Int?, category: String?, search: String?, hoatChat: Int?, nhomThuoc: Int?, nhaSanXuat: Int?, hastag: Int?)
+    case agencyProducts(page: Int?, category: String?, search: String?, hoatChat: Int?, nhomThuoc: Int?, nhaSanXuat: Int?)
     case search(search: String?)
     case login(username: String, password: String)
     case loginCustomer(username: String, password: String)
@@ -92,21 +93,25 @@ extension APIService: TargetType {
             return EndPointURL.PROFILE
         case .logout:
             return EndPointURL.LOGOUT
+        case .agencyCategory:
+            return EndPointURL.AGENCY_CATEGORY
+        case .agencyProducts:
+            return EndPointURL.AGENCY_PRODUCTS
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .provinces, .agency, .homepage, .voucher, .category, .contact, .news, .profile:
+        case .provinces, .agency, .homepage, .voucher, .category, .contact, .news, .profile, .agencyCategory:
             return .get
-        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout:
+        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout, .agencyProducts:
             return .post
         }
     }
 
     var task: Task {
         switch self {
-        case .provinces, .homepage, .cart, .category, .contact, .news, .profile, .logout:
+        case .provinces, .homepage, .cart, .category, .contact, .news, .profile, .logout, .agencyCategory:
             return .requestPlain
 
         case let .agency(provinceID):
@@ -246,6 +251,17 @@ extension APIService: TargetType {
             }
 
             return .uploadMultipart(formData)
+        case let .agencyProducts(page, category, search, hoatChat, nhomThuoc, nhaSanXuat):
+            var parameters: [String: Any] = [:]
+
+            if let page = page { parameters["page"] = page }
+            if let category = category { parameters["category"] = category }
+            if let search = search { parameters["search"] = search }
+            if let hoatChat = hoatChat { parameters["hoat_chat"] = hoatChat }
+            if let nhomThuoc = nhomThuoc { parameters["nhom_thuoc"] = nhomThuoc }
+            if let nhaSanXuat = nhaSanXuat { parameters["nha_san_xuat"] = nhaSanXuat }
+
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 
@@ -388,6 +404,17 @@ class NetworkManager {
 
     func updateProfile(profileRequest: Profile, fileData: Data?, completion: @escaping (Result<UpdatedProfileResponse, APIError>) -> Void) {
         let endpoint = APIService.updateProfile(profileRequest: profileRequest, fileData: fileData)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    // Agency category
+    func fetchAgencyCategory(completion: @escaping (Result<AgencyCategoryResponse, APIError>) -> Void) {
+        let endpoint = APIService.agencyCategory
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func fetchAgencyProducts(page: Int?, category: String?, search: String?, hoatChat: Int?, nhomThuoc: Int?, nhaSanXuat: Int?, completion: @escaping (Result<AgencyProducts, APIError>) -> Void) {
+        let endpoint = APIService.agencyProducts(page: page, category: category, search: search, hoatChat: hoatChat, nhomThuoc: nhomThuoc, nhaSanXuat: nhaSanXuat)
         request(endpoint: endpoint, completion: completion)
     }
 

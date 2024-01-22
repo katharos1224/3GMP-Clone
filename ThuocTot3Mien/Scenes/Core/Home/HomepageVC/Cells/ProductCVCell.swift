@@ -20,9 +20,9 @@ class ProductCVCell: UICollectionViewCell {
     @IBOutlet var unitPriceLabel: UILabel!
     @IBOutlet var minAmountLabel: UILabel!
     @IBOutlet var maxAmountLabel: UILabel!
-
     @IBOutlet var addCartButton: UIButton!
-
+    @IBOutlet var editStack: UIStackView!
+    
     static let identifier: String = "ProductCVCell"
 
     var addToCartOnClick: (() -> Void)?
@@ -193,6 +193,56 @@ class ProductCVCell: UICollectionViewCell {
         addCartButton.backgroundColor = memberStatus == 2 && categoryProductData.soLuong != 0 ? .systemGreen : .lightGray
         addCartButton.isUserInteractionEnabled = memberStatus == 2 && categoryProductData.soLuong != 0 ? true : false
         addCartButton.setTitle(categoryProductData.soLuong != 0 ? "Thêm giỏ hàng" : "Hết hàng", for: .normal)
+
+        layoutIfNeeded()
+    }
+    
+    func configure(agencyProductData: AgencyProduct, memberStatus: Int) {
+        addCartButton.isHidden = true
+        editStack.isHidden = false
+        
+        discountView.isHidden = agencyProductData.khuyenMai != nil ? false : true
+//        bonusCoinsLabel.isHidden = categoryProductData.bonusCoins != nil && categoryProductData.bonusCoins != 0 ? false : true
+        bonusCoinsLabel.isHidden = true
+
+//        bonusCoinsLabel.text = "Tặng \(String(describing: categoryProductData.bonusCoins ?? 0)) Coins"
+        discountLabel.text = "-\(String(describing: Int(ceil(agencyProductData.khuyenMai ?? 0))))%"
+        productNameLabel.text = agencyProductData.tenSanPham
+        packingLabel.text = agencyProductData.quyCachDongGoi
+        discountPriceLabel.text = "\(Int(ceil(agencyProductData.discountPrice))) VNĐ"
+
+        let unitPriceText = "\(Int(agencyProductData.donGia)) VNĐ"
+
+        unitPriceLabel.attributedText = agencyProductData.khuyenMai != nil ? unitPriceText.strikethrough() : unitPriceText.strikethrough(useStrikethrough: false)
+//        unitPriceLabel.textColor = categoryProductData.khuyenMai != nil && memberStatus == 2 ? .label : .systemGreen
+//        discountPriceLabel.isHidden = categoryProductData.khuyenMai != nil && memberStatus == 2 ? false : true
+        unitPriceLabel.textColor = agencyProductData.khuyenMai != nil ? .black : .systemGreen
+        discountPriceLabel.isHidden = agencyProductData.khuyenMai != nil ? false : true
+
+        unitPriceLabel.isHidden = memberStatus == 1 ? true : false
+        if agencyProductData.khuyenMai != nil {
+            discountPriceLabel.isHidden = memberStatus == 1 ? true : false
+        }
+
+        if let minNumber = agencyProductData.soLuongToiThieu {
+            minAmountLabel.isHidden = false
+            minAmountLabel.text = "Số lượng tối thiểu: \(minNumber)"
+        } else {
+            minAmountLabel.isHidden = true
+        }
+
+        if let maxNumber = agencyProductData.soLuongToiDa {
+            maxAmountLabel.isHidden = false
+            maxAmountLabel.text = "Số lượng tối đa: \(maxNumber)"
+        } else {
+            maxAmountLabel.isHidden = true
+        }
+
+        productImage.sd_setImage(with: URL(string: agencyProductData.imgURL), placeholderImage: UIImage(systemName: "photo"))
+
+//        addCartButton.backgroundColor = memberStatus == 2 && agencyProductData.soLuong != 0 ? .systemGreen : .lightGray
+//        addCartButton.isUserInteractionEnabled = memberStatus == 2 && agencyProductData.soLuong != 0 ? true : false
+//        addCartButton.setTitle(agencyProductData.soLuong != 0 ? "Thêm giỏ hàng" : "Hết hàng", for: .normal)
 
         layoutIfNeeded()
     }

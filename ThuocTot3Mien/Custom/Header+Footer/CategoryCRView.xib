@@ -64,6 +64,7 @@
             </constraints>
             <connections>
                 <outlet property="containerView" destination="VZH-iS-cG1" id="sK1-HR-Cvs"/>
+                <outlet property="icon" destination="jNZ-dl-ddw" id="9MA-sr-eVp"/>
                 <outlet property="image" destination="XEa-Ho-1Jl" id="tZ9-uf-hi9"/>
                 <outlet property="name" destination="yWK-kb-058" id="lhp-FC-ADW"/>
             </connections>

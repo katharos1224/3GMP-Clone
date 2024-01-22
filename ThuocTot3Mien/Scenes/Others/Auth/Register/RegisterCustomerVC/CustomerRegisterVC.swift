@@ -172,14 +172,16 @@ final class CustomerRegisterVC: BaseViewController {
 
     private func setupRegisterObserver(customer: Customer, imageData: Data) {
         viewModel.registerCustomer(customer: customer, imageData: imageData)
-            .sink { _ in }
+            .sink { _ in
+//                self.popWithCrossDissolve()
+            }
             .store(in: &cancellables)
     }
 
     private func setupViewModel() {
         viewModel.updateUI = { [weak self] in
             let action = UIAlertAction(title: "OK", style: .default) { _ in
-                self?.hide()
+                self?.popWithCrossDissolve()
             }
 
             DispatchQueue.main.async {

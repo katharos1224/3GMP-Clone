@@ -15,6 +15,7 @@ final class ProductsVC: BaseViewController {
 
     var titleLabel: String = ""
     var categoryProducts: [CategoryProduct] = []
+    var agencyProducts: [AgencyProduct] = []
     var memberStatus: Int = 0
     var totalNumber: Int = 0
 
@@ -105,28 +106,36 @@ final class ProductsVC: BaseViewController {
 
 extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return categoryProducts.count
+        return agencyProducts.isEmpty ? categoryProducts.count : agencyProducts.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCVCell.identifier, for: indexPath) as! ProductCVCell
+        if agencyProducts.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCVCell.identifier, for: indexPath) as! ProductCVCell
 
-        cell.configure(categoryProductData: categoryProducts[indexPath.item], memberStatus: memberStatus)
+            cell.configure(categoryProductData: categoryProducts[indexPath.item], memberStatus: memberStatus)
 
-        cell.addCartButton.backgroundColor = memberStatus == 2 ? .systemGreen : .placeholderText
-        cell.addCartButton.isUserInteractionEnabled = memberStatus == 2 ? true : false
+            cell.addCartButton.backgroundColor = memberStatus == 2 ? .systemGreen : .placeholderText
+            cell.addCartButton.isUserInteractionEnabled = memberStatus == 2 ? true : false
 
-        if cell.addCartButton.isUserInteractionEnabled {
-            cell.addToCartOnClick = { [self] in
-                print("Added to cart!")
+            if cell.addCartButton.isUserInteractionEnabled {
+                cell.addToCartOnClick = { [self] in
+                    print("Added to cart!")
+                }
             }
-        }
 
-        cell.cellTapOnClick = { [self] in
-            print("Cell got tap!!!!!!")
-        }
+            cell.cellTapOnClick = { [self] in
+                print("Cell got tap!!!!!!")
+            }
 
-        return cell
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCVCell.identifier, for: indexPath) as! ProductCVCell
+            
+            cell.configure(agencyProductData: agencyProducts[indexPath.item], memberStatus: memberStatus)
+
+            return cell
+        }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate _: Bool) {

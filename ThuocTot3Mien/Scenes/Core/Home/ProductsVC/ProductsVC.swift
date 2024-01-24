@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FFPopup
 
 final class ProductsVC: BaseViewController {
     @IBOutlet var bannerView: BannerView!
@@ -28,12 +29,22 @@ final class ProductsVC: BaseViewController {
     var category: String?
 
     let cellWidth = (1 / 2) * Constants.WIDTH_SCREEN - 24
-    let cellHeight = (9 / 10) * Constants.WIDTH_SCREEN
+    var cellHeight = (9 / 10) * Constants.WIDTH_SCREEN
     let spacing = Constants.SPACING
     let padding = Constants.PADDING
 
     let bannerWidth = Constants.WIDTH_SCREEN - 32
     let bannerHeight = (264 / 651) * (Constants.WIDTH_SCREEN - 32)
+    
+    let EditProductContentView: EditProductView = {
+        let width = (17 / 20) * Constants.WIDTH_SCREEN
+        let height = width * (9 / 20)
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let view = EditProductView(frame: frame)
+        return view
+    }()
+
+    var editProductViewPopupView = FFPopup()
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -62,6 +73,12 @@ final class ProductsVC: BaseViewController {
             } else {
                 self.show(vc)
             }
+        }
+        
+        if !agencyProducts.isEmpty {
+            bannerView.stackBar.isHidden = true
+            bannerView.titleLabel.isHidden = false
+            bannerView.titleLabel.text = titleLabel
         }
 
         let layout = PagingCollectionViewLayout()
@@ -98,6 +115,17 @@ final class ProductsVC: BaseViewController {
         let contentHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
         heightConstraint.constant = contentHeight
     }
+    
+    func showEditPopup() {
+        editProductViewPopupView = FFPopup(contentView: EditProductContentView, showType: .fadeIn, dismissType: .fadeOut, maskType: .dimmed, dismissOnBackgroundTouch: true, dismissOnContentTouch: true)
+
+        let layout = FFPopupLayout(horizontal: .center, vertical: .center)
+        editProductViewPopupView.show(layout: layout)
+    }
+
+    func dismissPopup() {
+        editProductViewPopupView.dismiss(animated: true)
+    }
 
     @IBAction func backAction(_: Any) {
         popWithCrossDissolve()
@@ -133,6 +161,88 @@ extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCVCell.identifier, for: indexPath) as! ProductCVCell
             
             cell.configure(agencyProductData: agencyProducts[indexPath.item], memberStatus: memberStatus)
+            
+            cell.hideOnClick = { [self] in
+                let view = EditProductContentView
+                let buttonTitle = cell.isHiddenProduct ? "Hiện ở gian hàng" : "Ẩn khỏi gian hàng"
+                
+                view.agreeButton.setTitle(buttonTitle, for: .normal)
+                view.productName.text = agencyProducts[indexPath.item].tenSanPham
+                
+                view.agreeOnClick = { [self] in
+//                    cell.isHiddenProduct.toggle()
+                    
+                    NetworkManager.shared.showProduct(id: agencyProducts[indexPath.item].id) { [weak self] result in
+                        switch result {
+                        case .success(let data):
+                            guard data.response != nil else {
+                                print(data.message)
+                                return
+                            }
+                            
+                            cell.isHiddenProduct.toggle()
+                            
+                            DispatchQueue.main.async {
+                                cell.hideButton.tintColor = !cell.isHiddenProduct ? .systemGreen : .systemGray
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.async { [self] in
+                    showEditPopup()
+                }
+            }
+            
+            cell.bestSellerOnClick = { [self] in
+                let view = EditProductContentView
+                let buttonTitle = cell.isBestSeller ? "Xoá bán chạy" : "Thêm bán chạy"
+                
+                view.agreeButton.setTitle(buttonTitle, for: .normal)
+                view.productName.text = agencyProducts[indexPath.item].tenSanPham
+                
+                view.agreeOnClick = { [self] in
+                    NetworkManager.shared.pinBestSeller(id: agencyProducts[indexPath.item].id) { [weak self] result in
+                        switch result {
+                        case .success(let data):
+                            guard data.response != nil else {
+                                print(data.message)
+                                return
+                            }
+                            
+                            cell.isBestSeller.toggle()
+                            
+                            DispatchQueue.main.async {
+                                cell.bestSellerButton.tintColor = cell.isBestSeller ? .systemGreen : .systemGray
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.async { [self] in
+                    showEditPopup()
+                }
+            }
+            
+            cell.editOnClick = {
+                let vc = WebViewVC()
+                let id = "\(self.agencyProducts[indexPath.item].id)"
+                vc.isEditProduct = true
+                vc.productID = id
+                vc.navTitle = "Chỉnh sửa sản phẩm"
+                
+                DispatchQueue.main.async {
+                    self.show(vc)
+                }
+            }
+            
+            cell.deleteOnClick = {
+                
+            }
 
             return cell
         }

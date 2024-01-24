@@ -12,6 +12,11 @@ final class AgencyVC: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var agencyCategory: [AgencyCategory] = []
+    var categoryName: String = ""
+    var categoryKey: String = ""
+    var bestSellerOnClick: (() -> Void)?
+    var discountOnClick: (() -> Void)?
+    var allProductsOnClick: (() -> Void)?
     
     let cellWidth = Constants.WIDTH_SCREEN - 32
     let cellHeight = (1 / 9) * Constants.WIDTH_SCREEN
@@ -38,7 +43,9 @@ final class AgencyVC: BaseViewController {
         
         bannerView.titleLabel.isHidden = false
         bannerView.stackBar.isHidden = true
-        bannerView.titleLabel.text = "Nha thuoc abcxyz"
+        if let pharmacyName = UserDefaults.standard.string(forKey: "pharmacyName") {
+            bannerView.titleLabel.text = pharmacyName
+        }
         bannerView.dismiss = {
             self.popWithCrossDissolve()
         }
@@ -84,14 +91,16 @@ final class AgencyVC: BaseViewController {
     }
     
     @IBAction func bestSellerTapped() {
+        bestSellerOnClick?()
     }
     
     @IBAction func discountTapped() {
+        discountOnClick?()
     }
     
     @IBAction func allProductTapped() {
+        allProductsOnClick?()
     }
-    
 
 }
 
@@ -101,6 +110,77 @@ extension AgencyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            bestSellerOnClick = {
+                NetworkManager.shared.fetchAgencyProducts(page: nil, category: "ban_chay", search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil) { [weak self] result in
+                    switch result {
+                    case let .success(data):
+                        guard let response = data.response else {
+                            print(data.message)
+                            return
+                        }
+                        let vc = ProductsVC()
+                        vc.titleLabel = "Bán chạy"
+                        vc.agencyProducts = response.data
+                        vc.lastPage = response.lastPage
+                        vc.cellHeight = (17 / 20) * Constants.WIDTH_SCREEN
+
+                        DispatchQueue.main.async {
+                            self?.pushWithCrossDissolve(vc)
+                        }
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        case 1:
+            discountOnClick = {
+                NetworkManager.shared.fetchAgencyProducts(page: nil, category: "khuyen_mai", search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil) { [weak self] result in
+                    switch result {
+                    case let .success(data):
+                        guard let response = data.response else {
+                            print(data.message)
+                            return
+                        }
+                        let vc = ProductsVC()
+                        vc.titleLabel = "Khuyến mãi"
+                        vc.agencyProducts = response.data
+                        vc.lastPage = response.lastPage
+                        vc.cellHeight = (17 / 20) * Constants.WIDTH_SCREEN
+
+                        DispatchQueue.main.async {
+                            self?.pushWithCrossDissolve(vc)
+                        }
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        default:
+            allProductsOnClick = {
+                NetworkManager.shared.fetchAgencyProducts(page: nil, category: "all", search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil) { [weak self] result in
+                    switch result {
+                    case let .success(data):
+                        guard let response = data.response else {
+                            print(data.message)
+                            return
+                        }
+                        let vc = ProductsVC()
+                        vc.titleLabel = "Tất cả sản phẩm"
+                        vc.agencyProducts = response.data
+                        vc.lastPage = response.lastPage
+                        vc.cellHeight = (17 / 20) * Constants.WIDTH_SCREEN
+
+                        DispatchQueue.main.async {
+                            self?.pushWithCrossDissolve(vc)
+                        }
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
         return agencyCategory[section].category.count
     }
     
@@ -117,8 +197,9 @@ extension AgencyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
             vc.section = indexPath.section
             vc.id = id
             vc.titleLabel = name
+            vc.cellHeight = (17 / 20) * Constants.WIDTH_SCREEN
 
-            NetworkManager.shared.fetchAgencyProducts(page: nil, category: key, search: nil, hoatChat: indexPath.section == 0 ? id : nil, nhomThuoc: indexPath.section == 1 ? id : nil, nhaSanXuat: indexPath.section == 2 ? id : nil) { result in
+            NetworkManager.shared.fetchAgencyProducts(page: nil, category: key, search: nil, hoatChat: indexPath.section == 0 ? id : nil, nhomThuoc: indexPath.section == 1 ? id : nil, nhaSanXuat: indexPath.section == 2 ? id : nil) { [weak self] result in
                 switch result {
                 case let .success(data):
                     guard let response = data.response else {

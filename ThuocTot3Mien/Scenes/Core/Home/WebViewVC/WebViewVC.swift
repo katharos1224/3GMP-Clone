@@ -14,6 +14,8 @@ final class WebViewVC: BaseViewController {
 
     var targetURL: URL?
     var navTitle: String?
+    var isEditProduct: Bool = false
+    var productID: String?
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -34,8 +36,14 @@ final class WebViewVC: BaseViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
 
-        if let url = targetURL {
-            loadWebView(with: url)
+        if isEditProduct {
+            if let id = productID {
+                loadWebViewWithToken(with: id)
+            }
+        } else {
+            if let url = targetURL {
+                loadWebView(with: url)
+            }
         }
 
         let backButton = UIBarButtonItem(title: "Trở về", style: .plain, target: self, action: #selector(dismissWebViewVC))
@@ -47,6 +55,28 @@ final class WebViewVC: BaseViewController {
     func loadWebView(with url: URL) {
         let request = URLRequest(url: url)
         paymentWebView.load(request)
+        DispatchQueue.main.async {
+            self.hideLoadingIndicator()
+        }
+    }
+    
+    func loadWebViewWithToken(with id: String) {
+        let urlString = "http://18.138.176.213/agency/products/edit/\(id)"
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        
+        guard let token = KeychainService.getToken() else {
+            return
+        }
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        paymentWebView.load(request)
+        
         DispatchQueue.main.async {
             self.hideLoadingIndicator()
         }

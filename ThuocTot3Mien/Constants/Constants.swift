@@ -44,6 +44,8 @@ enum EndPointURL {
     static let GENERAL_INFO: String = "http://18.138.176.213/system/general_information/"
     static let AGENCY_CATEGORY: String = "agency/category"
     static let AGENCY_PRODUCTS: String = "agency/products"
+    static let SHOW_PRODUCT: String = "agency/product/change_of_status"
+    static let PIN_BEST_SELLER: String = "agency/product/bestseller"
 }
 
 enum TabItemTitles: String {

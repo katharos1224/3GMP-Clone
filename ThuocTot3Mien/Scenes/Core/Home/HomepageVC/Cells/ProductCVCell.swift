@@ -22,11 +22,21 @@ class ProductCVCell: UICollectionViewCell {
     @IBOutlet var maxAmountLabel: UILabel!
     @IBOutlet var addCartButton: UIButton!
     @IBOutlet var editStack: UIStackView!
+    @IBOutlet var hideButton: UIButton!
+    @IBOutlet var bestSellerButton: UIButton!
     
     static let identifier: String = "ProductCVCell"
 
     var addToCartOnClick: (() -> Void)?
     var cellTapOnClick: (() -> Void)?
+    
+    var bestSellerOnClick: (() -> Void)?
+    var hideOnClick: (() -> Void)?
+    var editOnClick: (() -> Void)?
+    var deleteOnClick: (() -> Void)?
+    
+    var isHiddenProduct: Bool = false
+    var isBestSeller: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,7 +84,23 @@ class ProductCVCell: UICollectionViewCell {
     @IBAction func addToCardTapped(_: CustomButton) {
         addToCartOnClick?()
     }
-
+    
+    @IBAction func hideTapped() {
+        hideOnClick?()
+    }
+    
+    @IBAction func bestSellerTapped() {
+        bestSellerOnClick?()
+    }
+    
+    @IBAction func editTapped() {
+        editOnClick?()
+    }
+    
+    @IBAction func deleteTapped() {
+        deleteOnClick?()
+    }
+    
     func configure(productData: ProductData, memberStatus: Int) {
         discountView.isHidden = productData.khuyenMai != nil ? false : true
         bonusCoinsLabel.isHidden = productData.bonusCoins != nil && productData.bonusCoins != 0 ? false : true
@@ -200,6 +226,12 @@ class ProductCVCell: UICollectionViewCell {
     func configure(agencyProductData: AgencyProduct, memberStatus: Int) {
         addCartButton.isHidden = true
         editStack.isHidden = false
+        
+        isHiddenProduct = agencyProductData.trangThai != 1 ? true : false
+        hideButton.tintColor = agencyProductData.trangThai == 1 ? .systemGreen : .systemGray
+        
+        isBestSeller = agencyProductData.banChay == 1 ? true : false
+        bestSellerButton.tintColor = agencyProductData.banChay == 1 ? .systemGreen : .systemGray
         
         discountView.isHidden = agencyProductData.khuyenMai != nil ? false : true
 //        bonusCoinsLabel.isHidden = categoryProductData.bonusCoins != nil && categoryProductData.bonusCoins != 0 ? false : true

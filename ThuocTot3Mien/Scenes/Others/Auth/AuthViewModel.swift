@@ -37,6 +37,15 @@ class AuthViewModel {
                             guard let token = result.response?.token else { return }
                             KeychainService.saveToken(token: token)
                             self.updateUI?()
+                            
+                            guard let name = result.response?.name, let pharmacyName = result.response?.pharmacy, let phone = result.response?.phoneNumber, let address = result.response?.address else { return }
+                            UserDefaults.standard.set(name, forKey: "name")
+                            UserDefaults.standard.set(pharmacyName, forKey: "pharmacyName")
+                            UserDefaults.standard.set(phone, forKey: "phone")
+                            UserDefaults.standard.set(address, forKey: "address")
+                            if let email = result.response?.email {
+                                UserDefaults.standard.set(email, forKey: "email")
+                            }
                         }
                     case .failure:
                         promise(.success(false))

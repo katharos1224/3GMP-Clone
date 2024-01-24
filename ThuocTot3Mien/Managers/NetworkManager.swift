@@ -40,6 +40,8 @@ enum APIService {
     case profile
     case updateProfile(profileRequest: Profile, fileData: Data?)
     case logout
+    case showProduct(id: Int)
+    case pinBestSeller(id: Int)
 }
 
 extension APIService: TargetType {
@@ -97,6 +99,10 @@ extension APIService: TargetType {
             return EndPointURL.AGENCY_CATEGORY
         case .agencyProducts:
             return EndPointURL.AGENCY_PRODUCTS
+        case .showProduct:
+            return EndPointURL.SHOW_PRODUCT
+        case .pinBestSeller:
+            return EndPointURL.PIN_BEST_SELLER
         }
     }
 
@@ -104,7 +110,7 @@ extension APIService: TargetType {
         switch self {
         case .provinces, .agency, .homepage, .voucher, .category, .contact, .news, .profile, .agencyCategory:
             return .get
-        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout, .agencyProducts:
+        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout, .agencyProducts, .showProduct, .pinBestSeller:
             return .post
         }
     }
@@ -262,6 +268,8 @@ extension APIService: TargetType {
             if let nhaSanXuat = nhaSanXuat { parameters["nha_san_xuat"] = nhaSanXuat }
 
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case let .showProduct(id), let .pinBestSeller(id):
+            return .requestParameters(parameters: ["id": id], encoding: JSONEncoding.default)
         }
     }
 
@@ -415,6 +423,17 @@ class NetworkManager {
     
     func fetchAgencyProducts(page: Int?, category: String?, search: String?, hoatChat: Int?, nhomThuoc: Int?, nhaSanXuat: Int?, completion: @escaping (Result<AgencyProducts, APIError>) -> Void) {
         let endpoint = APIService.agencyProducts(page: page, category: category, search: search, hoatChat: hoatChat, nhomThuoc: nhomThuoc, nhaSanXuat: nhaSanXuat)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    // Products management
+    func showProduct(id: Int, completion: @escaping (Result<ShowProductResponse, APIError>) -> Void) {
+        let endpoint = APIService.showProduct(id: id)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func pinBestSeller(id: Int, completion: @escaping (Result<ShowProductResponse, APIError>) -> Void) {
+        let endpoint = APIService.pinBestSeller(id: id)
         request(endpoint: endpoint, completion: completion)
     }
 

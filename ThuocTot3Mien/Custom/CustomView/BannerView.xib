@@ -15,6 +15,7 @@
                 <outlet property="cartButton" destination="YpV-qa-jtr" id="ErL-L2-fRe"/>
                 <outlet property="clearImage" destination="KGL-Bj-u8g" id="ux3-Y9-7im"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="S25-Lo-Ync"/>
+                <outlet property="createButton" destination="rmW-WW-1gN" id="m0k-0Q-C09"/>
                 <outlet property="image" destination="2uY-jc-eco" id="PZN-cp-lGo"/>
                 <outlet property="label" destination="muT-2k-NMl" id="A8K-F7-etr"/>
                 <outlet property="searchImage" destination="m8k-1B-BeO" id="QjY-f5-2UI"/>
@@ -80,8 +81,20 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="cart.fill" catalog="system"/>
                             <connections>
-                                <action selector="dismissVC" destination="-1" eventType="touchUpInside" id="5Of-Al-F7N"/>
                                 <action selector="goToCartTapped" destination="-1" eventType="touchUpInside" id="n0U-Ga-bM4"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmW-WW-1gN">
+                            <rect key="frame" x="394" y="8" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="KYa-ee-85s"/>
+                                <constraint firstAttribute="width" secondItem="rmW-WW-1gN" secondAttribute="height" id="eay-Ll-GnC"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="link.badge.plus" catalog="system"/>
+                            <connections>
+                                <action selector="createProductTapped" destination="-1" eventType="touchUpInside" id="LOl-05-p9K"/>
                             </connections>
                         </button>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l49-H3-7cz" userLabel="Total Cart View">
@@ -113,9 +126,12 @@
                         <constraint firstAttribute="trailing" secondItem="YpV-qa-jtr" secondAttribute="trailing" constant="16" id="L0o-Wd-NfF"/>
                         <constraint firstItem="dBb-4O-dMe" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="Mha-Da-HnH"/>
                         <constraint firstItem="l49-H3-7cz" firstAttribute="trailing" secondItem="YpV-qa-jtr" secondAttribute="trailing" id="Mzg-YS-8QZ"/>
+                        <constraint firstItem="rmW-WW-1gN" firstAttribute="centerX" secondItem="YpV-qa-jtr" secondAttribute="centerX" id="OMt-t4-0tu"/>
                         <constraint firstItem="YpV-qa-jtr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dBb-4O-dMe" secondAttribute="trailing" constant="16" id="RgG-1u-6bY"/>
                         <constraint firstItem="YpV-qa-jtr" firstAttribute="centerY" secondItem="e2t-qA-MSn" secondAttribute="centerY" id="Wd1-hN-WyV"/>
+                        <constraint firstItem="rmW-WW-1gN" firstAttribute="centerY" secondItem="YpV-qa-jtr" secondAttribute="centerY" id="c0f-nA-PUv"/>
                         <constraint firstAttribute="height" constant="56" id="cYY-UV-WTf"/>
+                        <constraint firstItem="rmW-WW-1gN" firstAttribute="width" secondItem="rmW-WW-1gN" secondAttribute="height" id="pgz-mw-yTe"/>
                         <constraint firstItem="cfE-kg-IL8" firstAttribute="centerX" secondItem="e2t-qA-MSn" secondAttribute="centerX" id="yVu-YM-W4T"/>
                     </constraints>
                 </view>
@@ -201,6 +217,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
+        <image name="link.badge.plus" catalog="system" width="128" height="122"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemIndigoColor">

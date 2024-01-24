@@ -15,6 +15,7 @@ final class WebViewVC: BaseViewController {
     var targetURL: URL?
     var navTitle: String?
     var isEditProduct: Bool = false
+    var isCreateProduct: Bool = false
     var productID: String?
 
     init() {
@@ -38,8 +39,10 @@ final class WebViewVC: BaseViewController {
 
         if isEditProduct {
             if let id = productID {
-                loadWebViewWithToken(with: id)
+                loadEditProductWebView(with: id)
             }
+        } else if isCreateProduct {
+            loadCreateProductWebView()
         } else {
             if let url = targetURL {
                 loadWebView(with: url)
@@ -60,8 +63,30 @@ final class WebViewVC: BaseViewController {
         }
     }
     
-    func loadWebViewWithToken(with id: String) {
+    func loadEditProductWebView(with id: String) {
         let urlString = "http://18.138.176.213/agency/products/edit/\(id)"
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        
+        guard let token = KeychainService.getToken() else {
+            return
+        }
+        
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        paymentWebView.load(request)
+        
+        DispatchQueue.main.async {
+            self.hideLoadingIndicator()
+        }
+    }
+    
+    func loadCreateProductWebView() {
+        let urlString = "http://18.138.176.213/agency/products/create"
         
         guard let url = URL(string: urlString) else {
             return

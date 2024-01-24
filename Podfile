@@ -14,5 +14,6 @@ target 'ThuocTot3Mien' do
   pod 'Moya'
   pod 'SnapKit'
   pod 'LZViewPager'
+  pod 'SwipeCellKit'
 
 end

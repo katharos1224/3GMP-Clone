@@ -42,6 +42,11 @@ enum APIService {
     case logout
     case showProduct(id: Int)
     case pinBestSeller(id: Int)
+    case deleteProduct(id: Int)
+    case agencyCategoryType(type: String, page: Int?, search: String?)
+    case createAgencyCategoryType(type: String, name: String)
+    case editAgencyCategoryType(type: String, id: Int, name: String)
+    case deleteAgencyCategoryType(type: String, id: Int)
 }
 
 extension APIService: TargetType {
@@ -103,6 +108,16 @@ extension APIService: TargetType {
             return EndPointURL.SHOW_PRODUCT
         case .pinBestSeller:
             return EndPointURL.PIN_BEST_SELLER
+        case .deleteProduct:
+            return EndPointURL.DELETE_PRODUCT
+        case .agencyCategoryType:
+            return EndPointURL.AGENCY_CATEGORY_TYPE
+        case .createAgencyCategoryType:
+            return EndPointURL.AGENCY_CATEGORY_TYPE_CREATE
+        case .editAgencyCategoryType:
+            return EndPointURL.AGENCY_CATEGORY_TYPE_EDIT
+        case .deleteAgencyCategoryType:
+            return EndPointURL.AGENCY_CATEGORY_TYPE_DELETE
         }
     }
 
@@ -110,7 +125,7 @@ extension APIService: TargetType {
         switch self {
         case .provinces, .agency, .homepage, .voucher, .category, .contact, .news, .profile, .agencyCategory:
             return .get
-        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout, .agencyProducts, .showProduct, .pinBestSeller:
+        case .login, .loginCustomer, .register, .registerCustomer, .addCart, .cart, .discount, .codPayment, .onlinePayment, .categoryType, .product, .search, .history, .historyDetail, .updateProfile, .logout, .agencyProducts, .showProduct, .pinBestSeller, .deleteProduct, .agencyCategoryType, .createAgencyCategoryType, .editAgencyCategoryType, .deleteAgencyCategoryType:
             return .post
         }
     }
@@ -257,6 +272,7 @@ extension APIService: TargetType {
             }
 
             return .uploadMultipart(formData)
+            
         case let .agencyProducts(page, category, search, hoatChat, nhomThuoc, nhaSanXuat):
             var parameters: [String: Any] = [:]
 
@@ -268,8 +284,25 @@ extension APIService: TargetType {
             if let nhaSanXuat = nhaSanXuat { parameters["nha_san_xuat"] = nhaSanXuat }
 
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case let .showProduct(id), let .pinBestSeller(id):
+            
+        case let .showProduct(id), let .pinBestSeller(id), let .deleteProduct(id):
             return .requestParameters(parameters: ["id": id], encoding: JSONEncoding.default)
+            
+        case let .agencyCategoryType(type, page, search):
+            let parameters: [String: Any] = ["type": type, "page": page as Any, "search": search as Any]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case let .createAgencyCategoryType(type, name):
+            let parameters: [String: Any] = ["type": type, "name": name]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case let .editAgencyCategoryType(type, id, name):
+            let parameters: [String: Any] = ["type": type, "id": id, "name": name]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case let .deleteAgencyCategoryType(type, id):
+            let parameters: [String: Any] = ["type": type, "id": id]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 
@@ -434,6 +467,31 @@ class NetworkManager {
     
     func pinBestSeller(id: Int, completion: @escaping (Result<ShowProductResponse, APIError>) -> Void) {
         let endpoint = APIService.pinBestSeller(id: id)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func deleteProduct(id: Int, completion: @escaping (Result<ShowProductResponse, APIError>) -> Void) {
+        let endpoint = APIService.deleteProduct(id: id)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func fetchAgencyCategoryType(type: String, page: Int?, search: String?, completion: @escaping (Result<AgencyCategoryTypeResponse, APIError>) -> Void) {
+        let endpoint = APIService.agencyCategoryType(type: type, page: page, search: search)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func createAgencyCategoryType(type: String, name: String, completion: @escaping (Result<AgencyCategoryTypeResponse, APIError>) -> Void) {
+        let endpoint = APIService.createAgencyCategoryType(type: type, name: name)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func editAgencyCategoryType(type: String, id: Int, name: String, completion: @escaping (Result<AgencyCategoryTypeResponse, APIError>) -> Void) {
+        let endpoint = APIService.editAgencyCategoryType(type: type, id: id, name: name)
+        request(endpoint: endpoint, completion: completion)
+    }
+    
+    func deleteAgencyCategoryType(type: String, id: Int, completion: @escaping (Result<AgencyCategoryTypeResponse, APIError>) -> Void) {
+        let endpoint = APIService.deleteAgencyCategoryType(type: type, id: id)
         request(endpoint: endpoint, completion: completion)
     }
 

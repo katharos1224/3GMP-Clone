@@ -58,7 +58,8 @@ final class ProductsVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bannerView.cartButton.isHidden = false
+        bannerView.cartButton.isHidden = categoryProducts.isEmpty ? true : false
+        bannerView.createButton.isHidden = agencyProducts.isEmpty ? true : false
 
         bannerView.configure(title: titleLabel)
 
@@ -71,6 +72,16 @@ final class ProductsVC: BaseViewController {
             if let _ = self.navigationController {
                 self.pushWithCrossDissolve(vc)
             } else {
+                self.show(vc)
+            }
+        }
+        
+        bannerView.createProductOnClick = {
+            let vc = WebViewVC()
+            vc.isCreateProduct = true
+            vc.navTitle = "Thêm sản phẩm"
+            
+            DispatchQueue.main.async {
                 self.show(vc)
             }
         }
@@ -240,8 +251,51 @@ extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
                 }
             }
             
-            cell.deleteOnClick = {
+            cell.deleteOnClick = { [self] in
+                let view = EditProductContentView
+                let buttonTitle = "Xoá sản phẩm"
                 
+                view.agreeButton.setTitle(buttonTitle, for: .normal)
+                view.productName.text = agencyProducts[indexPath.item].tenSanPham
+                
+                view.agreeOnClick = { [self] in
+                    self.showLoadingIndicator()
+                    
+                    NetworkManager.shared.deleteProduct(id: agencyProducts[indexPath.item].id) { [weak self] result in
+                        switch result {
+                        case .success(let data):
+                            guard data.response != nil else {
+                                print(data.message)
+                                return
+                            }
+                            
+                            NetworkManager.shared.fetchAgencyProducts(page: nil, category: self?.category, search: nil, hoatChat: nil, nhomThuoc: nil, nhaSanXuat: nil) { result in
+                                switch result {
+                                case .success(let data):
+                                    guard let response = data.response else {
+                                        print(data.message)
+                                        return
+                                    }
+                                    
+                                    self?.agencyProducts = response.data
+                                    
+                                    DispatchQueue.main.async {
+                                        collectionView.reloadData()
+                                        self?.hideLoadingIndicator()
+                                    }
+                                case .failure(let error):
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.async { [self] in
+                    showEditPopup()
+                }
             }
 
             return cell

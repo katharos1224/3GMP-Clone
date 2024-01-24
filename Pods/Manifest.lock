@@ -13,6 +13,7 @@ PODS:
     - SDWebImage/Core (= 5.18.3)
   - SDWebImage/Core (5.18.3)
   - SnapKit (5.6.0)
+  - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
   - DropDown
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - Moya
   - SDWebImage
   - SnapKit
+  - SwipeCellKit
 
 SPEC REPOS:
   trunk:
@@ -33,6 +35,7 @@ SPEC REPOS:
     - Moya
     - SDWebImage
     - SnapKit
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
@@ -43,7 +46,8 @@ SPEC CHECKSUMS:
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 5ab7ddbf2c927d9c3530f51624d65b47a668a8f9
+PODFILE CHECKSUM: 469b295cd4043c34c22245f8cab15f591b3920da
 
 COCOAPODS: 1.14.3

@@ -46,6 +46,11 @@ enum EndPointURL {
     static let AGENCY_PRODUCTS: String = "agency/products"
     static let SHOW_PRODUCT: String = "agency/product/change_of_status"
     static let PIN_BEST_SELLER: String = "agency/product/bestseller"
+    static let DELETE_PRODUCT: String = "agency/product/delete"
+    static let AGENCY_CATEGORY_TYPE: String = "agency/category_type"
+    static let AGENCY_CATEGORY_TYPE_CREATE: String = "agency/category_type/create"
+    static let AGENCY_CATEGORY_TYPE_EDIT: String = "agency/category_type/edit"
+    static let AGENCY_CATEGORY_TYPE_DELETE: String = "agency/category_type/delete"
 }
 
 enum TabItemTitles: String {

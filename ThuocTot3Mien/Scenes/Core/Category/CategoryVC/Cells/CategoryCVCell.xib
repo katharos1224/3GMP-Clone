@@ -28,6 +28,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="4WE-WQ-t2S" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" id="98s-ks-r42"/>
                 <constraint firstItem="4WE-WQ-t2S" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="HkZ-R0-FgM"/>
                 <constraint firstAttribute="trailing" secondItem="4WE-WQ-t2S" secondAttribute="trailing" constant="16" id="bZy-xs-jPO"/>
                 <constraint firstItem="4WE-WQ-t2S" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="h0S-df-cSY"/>

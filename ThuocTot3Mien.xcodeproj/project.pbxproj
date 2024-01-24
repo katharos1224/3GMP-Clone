@@ -25,6 +25,14 @@
 		F4120F522B3D0B0F0033F02A /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4120F502B3D0B0F0033F02A /* SearchResultCell.xib */; };
 		F4120F542B3D227F0033F02A /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4120F532B3D227F0033F02A /* SearchResult.swift */; };
 		F4139C6A2B60A4EB00CE8E96 /* ShowProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4139C692B60A4EB00CE8E96 /* ShowProductResponse.swift */; };
+		F4139C6C2B60B7E100CE8E96 /* AgencyVC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4139C6B2B60B7E100CE8E96 /* AgencyVC+Extensions.swift */; };
+		F4139C702B60BCD000CE8E96 /* AgencyCategoryTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4139C6E2B60BCD000CE8E96 /* AgencyCategoryTypeVC.swift */; };
+		F4139C712B60BCD000CE8E96 /* AgencyCategoryTypeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4139C6F2B60BCD000CE8E96 /* AgencyCategoryTypeVC.xib */; };
+		F4139C752B60BCFC00CE8E96 /* AgencyDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4139C732B60BCFC00CE8E96 /* AgencyDetailCell.swift */; };
+		F4139C762B60BCFC00CE8E96 /* AgencyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4139C742B60BCFC00CE8E96 /* AgencyDetailCell.xib */; };
+		F4139C782B60C4F300CE8E96 /* AgencyCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4139C772B60C4F300CE8E96 /* AgencyCategoryType.swift */; };
+		F4139C7A2B60CCA100CE8E96 /* CreateAgencyCategoryTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4139C792B60CCA100CE8E96 /* CreateAgencyCategoryTypeView.xib */; };
+		F4139C7C2B60CCBB00CE8E96 /* CreateAgencyCategoryTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4139C7B2B60CCBB00CE8E96 /* CreateAgencyCategoryTypeView.swift */; };
 		F41DA6CE2B26EAFA00B5B63B /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F41DA6CD2B26EAFA00B5B63B /* TagView.xib */; };
 		F41DA6D02B26EB6800B5B63B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41DA6CF2B26EB6800B5B63B /* TagView.swift */; };
 		F41F5A9F2B231C38003F087E /* Sercurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41F5A9E2B231C38003F087E /* Sercurity.swift */; };
@@ -172,6 +180,14 @@
 		F4120F502B3D0B0F0033F02A /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		F4120F532B3D227F0033F02A /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		F4139C692B60A4EB00CE8E96 /* ShowProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProductResponse.swift; sourceTree = "<group>"; };
+		F4139C6B2B60B7E100CE8E96 /* AgencyVC+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgencyVC+Extensions.swift"; sourceTree = "<group>"; };
+		F4139C6E2B60BCD000CE8E96 /* AgencyCategoryTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyCategoryTypeVC.swift; sourceTree = "<group>"; };
+		F4139C6F2B60BCD000CE8E96 /* AgencyCategoryTypeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgencyCategoryTypeVC.xib; sourceTree = "<group>"; };
+		F4139C732B60BCFC00CE8E96 /* AgencyDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyDetailCell.swift; sourceTree = "<group>"; };
+		F4139C742B60BCFC00CE8E96 /* AgencyDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgencyDetailCell.xib; sourceTree = "<group>"; };
+		F4139C772B60C4F300CE8E96 /* AgencyCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyCategoryType.swift; sourceTree = "<group>"; };
+		F4139C792B60CCA100CE8E96 /* CreateAgencyCategoryTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAgencyCategoryTypeView.xib; sourceTree = "<group>"; };
+		F4139C7B2B60CCBB00CE8E96 /* CreateAgencyCategoryTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAgencyCategoryTypeView.swift; sourceTree = "<group>"; };
 		F41DA6CD2B26EAFA00B5B63B /* TagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagView.xib; sourceTree = "<group>"; };
 		F41DA6CF2B26EB6800B5B63B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		F41F5A9E2B231C38003F087E /* Sercurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sercurity.swift; sourceTree = "<group>"; };
@@ -382,6 +398,25 @@
 			children = (
 				F4120F4F2B3D0B0F0033F02A /* SearchResultCell.swift */,
 				F4120F502B3D0B0F0033F02A /* SearchResultCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F4139C6D2B60BC8E00CE8E96 /* AgencyDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				F4139C722B60BCD400CE8E96 /* Cells */,
+				F4139C6E2B60BCD000CE8E96 /* AgencyCategoryTypeVC.swift */,
+				F4139C6F2B60BCD000CE8E96 /* AgencyCategoryTypeVC.xib */,
+			);
+			path = AgencyDetailVC;
+			sourceTree = "<group>";
+		};
+		F4139C722B60BCD400CE8E96 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F4139C732B60BCFC00CE8E96 /* AgencyDetailCell.swift */,
+				F4139C742B60BCFC00CE8E96 /* AgencyDetailCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -665,6 +700,7 @@
 		F4AB74F62B5927A300825063 /* Management */ = {
 			isa = PBXGroup;
 			children = (
+				F4139C6D2B60BC8E00CE8E96 /* AgencyDetailVC */,
 				F4B0AA3A2B1F6ED4005C5FF7 /* ManagementVC */,
 				F4C8A3002B5E40C100DCC06D /* AgencyVC */,
 				F45A1BB12B4C3E3600EF39E2 /* ContactVC */,
@@ -732,6 +768,8 @@
 				F46D92AC2B3AA98B00B71CC1 /* BannerView.swift */,
 				F451AE952B5FBDB20091BD67 /* EditProductView.xib */,
 				F451AE972B5FBDBF0091BD67 /* EditProductView.swift */,
+				F4139C792B60CCA100CE8E96 /* CreateAgencyCategoryTypeView.xib */,
+				F4139C7B2B60CCBB00CE8E96 /* CreateAgencyCategoryTypeView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -940,6 +978,7 @@
 				F491C8192B4D20D500AA0EC3 /* ProfileResponse.swift */,
 				F4C8A3062B5E558300DCC06D /* AgencyCategoryResponse.swift */,
 				F4139C692B60A4EB00CE8E96 /* ShowProductResponse.swift */,
+				F4139C772B60C4F300CE8E96 /* AgencyCategoryType.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -949,6 +988,7 @@
 			children = (
 				F4C8A3012B5E415300DCC06D /* AgencyVC.swift */,
 				F4C8A3022B5E415300DCC06D /* AgencyVC.xib */,
+				F4139C6B2B60B7E100CE8E96 /* AgencyVC+Extensions.swift */,
 			);
 			path = AgencyVC;
 			sourceTree = "<group>";
@@ -1070,6 +1110,8 @@
 				F480F8C12B43E10A00E5982B /* CategoryCVCell.xib in Resources */,
 				F4B0AA422B1F6F2E005C5FF7 /* CategoryVC.xib in Resources */,
 				F4815E0C2B26A32E00351E72 /* AddedProductCVCell.xib in Resources */,
+				F4139C7A2B60CCA100CE8E96 /* CreateAgencyCategoryTypeView.xib in Resources */,
+				F4139C712B60BCD000CE8E96 /* AgencyCategoryTypeVC.xib in Resources */,
 				F4010CA12B24E05900F693B6 /* CartVC.xib in Resources */,
 				F4E37BEC2B466D1A000EC402 /* NavBarView.xib in Resources */,
 				F44BE4902B57BF1A0024A48B /* ChangeAmountView.xib in Resources */,
@@ -1080,6 +1122,7 @@
 				F44F94802B2855170068E2A6 /* AddCartSuccessfullyPopupView.xib in Resources */,
 				F4C8A3042B5E415300DCC06D /* AgencyVC.xib in Resources */,
 				F48B3BA22B4D037E008C008B /* PharmacyProfileVC.xib in Resources */,
+				F4139C762B60BCFC00CE8E96 /* AgencyDetailCell.xib in Resources */,
 				F4B0AA4A2B1F6F50005C5FF7 /* ManagementVC.xib in Resources */,
 				F45A1BB02B4C201200EF39E2 /* ManagementCell.xib in Resources */,
 				F451AE962B5FBDB20091BD67 /* EditProductView.xib in Resources */,
@@ -1181,6 +1224,7 @@
 				F45A1BAF2B4C201200EF39E2 /* ManagementCell.swift in Sources */,
 				F4139C6A2B60A4EB00CE8E96 /* ShowProductResponse.swift in Sources */,
 				F41F5A9F2B231C38003F087E /* Sercurity.swift in Sources */,
+				F4139C7C2B60CCBB00CE8E96 /* CreateAgencyCategoryTypeView.swift in Sources */,
 				F47E8F722B48098000635B2F /* SellHistoryVC.swift in Sources */,
 				F4ACAE412B57640800630E78 /* Constants.swift in Sources */,
 				F46D92AD2B3AA98B00B71CC1 /* BannerView.swift in Sources */,
@@ -1203,11 +1247,15 @@
 				F44D5D682B3B275400829B20 /* WebViewVC.swift in Sources */,
 				F4ACAE492B57BE9A00630E78 /* ChangeAmountView.swift in Sources */,
 				F40E0C092B4564D10003755E /* PaymentDetailVC.swift in Sources */,
+				F4139C782B60C4F300CE8E96 /* AgencyCategoryType.swift in Sources */,
+				F4139C752B60BCFC00CE8E96 /* AgencyDetailCell.swift in Sources */,
 				F4120F542B3D227F0033F02A /* SearchResult.swift in Sources */,
 				F4B0AA342B1F6CBB005C5FF7 /* TabBarVC.swift in Sources */,
 				F4B0AA492B1F6F50005C5FF7 /* ManagementVC.swift in Sources */,
 				F48E2FC92B1B5475001A4EBB /* AuthViewModel.swift in Sources */,
+				F4139C6C2B60B7E100CE8E96 /* AgencyVC+Extensions.swift in Sources */,
 				F4486BB42B391F080009DDDE /* Payment.swift in Sources */,
+				F4139C702B60BCD000CE8E96 /* AgencyCategoryTypeVC.swift in Sources */,
 				F4ADCE282B559D9C00D9C78D /* HomeVC+Extensions.swift in Sources */,
 				F491C81C2B4D26A800AA0EC3 /* Profile.swift in Sources */,
 				F45A1BB92B4C3F6300EF39E2 /* ContactCell.swift in Sources */,

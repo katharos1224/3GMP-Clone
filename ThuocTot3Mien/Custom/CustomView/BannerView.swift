@@ -13,6 +13,7 @@ class BannerView: UIView {
     @IBOutlet var image: UIImageView!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var cartButton: UIButton!
+    @IBOutlet var createButton: UIButton!
     @IBOutlet var textField: UITextField!
     @IBOutlet var searchImage: UIImageView!
     @IBOutlet var clearImage: UIImageView!
@@ -23,6 +24,7 @@ class BannerView: UIView {
     
     var dismiss: (() -> Void)?
     var goToCartOnClick: (() -> Void)?
+    var createProductOnClick: (() -> Void)?
     var number: Int = 0
 
     override init(frame: CGRect) {
@@ -63,6 +65,10 @@ class BannerView: UIView {
 
     @IBAction func goToCartTapped() {
         goToCartOnClick?()
+    }
+    
+    @IBAction func createProductTapped() {
+        createProductOnClick?()
     }
 
     @IBAction func dismissVC() {
